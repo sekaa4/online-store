@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const EslintPlugin = require('eslint-webpack-plugin');
+const { NetlifyPlugin } = require('netlify-webpack-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
@@ -39,6 +40,7 @@ module.exports = {
   output: {
     filename: filename('js'),
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
   },
   resolve: {
     extensions: ['.js', '.json', '.tsx', '.ts', '.js'],
@@ -48,7 +50,11 @@ module.exports = {
   },
   optimization: optimization(),
   devServer: {
-    historyApiFallback: true,
+    historyApiFallback: {
+      rewrites: [
+        { from: /./, to: 'index.html' },
+      ],
+    },
     open: true,
     compress: true,
     port: 8080,
@@ -68,6 +74,13 @@ module.exports = {
       filename: filename('css'),
     }),
     new EslintPlugin({ extensions: 'ts' }),
+    new NetlifyPlugin([{
+      from: "/*",
+      to: "/index.html",
+      status: 301,
+      force: false,
+    },
+    ]),
   ],
   module: {
     rules: [

@@ -9,7 +9,7 @@
     "build": "cross-env NODE_ENV=production webpack --mode production",
     "watch": "cross-env NODE_ENV=development webpack --mode development --watch",
     "style": "sass --watch ./src/assets/styles/sass/style.scss ./src/assets/styles/css/style.css",
-    "lint": "eslint . --ext .ts"
+    "lint": "npx eslint --ext js,jsx,ts,tsx ./src --fix"
   },
   "repository": {
     "type": "git",
@@ -38,6 +38,7 @@
     "eslint-webpack-plugin": "^3.2.0",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.6.1",
+    "netlify-webpack-plugin": "^1.1.3",
     "postcss-loader": "^7.0.2",
     "postcss-preset-env": "^7.8.3",
     "prettier": "^2.2.1",
