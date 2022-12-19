@@ -1,0 +1,35 @@
+.header {
+    background: $color-light;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+    padding: 15px 0 17px 0;
+}
+
+.header__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+// .bin-container {
+//     width: 40px;
+//     height: 40px;
+//     padding: 30px;
+//     background-image: url(../../../icons/bin.png);
+//     background-repeat: no-repeat;
+//     background-size: 40px 40px;
+//     background-position: center;
+//     &:hover {
+//         cursor: pointer;
+//     }
+// }
+
+.bin-counter {
+    padding-top: 40px;
+    font-size: 22px;
+    text-align: center;
+}
