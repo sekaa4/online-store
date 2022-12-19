@@ -1,9 +1,7 @@
 import { DataObject } from '../interfaces/dataObject';
-import products from '../data.json' assert {type: 'json'}; // доступ модуль
 
-export function getData(): DataObject[] {
-  return products.products;
+export default async function getData():Promise<DataObject> {
+  const data: DataObject = await fetch('https://dummyjson.com/products').then((resp) => resp.json());
+  localStorage.setItem('data', JSON.stringify(data.products));
+  return data;
 }
-
-console.log(getData());
-export default getData;

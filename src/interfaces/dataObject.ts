@@ -1,12 +1,20 @@
 export interface DataObject {
-    id: number;
-    title: string;
+    limit: number;
+    products: DataProducts[];
+    skip: number;
+    total: number;
+}
+
+export interface DataProducts {
+    brand: string;
+    category: string;
     description: string;
-    price: number;
     discountPercentage: number;
+    id: number;
+    images: string[];
+    price: number;
     rating: number;
     stock: number;
-    brand: string;
     thumbnail: string;
-    images: string[];
+    title: string;
 }
