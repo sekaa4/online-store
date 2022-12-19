@@ -7,7 +7,7 @@
     ],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "module": "es6",
+    "module": "esnext", //временно поменял es6;
     "typeRoots": [
       "node_modules/@types",
       "src/typings.d.ts"
@@ -17,6 +17,8 @@
     "outDir": "./dist",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
+    "moduleResolution": "node", //доступ модуль
+    "resolveJsonModule": true, // доступ модуль
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitAny": true,
@@ -28,5 +30,8 @@
   "include": [
     "src/**/*",
     "module.d.ts"
-  ]
+  ],
+  "ts-node": { //ts-node, установка npm i -g ts-node, запуск ts-node fileName.ts / в package.json добавлена строка "type": "module".
+    "esm": true
+  }
 }
