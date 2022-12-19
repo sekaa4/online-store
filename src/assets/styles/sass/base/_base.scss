@@ -1,0 +1,27 @@
+html {
+  font-size: 10px;
+  font-family: "Lato", Verdana, sans-serif;
+}
+
+.input__checkbox {
+  padding: 0px;
+  width: 20px;
+  height: 20px;
+  background: #FFFFFF;
+  border: 1px solid #CCCCCC;
+  border-radius: 3px;
+}
+
+.input__checkbox:active {
+  border: 1px solid #01579B;
+  border-radius: 3px;
+  color: #01579B;
+}
+
+.label__checkbox {
+  margin: 0 0.8rem;
+}
+
+.checkbox__line {
+  width: 100%;
+}
