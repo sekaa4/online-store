@@ -59,6 +59,8 @@ module.exports = {
     compress: true,
     port: 8080,
     hot: false,
+    liveReload: true,
+    watchFiles: ['src/*.html'],
   },
   devtool: isDev ? 'source-map' : false,
   plugins: [
