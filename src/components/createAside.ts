@@ -4,16 +4,17 @@ import createFilter from './filters/createFilter';
 import { getAllSortData } from './filters/getAllSortData';
 import createMultiSlider from './filters/createMultiSlider';
 import createButtons from './filters/createButtons';
+import { AllDataSort } from '../interfaces/sortData.type';
 
 export function createAside() {
   const main: HTMLElement = document.createElement('main');
   const wrapper: HTMLDivElement = document.createElement('div');
-  const divMain: HTMLDivElement = document.createElement('div');
   const divAside: CreateElement = new CreateElement('div', ['main__aside', 'aside']);
 
   getData().then((data) => {
-    const sortObject: object = getAllSortData(data, ['category', 'brand', 'price', 'stock']);
+    const sortObject: AllDataSort = getAllSortData(data, ['category', 'brand', 'price', 'stock']);
     console.log(sortObject);
+
     const classNameDiv = [
       'aside__buttons',
       ['aside__filter', 'filter', 'filter__categories'],
@@ -28,7 +29,7 @@ export function createAside() {
 
     const filterCategories: Element | null | undefined = divAside.chooseElem('filter__categories');
     const filterBrands: Element | null | undefined = divAside.chooseElem('filter__brands');
-    const multiSliderPrice: Element | null | undefined = divAside.chooseElem('dual-slider__price');
+    const multiSliderPrice: Element = divAside.chooseElem('dual-slider__price') as HTMLElement;
     const multiSliderStock: Element | null | undefined = divAside.chooseElem('dual-slider__stock');
     const filterButtons: Element | null | undefined = divAside.chooseElem('aside__buttons');
 
@@ -37,32 +38,34 @@ export function createAside() {
       filterButtons.append(...buttons);
     } else throw Error("filterCategories doesn't exist");
 
-    const filterCategory: CreateElement = createFilter('Category', Array.from(sortObject.category));
-    const filterBrand: CreateElement = createFilter('Brand', Array.from(sortObject.brand));
+    if (sortObject.category && sortObject.brand) {
+      const filterCategory: CreateElement = createFilter('Category', Array.from(sortObject.category));
+      const filterBrand: CreateElement = createFilter('Brand', Array.from(sortObject.brand));
 
-    if (filterCategories) {
-      const description: HTMLHeadingElement = document.createElement('h3');
-      description.classList.add('category__description', 'description');
-      description.innerHTML = 'Category';
-      filterCategories.append(description, filterCategory.elem);
-    } else throw Error("filterCategories doesn't exist");
+      if (filterCategories) {
+        const description: HTMLHeadingElement = document.createElement('h3');
+        description.classList.add('category__description', 'description');
+        description.innerHTML = 'Category';
+        filterCategories.append(description, filterCategory.elem);
+      } else throw Error("filterCategories doesn't exist");
 
-    if (filterBrands) {
-      const description: HTMLHeadingElement = document.createElement('h3');
-      description.classList.add('brand__description', 'description');
-      description.innerHTML = 'Brand';
-      filterBrands.append(description, filterBrand.elem);
-    } else throw Error("filterBrand doesn't exist");
+      if (filterBrands) {
+        const description: HTMLHeadingElement = document.createElement('h3');
+        description.classList.add('brand__description', 'description');
+        description.innerHTML = 'Brand';
+        filterBrands.append(description, filterBrand.elem);
+      } else throw Error("filterBrand doesn't exist");
 
-    if (multiSliderPrice) {
-      const slidersElem: HTMLElement[] = createMultiSlider('Price');
-      multiSliderPrice.append(...slidersElem);
-    } else throw Error("multiSliderPrice doesn't exist");
+      if (multiSliderPrice) {
+        const slidersElem: HTMLElement[] = createMultiSlider('Price');
+        multiSliderPrice.append(...slidersElem);
+      } else throw Error("multiSliderPrice doesn't exist");
 
-    if (multiSliderStock) {
-      const slidersElem: HTMLElement[] = createMultiSlider('Stock');
-      multiSliderStock.append(...slidersElem);
-    } else throw Error("multiSliderPrice doesn't exist");
+      if (multiSliderStock) {
+        const slidersElem: HTMLElement[] = createMultiSlider('Stock');
+        multiSliderStock.append(...slidersElem);
+      } else throw Error("multiSliderPrice doesn't exist");
+    }
   });
 
   wrapper.append(divAside.elem, main);
