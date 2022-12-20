@@ -76,13 +76,15 @@ module.exports = {
       filename: filename('css'),
     }),
     new EslintPlugin({ extensions: 'ts' }),
-    new NetlifyPlugin([{
-      from: "/*",
-      to: "/index.html",
-      status: 301,
-      force: false,
-    },
-    ]),
+    new NetlifyPlugin({
+      redirects: [{
+        from: "/*",
+        to: "/index.html",
+        status: 301,
+        force: false,
+      },
+      ],
+    }),
   ],
   module: {
     rules: [
