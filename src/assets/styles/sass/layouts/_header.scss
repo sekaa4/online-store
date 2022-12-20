@@ -15,21 +15,30 @@
     align-items: center;
 }
 
-// .bin-container {
-//     width: 40px;
-//     height: 40px;
-//     padding: 30px;
-//     background-image: url(../../../icons/bin.png);
-//     background-repeat: no-repeat;
-//     background-size: 40px 40px;
-//     background-position: center;
-//     &:hover {
-//         cursor: pointer;
-//     }
-// }
+.bin-container {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    padding: 30px;
+    background-image: url(../../../assets/icons/bin.svg);
+    background-repeat: no-repeat;
+    background-size: 40px 40px;
+    background-position: center;
+    &:hover {
+        cursor: pointer;
+    }
+}
 
 .bin-counter {
-    padding-top: 40px;
-    font-size: 22px;
+    position: absolute;
+    width: 25px;
+    height: 25px;
     text-align: center;
+    font-size: 2rem;
+    bottom: 20px;
+    right: 5px;
+    border: 1px solid $color-counter;
+    border-radius: 50%;
+    background: $color-counter;
+    color: $color-light;
 }
