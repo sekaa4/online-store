@@ -1,16 +1,16 @@
 import { getSortDataFilter } from './getSortDataFilter';
 import { DataObject } from '../../interfaces/dataObject';
-import { DataProducts } from '../../interfaces/dataObject';
+import { SortsName, KeysDataProducts, SortData, AllDataSort } from '../../interfaces/sortData.type';
 
-export function getAllSortData(data: DataObject, sortsName: string[]) {
-  const sortData = getSortData(data, sortsName);
-  const allDataSort = Object.keys(sortData).reduce((acc, filterName) => {
+export function getAllSortData(data: DataObject, sortsName: SortsName): AllDataSort {
+  const sortData: SortData = getSortData(data, sortsName);
+  const allDataSort: AllDataSort = Object.keys(sortData).reduce((acc, filterName) => {
     const cacheDataMap = new Map();
-    sortData[filterName].forEach((filter: string | number | string[]) => {
+    sortData[filterName as KeysDataProducts]?.forEach((filter: string | number | string[]) => {
       data.products.forEach((product) => {
-        if (cacheDataMap.has(filter) && product[filterName] === filter) {
+        if (cacheDataMap.has(filter) && product[filterName as KeysDataProducts] === filter) {
           cacheDataMap.get(filter).push(product);
-        } else if (product[filterName] === filter) {
+        } else if (product[filterName as KeysDataProducts] === filter) {
           cacheDataMap.set(filter, []);
           cacheDataMap.get(filter).push(product);
         }
@@ -21,9 +21,10 @@ export function getAllSortData(data: DataObject, sortsName: string[]) {
   return allDataSort;
 }
 
-function getSortData(data: DataObject, sortsName: string[]) {
-  const sortData: object = sortsName.reduce((acc, name) => {
-    const arrData = Array.from(getSortDataFilter(name, data));
+function getSortData(data: DataObject, sortsName: SortsName): SortData {
+  const sortData: SortData = sortsName.reduce((acc, name) => {
+    const arrData: (string | number | string[])[] = Array.from(getSortDataFilter(name, data));
+    console.log({ ...acc, [name]: arrData });
     return { ...acc, [name]: arrData };
   }, {});
 

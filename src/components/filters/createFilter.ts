@@ -1,6 +1,6 @@
 import CreateElement from '../CreateElement';
 
-export default function createFilter(name: string, data: (string | object[])[]) {
+export default function createFilter(name: string, data: [string, string[] | number[]][]) {
   const filter = new CreateElement('div', `${name.toLowerCase()}__list`);
 
   if (data) {
