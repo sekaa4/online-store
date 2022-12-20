@@ -1,0 +1,16 @@
+html {
+    font-size: 10px;
+    height: 100%;
+}
+
+body {
+    @extend %font-prim;
+    @include font($size: 1.6rem, $height: 2.6rem, $weight: normal);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+main {
+    flex-grow: 1;
+}
