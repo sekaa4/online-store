@@ -1,9 +1,9 @@
 import { createElement } from './generateElement';
-import { Constants } from '../../models/constants';
+import { ConstantsDom } from '../../models/enumDom';
 
 export function renderMain(): void {
-  const main: HTMLElement = createElement(Constants.MAIN, document.body, [Constants.MAIN]);
-  const wrapper: HTMLElement = createElement(Constants.DIV, main, [Constants.WRAPPER, Constants.MAIN_WRAPPER]);
-  createElement(Constants.DIV, wrapper, [Constants.FILTER_CONTAINER]);
-  createElement(Constants.DIV, wrapper, [Constants.ITEMS_CONTAINER]);
+  const main: HTMLElement = createElement(ConstantsDom.MAIN, document.body, [ConstantsDom.MAIN]);
+  const wrapper: HTMLElement = createElement(ConstantsDom.DIV, main, [ConstantsDom.WRAPPER, ConstantsDom.MAIN_WRAPPER]);
+  createElement(ConstantsDom.DIV, wrapper, [ConstantsDom.FILTER_CONTAINER]);
+  createElement(ConstantsDom.DIV, wrapper, [ConstantsDom.ITEMS_CONTAINER]);
 }

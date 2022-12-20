@@ -1,16 +1,16 @@
 import { createElement } from './generateElement';
 import logo from '../../assets/logo/logo.png';
-import { Constants } from '../../models/constants';
+import { ConstantsDom } from '../../models/enumDom';
 
 export function renderHeader(): void {
-  const header: HTMLElement = createElement(Constants.HEADER, document.body, [Constants.HEADER]);
-  const wrapper: HTMLElement = createElement(Constants.DIV, header, [Constants.WRAPPER, Constants.HEADER_WRAPPER]);
-  const logoContainer: HTMLElement = createElement(Constants.DIV, wrapper, [Constants.LOGO_CONTAINER]);
-  createElement(Constants.IMG, logoContainer, [Constants.LOGO_IMG], Constants.EMPTY, [
-    [Constants.ALT, Constants.LOGO],
-    [Constants.SRC, logo],
+  const header: HTMLElement = createElement(ConstantsDom.HEADER, document.body, [ConstantsDom.HEADER]);
+  const wrapper: HTMLElement = createElement(ConstantsDom.DIV, header, [ConstantsDom.WRAPPER, ConstantsDom.HEADER_WRAPPER]);
+  const logoContainer: HTMLElement = createElement(ConstantsDom.DIV, wrapper, [ConstantsDom.LOGO_CONTAINER]);
+  createElement(ConstantsDom.IMG, logoContainer, [ConstantsDom.LOGO_IMG], ConstantsDom.EMPTY, [
+    [ConstantsDom.ALT, ConstantsDom.LOGO],
+    [ConstantsDom.SRC, logo],
   ]);
-  const shopBasketContainer: HTMLElement = createElement(Constants.DIV, wrapper, [Constants.BASKET_CONTAINER]);
+  const shopBasketContainer: HTMLElement = createElement(ConstantsDom.DIV, wrapper, [ConstantsDom.BASKET_CONTAINER]);
   const number = 0;
-  createElement(Constants.P, shopBasketContainer, [Constants.BASKET_COUNTER], number.toString());
+  createElement(ConstantsDom.P, shopBasketContainer, [ConstantsDom.BASKET_COUNTER], number.toString());
 }

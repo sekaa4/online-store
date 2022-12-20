@@ -1,8 +1,8 @@
-export enum Constants {
+export enum ConstantsDom {
   WRAPPER = 'wrapper',
   HEADER_WRAPPER = 'header__wrapper',
   STRING = 'string',
-  WRONG_DATA = 'Wrong data',
+  WRONG_DATA = 'Error, please check the correctness of the entered data',
   ALT = 'alt',
   BASKET_ITEMS = 'basketItems',
   BASKET_CONTAINER = 'basket__container',
