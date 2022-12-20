@@ -1,31 +1,16 @@
 import { createElement } from './generateElement';
 import logo from '../../assets/logo/logo.png';
-import {
-  WRAPPER,
-  HEADER_WRAPPER,
-  ALT,
-  BASKET_CONTAINER,
-  BASKET_COUNTER,
-  DIV,
-  EMPTY,
-  HEADER,
-  IMG,
-  LOGO,
-  LOGO_CONTAINER,
-  LOGO_IMG,
-  P,
-  SRC,
-} from '../../models/constants';
+import { Constants } from '../../models/constants';
 
 export function renderHeader(): void {
-  const header: HTMLElement = createElement(HEADER, document.body, [HEADER]);
-  const wrapper: HTMLElement = createElement(DIV, header, [WRAPPER, HEADER_WRAPPER]);
-  const logoContainer: HTMLElement = createElement(DIV, wrapper, [LOGO_CONTAINER]);
-  createElement(IMG, logoContainer, [LOGO_IMG], EMPTY, [
-    [ALT, LOGO],
-    [SRC, logo],
+  const header: HTMLElement = createElement(Constants.HEADER, document.body, [Constants.HEADER]);
+  const wrapper: HTMLElement = createElement(Constants.DIV, header, [Constants.WRAPPER, Constants.HEADER_WRAPPER]);
+  const logoContainer: HTMLElement = createElement(Constants.DIV, wrapper, [Constants.LOGO_CONTAINER]);
+  createElement(Constants.IMG, logoContainer, [Constants.LOGO_IMG], Constants.EMPTY, [
+    [Constants.ALT, Constants.LOGO],
+    [Constants.SRC, logo],
   ]);
-  const shopBasketContainer: HTMLElement = createElement(DIV, wrapper, [BASKET_CONTAINER]);
+  const shopBasketContainer: HTMLElement = createElement(Constants.DIV, wrapper, [Constants.BASKET_CONTAINER]);
   const number = 0;
-  createElement(P, shopBasketContainer, [BASKET_COUNTER], number.toString());
+  createElement(Constants.P, shopBasketContainer, [Constants.BASKET_COUNTER], number.toString());
 }

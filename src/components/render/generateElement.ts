@@ -1,4 +1,4 @@
-import { STRING, WRONG_DATA } from '../../models/constants';
+import { Constants } from '../../models/constants';
 
 export const elementDomStorage = new Map<string, HTMLElement[]>();
 
@@ -21,7 +21,7 @@ export function createElement(
   text?: string,
   attributes?: [string, string][]
 ): HTMLElement {
-  if (type && parentElement && typeof type === STRING && parentElement instanceof HTMLElement) {
+  if (type && parentElement && typeof type === Constants.STRING && parentElement instanceof HTMLElement) {
     const element: HTMLElement = document.createElement(type);
     if (classes) {
       element.classList.add(...classes);
@@ -36,5 +36,5 @@ export function createElement(
     addToDOMStorage(element);
     return element;
   }
-  throw new Error(WRONG_DATA);
+  throw new Error(Constants.WRONG_DATA);
 }

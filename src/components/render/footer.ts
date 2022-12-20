@@ -1,34 +1,18 @@
 import { createElement } from './generateElement';
-import {
-  DIV,
-  WRAPPER,
-  FOOTER,
-  FOOTER_WRAPPER,
-  FOOTER_LOGO_CONTAINER,
-  FOOTER_NAV,
-  FOOTER_COLUM,
-  FOOTER_LINKS,
-  LAYOUT_3,
-  A,
-  HREF,
-  OCTOPR,
-  GITHUB,
-  PRODUCT,
-  DEFAULT,
-} from '../../models/constants';
+import { Constants } from '../../models/constants';
 
 export function renderFooter() {
-  const footer: HTMLElement = createElement(FOOTER, document.body, [FOOTER]);
-  const wrapper: HTMLElement = createElement(DIV, footer, [WRAPPER, FOOTER_WRAPPER]);
-  createElement(DIV, wrapper, [FOOTER_LOGO_CONTAINER]);
-  const nav: HTMLElement = createElement(DIV, wrapper, [FOOTER_NAV, LAYOUT_3]);
-  const colum: HTMLElement = createElement(DIV, nav, [FOOTER_COLUM]);
-  const links: HTMLElement = createElement(DIV, colum, [FOOTER_LINKS]);
-  createElement(A, links, [DEFAULT], GITHUB, [[HREF, OCTOPR]]);
-  const colum_one: HTMLElement = createElement(DIV, nav, [FOOTER_COLUM]);
-  const links_one: HTMLElement = createElement(DIV, colum_one, [FOOTER_LINKS]);
-  createElement(A, links_one, [DEFAULT], GITHUB, [[HREF, OCTOPR]]);
-  const colum_two: HTMLElement = createElement(DIV, nav, [FOOTER_COLUM]);
-  const links_two: HTMLElement = createElement(DIV, colum_two, [FOOTER_LINKS]);
-  createElement(A, links_two, [DEFAULT], PRODUCT, [[HREF, OCTOPR]]);
+  const footer: HTMLElement = createElement(Constants.FOOTER, document.body, [Constants.FOOTER]);
+  const wrapper: HTMLElement = createElement(Constants.DIV, footer, [Constants.WRAPPER, Constants.FOOTER_WRAPPER]);
+  createElement(Constants.DIV, wrapper, [Constants.FOOTER_LOGO_CONTAINER]);
+  const nav: HTMLElement = createElement(Constants.DIV, wrapper, [Constants.FOOTER_NAV, Constants.LAYOUT_3]);
+  const colum: HTMLElement = createElement(Constants.DIV, nav, [Constants.FOOTER_COLUM]);
+  const links: HTMLElement = createElement(Constants.DIV, colum, [Constants.FOOTER_LINKS]);
+  createElement(Constants.A, links, [Constants.DEFAULT], Constants.GITHUB, [[Constants.HREF, Constants.OCTOPR]]);
+  const colum_one: HTMLElement = createElement(Constants.DIV, nav, [Constants.FOOTER_COLUM]);
+  const links_one: HTMLElement = createElement(Constants.DIV, colum_one, [Constants.FOOTER_LINKS]);
+  createElement(Constants.A, links_one, [Constants.DEFAULT], Constants.GITHUB, [[Constants.HREF, Constants.OCTOPR]]);
+  const colum_two: HTMLElement = createElement(Constants.DIV, nav, [Constants.FOOTER_COLUM]);
+  const links_two: HTMLElement = createElement(Constants.DIV, colum_two, [Constants.FOOTER_LINKS]);
+  createElement(Constants.A, links_two, [Constants.DEFAULT], Constants.PRODUCT, [[Constants.HREF, Constants.OCTOPR]]);
 }
