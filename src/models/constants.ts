@@ -17,3 +17,7 @@ export const LOGO_IMG = 'logo-img';
 export const P = 'p';
 export const SEPARATOR = '+++';
 export const SRC = 'src';
+export const FILTER_CONTAINER = 'filter-container';
+export const ITEMS_CONTAINER = 'items-container';
+export const MAIN = 'main';
+export const MAIN_WRAPPER = 'main__wrapper';
