@@ -1,0 +1,3 @@
+.layout-3-column {
+    @include columns($width: 30%);
+}

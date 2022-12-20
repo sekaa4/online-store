@@ -11,6 +11,6 @@ import {
 export function renderMain(): void {
     const main: HTMLElement = createElement(MAIN, document.body, [MAIN]);
     const wrapper: HTMLElement = createElement(DIV, main, [WRAPPER, MAIN_WRAPPER])
-    const filtersContainer: HTMLElement = createElement(DIV, wrapper, [FILTER_CONTAINER]);
+    createElement(DIV, wrapper, [FILTER_CONTAINER]);
     createElement(DIV, wrapper, [ITEMS_CONTAINER]);
 }

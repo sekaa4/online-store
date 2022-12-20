@@ -1,4 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"); /* ==========================================================================
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+body {
+  font-family: "Lato", Verdana, sans-serif;
+}
+
+/* ==========================================================================
   Normalize.scss settings
    ========================================================================== */
 /**
@@ -421,6 +426,13 @@ html {
   font-size: 10px;
 }
 
+body {
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 2.6rem;
+}
+
 .header {
   background: #ffffff;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
@@ -433,28 +445,51 @@ html {
   justify-content: space-between;
 }
 
-.logo-container {
+.logo__container {
   display: flex;
   align-items: center;
 }
 
-.bin-container {
-  width: 40px;
-  height: 40px;
+.basket__container {
+  position: relative;
+  width: 30px;
+  height: 30px;
   padding: 30px;
-  background-image: url(../../../icons/bin.png);
+  background-image: url(../../../assets/icons/bin.svg);
   background-repeat: no-repeat;
   background-size: 40px 40px;
   background-position: center;
 }
-.bin-container:hover {
+.basket__container:hover {
   cursor: pointer;
 }
 
-.bin-counter {
-  padding-top: 40px;
-  font-size: 22px;
+.basket__counter {
+  position: absolute;
+  width: 25px;
+  height: 25px;
   text-align: center;
+  font-size: 2rem;
+  bottom: 20px;
+  right: 5px;
+  border: 1px solid #06A56C;
+  border-radius: 50%;
+  background: #06A56C;
+  color: #ffffff;
+}
+
+.wrapper {
+  max-width: 1197px;
+  margin: auto;
+}
+
+.layout-3-column {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.layout-3-column > * {
+  flex-basis: 30%;
 }
 
 .wrapper {

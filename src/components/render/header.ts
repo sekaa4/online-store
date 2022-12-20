@@ -1,13 +1,11 @@
 import { createElement } from "./generateElement";
 import logo from "../../assets/logo/logo.png";
-import { getFromLocalStorage } from '../controller/localStorage';
 import { 
     WRAPPER,
     HEADER_WRAPPER,
     ALT,
-    BASKET_ITEMS,
-    BIN_CONTAINER,
-    BIN_COUNTER,
+    BASKET_CONTAINER,
+    BASKET_COUNTER,
     DIV,
     EMPTY,
     HEADER,
@@ -16,8 +14,7 @@ import {
     LOGO_CONTAINER,
     LOGO_IMG,
     P,
-    SEPARATOR,
-    SRC,
+    SRC
 } from '../../models/constants';
 
 export function renderHeader(): void {
@@ -28,11 +25,7 @@ export function renderHeader(): void {
         [ALT, LOGO],
         [SRC, logo],
     ]);
-    const shopBinContainer: HTMLElement = createElement(DIV, wrapper, [BIN_CONTAINER]);
-    const basketItems = getFromLocalStorage(BASKET_ITEMS);
-    let itemsNumber = 0;
-    if (basketItems) {
-        itemsNumber = basketItems.split(SEPARATOR).length;
-    }
-    createElement(P, shopBinContainer, [BIN_COUNTER], itemsNumber.toString());
+    const shopBasketContainer: HTMLElement = createElement(DIV, wrapper, [BASKET_CONTAINER]);
+    let number = 0;
+    createElement(P, shopBasketContainer, [BASKET_COUNTER], number.toString());
 }
