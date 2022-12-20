@@ -36,5 +36,5 @@ export function createElement(
     addToDOMStorage(element);
     return element;
   }
-  throw new Error(ConstantsDom.WRONG_DATA);
+  throw new Error('Error, please check the correctness of the entered data');
 }

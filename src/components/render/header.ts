@@ -4,7 +4,10 @@ import { ConstantsDom } from '../../models/enumDom';
 
 export function renderHeader(): void {
   const header: HTMLElement = createElement(ConstantsDom.HEADER, document.body, [ConstantsDom.HEADER]);
-  const wrapper: HTMLElement = createElement(ConstantsDom.DIV, header, [ConstantsDom.WRAPPER, ConstantsDom.HEADER_WRAPPER]);
+  const wrapper: HTMLElement = createElement(ConstantsDom.DIV, header, [
+    ConstantsDom.WRAPPER,
+    ConstantsDom.HEADER_WRAPPER,
+  ]);
   const logoContainer: HTMLElement = createElement(ConstantsDom.DIV, wrapper, [ConstantsDom.LOGO_CONTAINER]);
   createElement(ConstantsDom.IMG, logoContainer, [ConstantsDom.LOGO_IMG], ConstantsDom.EMPTY, [
     [ConstantsDom.ALT, ConstantsDom.LOGO],
