@@ -1,16 +1,39 @@
 html {
-    font-size: 10px;
-    height: 100%;
+  font-size: 10px;
+  height: 100%;
 }
 
 body {
-    @extend %font-prim;
-    @include font($size: 1.6rem, $height: 2.6rem, $weight: normal);
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+  @extend %font-prim;
+  @include font($size: 1.6rem, $height: 2.6rem, $weight: normal);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 main {
-    flex-grow: 1;
+  flex-grow: 1;
+}
+
+.input__checkbox {
+  padding: 0px;
+  width: 20px;
+  height: 20px;
+  background: #FFFFFF;
+  border: 1px solid #CCCCCC;
+  border-radius: 3px;
+}
+
+.input__checkbox:active {
+  border: 1px solid #01579B;
+  border-radius: 3px;
+  color: #01579B;
+}
+
+.label__checkbox {
+  margin: 0 0.8rem;
+}
+
+.checkbox__line {
+  width: 100%;
 }
