@@ -1,14 +1,16 @@
+import { createElement } from './render/generateElement';
+
 export default class CreateElement {
   public readonly elem: HTMLElement;
   constructor(name: string, className?: string | string[]) {
     if (typeof className === 'string' && className) {
-      this.elem = document.createElement(name);
+      this.elem = createElement(name, HTMLElement);
       this.elem.classList.add(className);
     } else if (Array.isArray(className) && className) {
       this.elem = document.createElement(name);
       this.elem.classList.add(...className);
     } else {
-      this.elem = document.createElement(name);
+      this.elem = createElement(name, HTMLElement);
     }
   }
   appendElem(elementName: string | CreateElement, className?: string[] | string, text?: string): void {
@@ -39,15 +41,17 @@ export default class CreateElement {
       this.querySelector(`.${className}`)?.remove();
     }
   }
-  chooseElem(className: string | string[]) {
+  chooseElem<T extends typeof Element>(className: string | string[]) {
     if (this.elem instanceof HTMLElement) {
-      if (className) {
-        return typeof className === 'string'
-          ? this.elem.querySelector(`.${className}`)
-          : this.elem.querySelector(`.${className.join('.')}`);
-      } else {
-        throw new Error("className doesn't exist");
-      }
-    }
+      if (className && typeof className === 'string') {
+        const elem: Element | null = this.elem.querySelector(`.${className}`);
+        if (elem) return elem as InstanceType<T>;
+        else throw new Error("Element doesn't exist in DOM");
+      } else if (className && Array.isArray(className)) {
+        const elem: Element | null = this.elem.querySelector(`.${className.join('.')}`);
+        if (elem) return elem as InstanceType<T>;
+        else throw new Error("Element doesn't exist in DOM");
+      } else throw new Error("className is wrong or doesn't exist");
+    } else throw new Error("Element doesn't instanceof HTMLElement");
   }
 }
