@@ -1,4 +1,3 @@
-//TODO: CHECK "AS" and "!" fixed this !!!!!!!!!!!!!!!!!!!!!
 import CreateElement from '../CreateElement';
 import { createElement } from '../render/generateElement';
 
