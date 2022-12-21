@@ -24,7 +24,6 @@ export function getAllSortData(data: DataObject, sortsName: SortsName): AllDataS
 function getSortData(data: DataObject, sortsName: SortsName): SortData {
   const sortData: SortData = sortsName.reduce((acc, name) => {
     const arrData: (string | number | string[])[] = Array.from(getSortDataFilter(name, data));
-    console.log({ ...acc, [name]: arrData });
     return { ...acc, [name]: arrData };
   }, {});
 
