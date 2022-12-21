@@ -3,7 +3,7 @@ import CreateElement from '../CreateElement';
 export default function createFilter(name: string, data: [string, string[] | number[]][]) {
   const filter = new CreateElement('div', `${name.toLowerCase()}__list`);
 
-  if (data) {
+  if (data.length > 0) {
     data.forEach((item) => {
       const checkboxLine: CreateElement = new CreateElement('div', ['checkbox__line', 'item__active']);
       const label: CreateElement = new CreateElement('label', ['label', 'label__checkbox']);
@@ -24,7 +24,7 @@ export default function createFilter(name: string, data: [string, string[] | num
       checkboxLine.elem.append(input.elem, label.elem, span.elem);
       filter.elem.append(checkboxLine.elem);
     });
-  }
+  } else throw new Error('Data in createFunction is empty');
 
   return filter;
 }
