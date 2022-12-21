@@ -1,5 +1,5 @@
-import { ConstantsDom } from "../../models/enumDom";
-import { DataObject, DataProducts } from "../../interfaces/dataObject";
+import { ConstantsDom } from "../../models/Dom";
+import { DataObject, DataProducts } from "../../interfaces/Data";
 import { addToDOMStorage, createElement, elementDomStorage } from "./generateElement";
 
 
