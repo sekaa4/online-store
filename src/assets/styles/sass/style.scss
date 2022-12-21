@@ -12,10 +12,13 @@
 @import "base/slider";
 
 //Layouts
-@import "layouts/header";
 @import "layouts/wrapper";
 @import "layouts/columns";
+@import "layouts/header";
+@import "layouts/main";
 @import "layouts/footer";
 
 //components
 @import "components/aside";
+@import "components/filter";
+@import "components/checkbox";
