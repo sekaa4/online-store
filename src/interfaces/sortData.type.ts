@@ -1,4 +1,4 @@
-import { DataProducts } from './dataObject';
+import { DataProducts } from './Data';
 
 type SortsName = Array<keyof DataProducts>;
 type KeysDataProducts = keyof DataProducts;

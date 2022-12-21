@@ -1,4 +1,4 @@
-import { DataObject } from '../interfaces/dataObject';
+import { DataObject } from '../interfaces/Data';
 
 export default async function getData(): Promise<DataObject> {
   const data: DataObject = await fetch('https://dummyjson.com/products').then((resp) => resp.json());

@@ -1,5 +1,5 @@
 import { createElement } from './generateElement';
-import { ConstantsDom } from '../../models/enumDom';
+import { ConstantsDom } from '../../models/Dom';
 import CreateElement from './CreateElement';
 import { createAside } from './createAside';
 

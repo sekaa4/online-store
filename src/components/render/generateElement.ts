@@ -1,5 +1,5 @@
-import { ConstantsDom } from '../../models/enumDom';
-import { ArrgsElement } from '../../interfaces/arrgsElement';
+import { ConstantsDom } from '../../models/Dom';
+import { ArrgsElement } from '../../interfaces/ArrgsElement';
 
 export const elementDomStorage = new Map<string, HTMLElement[]>();
 
