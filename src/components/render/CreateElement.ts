@@ -1,9 +1,9 @@
 import { createElement } from './generateElement';
-import { ArrgsElement } from '../../interfaces/ParamsElement';
+import { CreateElementParams } from '../../interfaces/CreateElementParams';
 
 export default class CreateElement {
   public readonly elem: HTMLElement;
-  constructor(name: string, paramsObject?: ArrgsElement) {
+  constructor(name: string, paramsObject?: CreateElementParams) {
     this.elem = createElement(name, HTMLElement, paramsObject);
   }
   appendElem(elementName: string | CreateElement, className?: string[] | string, text?: string): void {
