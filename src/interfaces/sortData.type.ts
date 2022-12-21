@@ -1,0 +1,12 @@
+import { DataProducts } from './dataObject';
+
+type SortsName = Array<keyof DataProducts>;
+type KeysDataProducts = keyof DataProducts;
+type SortData = {
+  [index in KeysDataProducts]?: string[] | number[];
+};
+type AllDataSort = {
+  [index in KeysDataProducts]?: Map<string, string[] | number[]>;
+};
+
+export { SortsName, KeysDataProducts, SortData, AllDataSort };
