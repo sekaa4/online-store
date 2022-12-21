@@ -1,4 +1,5 @@
 import { ConstantsDom } from '../../models/enumDom';
+import { ArrgsElement } from '../../interfaces/arrgsElement';
 
 export const elementDomStorage = new Map<string, HTMLElement[]>();
 
@@ -12,13 +13,6 @@ export function addToDOMStorage(element: HTMLElement): void {
       }
     });
   }
-}
-
-interface ArrgsElement {
-  parentElement?: HTMLElement;
-  classes?: string[];
-  text?: string;
-  attributes?: [string, string][];
 }
 
 export function createElement<T extends typeof HTMLElement>(
