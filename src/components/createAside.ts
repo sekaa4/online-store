@@ -14,8 +14,6 @@ export function createAside() {
 
   getData().then((data) => {
     const sortObject: AllDataSort = getAllSortData(data, ['category', 'brand', 'price', 'stock']);
-    console.log(sortObject);
-
     const classNameDiv = [
       'aside__buttons',
       ['aside__filter', 'filter', 'filter__categories'],
@@ -33,7 +31,6 @@ export function createAside() {
     const multiSliderPrice: Element = divAside.chooseElem('dual-slider__price') as HTMLElement;
     const multiSliderStock: Element = divAside.chooseElem('dual-slider__stock');
     const filterButtons: Element = divAside.chooseElem('aside__buttons');
-
     const buttons: HTMLElement[] = createButtons(['Reset Filters', 'Copy Link'], 'aside');
     filterButtons.append(...buttons);
 

@@ -6,10 +6,9 @@ export default function createMultiSlider(name: string): HTMLElement[] {
     classes: ['dual-slider__description'],
     text: name,
   });
-
   const slider: HTMLDivElement = createElement('div', HTMLDivElement, {});
-
   const values: CreateElement = new CreateElement('div', ['out-data', `out-data__${name.toLowerCase()}`]);
+
   values.appendElem('span', 'from-data', '0');
   values.appendElem('span', 'dash', '—');
   values.appendElem('span', 'to-data', '0');
@@ -46,6 +45,7 @@ export default function createMultiSlider(name: string): HTMLElement[] {
     if (parseInt(slider2.value) - parseInt(slider1.value) <= minGap) {
       slider1.value = (parseInt(slider2.value) - minGap).toString();
     }
+
     range1.textContent = slider1.value;
     fillColor();
   }
@@ -54,6 +54,7 @@ export default function createMultiSlider(name: string): HTMLElement[] {
     if (parseInt(slider2.value) - parseInt(slider1.value) <= minGap) {
       slider2.value = (parseInt(slider1.value) + minGap).toString();
     }
+
     range2.textContent = slider2.value;
     fillColor();
   }
@@ -61,6 +62,7 @@ export default function createMultiSlider(name: string): HTMLElement[] {
   function fillColor() {
     const percent1 = (parseInt(slider1.value) / sliderMaxValue) * 100;
     const percent2 = (parseInt(slider2.value) / sliderMaxValue) * 100;
+
     sliderTrack.style.background = `linear-gradient(to right, #dadae5 ${percent1}% , #3264fe ${percent1}% , #3264fe ${percent2}%, #dadae5 ${percent2}%)`;
   }
 

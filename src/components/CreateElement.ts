@@ -1,5 +1,4 @@
 import { createElement } from './render/generateElement';
-
 export default class CreateElement {
   public readonly elem: HTMLElement;
   constructor(name: string, className?: string | string[]) {
@@ -16,7 +15,6 @@ export default class CreateElement {
   appendElem(elementName: string | CreateElement, className?: string[] | string, text?: string): void {
     if (typeof elementName === 'string') {
       const elem: HTMLElement = document.createElement(elementName);
-
       if (this.elem instanceof HTMLElement) {
         if (className) {
           typeof className === 'string' ? elem.classList.add(className) : elem.classList.add(...className);
@@ -41,6 +39,7 @@ export default class CreateElement {
       this.querySelector(`.${className}`)?.remove();
     }
   }
+
   chooseElem<T extends typeof Element>(className: string | string[]) {
     if (this.elem instanceof HTMLElement) {
       if (className && typeof className === 'string') {
