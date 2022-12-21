@@ -28,7 +28,7 @@ export function createAside() {
 
     const filterCategories: Element = divAside.chooseElem('filter__categories');
     const filterBrands: Element = divAside.chooseElem('filter__brands');
-    const multiSliderPrice: Element = divAside.chooseElem('dual-slider__price') as HTMLElement;
+    const multiSliderPrice: Element = divAside.chooseElem('dual-slider__price');
     const multiSliderStock: Element = divAside.chooseElem('dual-slider__stock');
     const filterButtons: Element = divAside.chooseElem('aside__buttons');
     const buttons: HTMLElement[] = createButtons(['Reset Filters', 'Copy Link'], 'aside');
