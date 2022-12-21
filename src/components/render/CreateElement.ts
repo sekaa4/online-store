@@ -1,5 +1,5 @@
 import { createElement } from './generateElement';
-import { ArrgsElement } from '../../interfaces/ArrgsElement';
+import { ArrgsElement } from '../../interfaces/ParamsElement';
 
 export default class CreateElement {
   public readonly elem: HTMLElement;

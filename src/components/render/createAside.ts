@@ -4,7 +4,7 @@ import createFilter from '../filters/createFilter';
 import { getAllSortData } from '../filters/getAllSortData';
 import createMultiSlider from '../filters/createMultiSlider';
 import createButtons from '../filters/createButtons';
-import { AllDataSort } from '../../interfaces/SortData.type';
+import { AllDataSort } from '../../interfaces/DataSort.type';
 import { createElement } from './generateElement';
 
 export function createAside() {

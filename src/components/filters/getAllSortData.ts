@@ -1,6 +1,6 @@
 import { getSortDataFilter } from './getSortDataFilter';
 import { DataObject } from '../../interfaces/Data';
-import { SortsName, KeysDataProducts, SortData, AllDataSort } from '../../interfaces/SortData.type';
+import { SortsName, KeysDataProducts, SortData, AllDataSort } from '../../interfaces/DataSort.type';
 
 export function getAllSortData(data: DataObject, sortsName: SortsName): AllDataSort {
   const sortData: SortData = getSortData(data, sortsName);

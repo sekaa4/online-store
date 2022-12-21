@@ -1,5 +1,5 @@
 import { DataProducts, DataObject } from '../../interfaces/Data';
-import { KeysDataProducts } from '../../interfaces/SortData.type';
+import { KeysDataProducts } from '../../interfaces/DataSort.type';
 
 const cacheSort = new Map();
 
