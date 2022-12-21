@@ -14,27 +14,32 @@ export function addToDOMStorage(element: HTMLElement): void {
   }
 }
 
-export function createElement(
-  type: string,
-  parentElement: HTMLElement,
-  classes?: string[],
-  text?: string,
-  attributes?: [string, string][]
-): HTMLElement {
-  if (type && parentElement && typeof type === ConstantsDom.STRING && parentElement instanceof HTMLElement) {
-    const element: HTMLElement = document.createElement(type);
-    if (classes) {
+interface ArrgsElement {
+  parentElement?: HTMLElement;
+  classes?: string[];
+  text?: string;
+  attributes?: [string, string][];
+}
+
+export function createElement<T extends typeof HTMLElement>(
+  elemName: string,
+  type: T,
+  { parentElement, classes, text = '', attributes }: ArrgsElement = {}
+): InstanceType<T> {
+  if (elemName && typeof elemName === ConstantsDom.STRING) {
+    const element: HTMLElement = document.createElement(elemName);
+    if (classes && element instanceof HTMLElement) {
       element.classList.add(...classes);
+      element.textContent = text;
     }
-    element.textContent = text || '';
     if (attributes) {
       for (let i = 0; i < attributes.length; i++) {
         element.setAttribute(...attributes[i]);
       }
     }
-    parentElement.appendChild(element);
+    if (parentElement && parentElement instanceof HTMLElement) parentElement.appendChild(element);
     addToDOMStorage(element);
-    return element;
+    return element as InstanceType<T>;
   }
   throw new Error('Error, please check the correctness of the entered data');
 }
