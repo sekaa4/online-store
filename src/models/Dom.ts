@@ -41,4 +41,10 @@ export enum ConstantsDom {
   GITHUB = 'GitHub',
   PRODUCT = 'Product',
   DEFAULT = 'default',
+  CARD_CONTAINER = 'card_container',
+  CARD_NAME = 'card-name',
+  H3 = 'h3',
+  CARD_IMG = 'card-img',
+  ATTENTION = 'attention',
+  SORRY_NO_PRODUCTS = 'sorry no product'
 }
