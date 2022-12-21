@@ -1,0 +1,26 @@
+.input__checkbox {
+  padding: 0px;
+  width: 15px;
+  height: 15px;
+  background: #FFFFFF;
+  border: 1px solid #CCCCCC;
+  border-radius: 3px;
+}
+
+.input__checkbox:active {
+  border: 1px solid #01579B;
+  border-radius: 3px;
+  color: #01579B;
+}
+
+.label__checkbox {}
+
+.checkbox__line {
+  @include font($size: 1.2rem, $height: 1.6rem, $weight: normal);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap: 0.8rem;
+  width: 100%;
+}

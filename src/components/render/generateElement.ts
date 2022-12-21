@@ -1,5 +1,5 @@
-import { ConstantsDom } from '../../models/enumDom';
-import { ArrgsElement } from '../../interfaces/arrgsElement';
+import { ConstantsDom } from '../../models/Dom';
+import { CreateElementParams } from '../../interfaces/CreateElementParams';
 
 export const elementDomStorage = new Map<string, HTMLElement[]>();
 
@@ -18,7 +18,7 @@ export function addToDOMStorage(element: HTMLElement): void {
 export function createElement<T extends typeof HTMLElement>(
   elemName: string,
   type: T,
-  { parentElement, classes, text = '', attributes }: ArrgsElement = {}
+  { parentElement, classes, text = '', attributes }: CreateElementParams = {}
 ): InstanceType<T> {
   if (elemName && typeof elemName === ConstantsDom.STRING) {
     const element: HTMLElement = document.createElement(elemName);
@@ -31,7 +31,7 @@ export function createElement<T extends typeof HTMLElement>(
         element.setAttribute(...attributes[i]);
       }
     }
-    if (parentElement && parentElement instanceof HTMLElement) parentElement.appendChild(element);
+    if (parentElement && parentElement instanceof HTMLElement) parentElement.append(element);
     addToDOMStorage(element);
     return element as InstanceType<T>;
   }

@@ -1,4 +1,4 @@
-export interface ArrgsElement {
+export interface CreateElementParams {
   parentElement?: HTMLElement;
   classes?: string[];
   text?: string;

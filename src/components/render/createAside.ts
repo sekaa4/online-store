@@ -1,16 +1,16 @@
-import getData from './getData';
+import getData from '../getData';
 import CreateElement from './CreateElement';
-import createFilter from './filters/createFilter';
-import { getAllSortData } from './filters/getAllSortData';
-import createMultiSlider from './filters/createMultiSlider';
-import createButtons from './filters/createButtons';
-import { AllDataSort } from '../interfaces/sortData.type';
-import { createElement } from './render/generateElement';
+import createFilter from '../filters/createFilter';
+import { getAllSortData } from '../filters/getAllSortData';
+import createMultiSlider from '../filters/createMultiSlider';
+import createButtons from '../filters/createButtons';
+import { AllDataSort } from '../../interfaces/DataSort.type';
+import { createElement } from './generateElement';
 
 export function createAside() {
-  const main: HTMLElement = document.createElement('main');
-  const wrapper: HTMLDivElement = document.createElement('div');
-  const divAside: CreateElement = new CreateElement('div', ['main__aside', 'aside']);
+  const divAside: CreateElement = new CreateElement('div', {
+    classes: ['main__aside', 'aside'],
+  });
 
   getData().then((data) => {
     const sortObject: AllDataSort = getAllSortData(data, ['category', 'brand', 'price', 'stock']);
@@ -57,6 +57,5 @@ export function createAside() {
     }
   });
 
-  wrapper.append(divAside.elem, main);
-  document.body.append(wrapper);
+  return divAside;
 }

@@ -1,5 +1,5 @@
 import { createElement } from './generateElement';
-import { ConstantsDom } from '../../models/enumDom';
+import { ConstantsDom } from '../../models/Dom';
 
 export function renderFooter() {
   const footer: HTMLElement = createElement(ConstantsDom.FOOTER, HTMLElement, {

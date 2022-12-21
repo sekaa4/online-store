@@ -1,40 +1,42 @@
 .footer {
-    padding: 60px 0 70px;
-    background-color: $color-footer;
+  background-color: $color-footer;
 }
 
 .footer__wrapper {
-    display: flex;
+  display: flex;
 }
 
 .footer-logo__container {
-    display: inline-block;
-    width: 150px;
-    height: 150px;
-    background-image: url(../../../assets/logo/rs_school_js.svg);
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-position: center;
-    &:hover {
-        cursor: pointer;
-    }
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  background-image: url(../../../assets/logo/rs_school_js.svg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .footer-navigation {
-    flex-grow: 1;
-    padding-left: 152px;
-    align-items: center;
+  flex-grow: 1;
+  padding-left: 152px;
+  align-items: center;
 }
 
 .footer-navigation__links {
-    @extend %font-prim;
-    a {
-        color: $color-text;
-        @extend %transition;
-        @include font($size: 1.6rem, $height: 3.5rem, $weight: normal);
-        text-decoration: none;
-        &:hover {
-            color: $color-hovered;
-        }
+  @extend %font-prim;
+
+  a {
+    color: $color-text;
+    @extend %transition;
+    @include font($size: 1.6rem, $height: 3.5rem, $weight: normal);
+    text-decoration: none;
+
+    &:hover {
+      color: $color-hovered;
     }
+  }
 }

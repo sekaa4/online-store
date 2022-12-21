@@ -5,7 +5,7 @@ html {
 
 body {
   @extend %font-prim;
-  @include font($size: 1.6rem, $height: 2.6rem, $weight: normal);
+  @include font($size: 1.4rem, $height: 2.6rem, $weight: normal);
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -15,25 +15,16 @@ main {
   flex-grow: 1;
 }
 
-.input__checkbox {
-  padding: 0px;
-  width: 20px;
-  height: 20px;
-  background: #FFFFFF;
-  border: 1px solid #CCCCCC;
-  border-radius: 3px;
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-.input__checkbox:active {
-  border: 1px solid #01579B;
-  border-radius: 3px;
-  color: #01579B;
+::-webkit-scrollbar-track {
+  background: rgb(221, 218, 213);
 }
 
-.label__checkbox {
-  margin: 0 0.8rem;
-}
-
-.checkbox__line {
-  width: 100%;
+::-webkit-scrollbar-thumb {
+  background-color: #3f4244;
+  border-radius: 20px;
+  border: 2px solid rgb(221, 218, 213);
 }

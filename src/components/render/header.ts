@@ -1,6 +1,6 @@
 import { createElement } from './generateElement';
 import logo from '../../assets/logo/logo.png';
-import { ConstantsDom } from '../../models/enumDom';
+import { ConstantsDom } from '../../models/Dom';
 
 export function renderHeader(): void {
   const header: HTMLElement = createElement(ConstantsDom.HEADER, HTMLElement, {

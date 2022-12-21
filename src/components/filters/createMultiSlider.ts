@@ -1,4 +1,4 @@
-import CreateElement from '../CreateElement';
+import CreateElement from '../render/CreateElement';
 import { createElement } from '../render/generateElement';
 
 export default function createMultiSlider(name: string): HTMLElement[] {
@@ -7,13 +7,17 @@ export default function createMultiSlider(name: string): HTMLElement[] {
     text: name,
   });
   const slider: HTMLDivElement = createElement('div', HTMLDivElement, {});
-  const values: CreateElement = new CreateElement('div', ['out-data', `out-data__${name.toLowerCase()}`]);
+  const values: CreateElement = new CreateElement('div', {
+    classes: ['out-data', `out-data__${name.toLowerCase()}`],
+  });
 
   values.appendElem('span', 'from-data', '0');
   values.appendElem('span', 'dash', '—');
   values.appendElem('span', 'to-data', '0');
 
-  const inputs: CreateElement = new CreateElement('div', ['multi-range', 'multi-range__container']);
+  const inputs: CreateElement = new CreateElement('div', {
+    classes: ['multi-range', 'multi-range__container'],
+  });
   inputs.appendElem('div', 'slider-track');
   inputs.appendElem('input', 'slider1');
   inputs.appendElem('input', 'slider2');

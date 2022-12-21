@@ -1,19 +1,21 @@
 .main__aside {
   display: flex;
   flex-direction: column;
-  max-width: 24.2rem;
+  align-items: flex-start;
+  max-width: 100%;
   margin: 0;
   padding: 1.6rem;
   background: #FFFFFF;
   box-shadow: 0px 2px 10px rgba(50, 50, 71, 0.14);
   border-radius: 4px;
   row-gap: 2.4rem;
-
+  height: 71rem;
 }
 
 .aside__buttons {
   display: flex;
   justify-content: space-between;
+  width: 100%;
 }
 
 .aside__filter {
@@ -23,14 +25,3 @@
 }
 
 .description {}
-
-.category__list,
-.brand__list {
-  height: 14rem;
-  padding-left: 1.5rem;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  overflow: auto;
-  row-gap: 1.2rem;
-}

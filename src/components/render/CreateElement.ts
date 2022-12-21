@@ -1,16 +1,10 @@
-import { createElement } from './render/generateElement';
+import { createElement } from './generateElement';
+import { CreateElementParams } from '../../interfaces/CreateElementParams';
+
 export default class CreateElement {
   public readonly elem: HTMLElement;
-  constructor(name: string, className?: string | string[]) {
-    if (typeof className === 'string' && className) {
-      this.elem = createElement(name, HTMLElement);
-      this.elem.classList.add(className);
-    } else if (Array.isArray(className) && className) {
-      this.elem = document.createElement(name);
-      this.elem.classList.add(...className);
-    } else {
-      this.elem = createElement(name, HTMLElement);
-    }
+  constructor(name: string, paramsObject?: CreateElementParams) {
+    this.elem = createElement(name, HTMLElement, paramsObject);
   }
   appendElem(elementName: string | CreateElement, className?: string[] | string, text?: string): void {
     if (typeof elementName === 'string') {
@@ -34,9 +28,9 @@ export default class CreateElement {
       this.elem.append(elementName.elem);
     }
   }
-  removeElem(className: string) {
+  removeElem(className: string[]) {
     if (this instanceof HTMLElement) {
-      this.querySelector(`.${className}`)?.remove();
+      this.querySelector(`.${className.join('.')}`)?.remove();
     }
   }
 
