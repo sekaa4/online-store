@@ -1,14 +1,24 @@
-import CreateElement from '../CreateElement';
+import CreateElement from '../render/CreateElement';
 
 export default function createFilter(name: string, data: [string, string[] | number[]][]) {
-  const filter = new CreateElement('div', `${name.toLowerCase()}__list`);
+  const filter = new CreateElement('div', {
+    classes: [`${name.toLowerCase()}__list`],
+  });
 
   if (data.length > 0) {
     data.forEach((item) => {
-      const checkboxLine: CreateElement = new CreateElement('div', ['checkbox__line', 'item__active']);
-      const label: CreateElement = new CreateElement('label', ['label', 'label__checkbox']);
-      const input: CreateElement = new CreateElement('input', ['input', 'input__checkbox']);
-      const span: CreateElement = new CreateElement('span', ['span', 'span__checkbox']);
+      const checkboxLine: CreateElement = new CreateElement('div', {
+        classes: ['checkbox__line', 'item__active'],
+      });
+      const label: CreateElement = new CreateElement('label', {
+        classes: ['label', 'label__checkbox'],
+      });
+      const input: CreateElement = new CreateElement('input', {
+        classes: ['input', 'input__checkbox'],
+      });
+      const span: CreateElement = new CreateElement('span', {
+        classes: ['span', 'span__checkbox'],
+      });
       if (typeof item[0] === 'string') {
         if (input.elem instanceof HTMLInputElement) {
           input.elem.type = 'checkbox';
