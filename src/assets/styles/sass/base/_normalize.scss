@@ -544,7 +544,7 @@ input[type="number"]::-webkit-outer-spin-button {
 input[type="search"] {
   -webkit-appearance: textfield;
   /* 1 */
-  box-sizing: content-box;
+  box-sizing: border-box;
   /* 2 */
 }
 
