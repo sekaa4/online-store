@@ -1,5 +1,5 @@
-import CreateElement from '../render/CreateElement';
-import { createElement } from '../render/generateElement';
+import CreateElement from '../elements/CreateElement';
+import { createElement } from '../elements/generateElement';
 
 export default function createMultiSlider(name: string): HTMLElement[] {
   const description: HTMLHeadingElement = createElement('h3', HTMLHeadingElement, {

@@ -1,7 +1,7 @@
-import { createElement } from './generateElement';
+import { createElement } from '../elements/generateElement';
 import { ConstantsDom } from '../../models/Dom';
-import CreateElement from './CreateElement';
-import { createAside } from './createAside';
+import CreateElement from '../elements/CreateElement';
+import { createAside } from '../filters/createAside';
 
 export function renderMain(): void {
   const main: CreateElement = new CreateElement(ConstantsDom.MAIN, {

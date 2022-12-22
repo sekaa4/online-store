@@ -1,4 +1,4 @@
-import { createElement } from './generateElement';
+import { createElement } from '../elements/generateElement';
 import logo from '../../assets/logo/logo.png';
 import { ConstantsDom } from '../../models/Dom';
 

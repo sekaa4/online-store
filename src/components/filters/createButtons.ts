@@ -1,4 +1,4 @@
-import CreateElement from '../render/CreateElement';
+import CreateElement from '../elements/CreateElement';
 
 export default function createButtons(nameButtons: string[], section: string) {
   const arrButtons: HTMLElement[] = [];

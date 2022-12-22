@@ -1,4 +1,4 @@
-import { createElement } from './generateElement';
+import { createElement } from '../elements/generateElement';
 import { ConstantsDom } from '../../models/Dom';
 
 export function renderFooter() {
