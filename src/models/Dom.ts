@@ -41,4 +41,8 @@ export enum ConstantsDom {
   GITHUB = 'GitHub',
   PRODUCT = 'Product',
   DEFAULT = 'default',
+  SORT_BAR = 'sort-bar',
+  STATE = 'state',
+  SEARCH_BAR = 'search-bar',
+  VIEW_MODE = 'view-mode',
 }
