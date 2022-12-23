@@ -9,7 +9,7 @@ export class LocalStorage implements PersistentStorage {
     try {
       return JSON.parse(item);
     } catch (err) {
-      console.log('Error, there may be something wrong with the data format');
+      console.log('Error. There may be something wrong with the data format');
     }
 
     return item;
