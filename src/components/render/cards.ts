@@ -1,7 +1,11 @@
 import { ConstantsDom } from "../../models/Dom";
+<<<<<<< HEAD
 
 import { ConstantsDom } from "../../models/enumDom";
 import { DataObject, DataProducts } from "../../interfaces/dataObject";
+=======
+import { DataObject, DataProducts } from "../../interfaces/Data";
+>>>>>>> 5f8eb8f (refactor: implemente merge develop)
 import { addToDOMStorage, createElement, elementDomStorage } from "./generateElement";
 
 
