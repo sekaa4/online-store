@@ -1,4 +1,4 @@
-import CreateElement from '../render/CreateElement';
+import CreateElement from '../elements/CreateElement';
 
 export default function createFilter(name: string, data: [string, string[] | number[]][]) {
   const filter = new CreateElement('div', {

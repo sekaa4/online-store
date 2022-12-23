@@ -1,11 +1,11 @@
 import getData from '../getData';
-import CreateElement from './CreateElement';
-import createFilter from '../filters/createFilter';
-import { getAllSortData } from '../filters/getAllSortData';
-import createMultiSlider from '../filters/createMultiSlider';
-import createButtons from '../filters/createButtons';
+import CreateElement from '../elements/CreateElement';
+import createFilter from './createFilter';
+import { getAllSortData } from '../sortData/getAllSortData';
+import createMultiSlider from './createMultiSlider';
+import createButtons from './createButtons';
 import { AllDataSort } from '../../interfaces/DataSort.type';
-import { createElement } from './generateElement';
+import { createElement } from '../elements/generateElement';
 
 export function createAside() {
   const divAside: CreateElement = new CreateElement('div', {

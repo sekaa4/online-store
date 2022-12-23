@@ -1,7 +1,12 @@
 %font-prim {
-    font-family: 'Lato', Verdana, sans-serif;
+  font-family: 'Lato', Verdana, sans-serif;
 }
 
 %transition {
-    transition: all .3s ease-out;
+  transition: all .3s ease-out;
+}
+
+%base-flex {
+  display: flex;
+  align-items: center;
 }
