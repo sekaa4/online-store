@@ -1,13 +1,10 @@
 import { PersistentStorage } from '../interfaces/LocalStorage';
 
-class LocalStorage implements PersistentStorage {
+export class LocalStorage implements PersistentStorage {
   getItem(key: string) {
     const item = localStorage.getItem(key);
 
-    if (item === null) return undefined;
-
-    if (item === 'null') return null;
-    if (item === 'undefined') return undefined;
+    if (item === null || item === 'undefined') return undefined;
 
     try {
       return JSON.parse(item);
@@ -17,13 +14,7 @@ class LocalStorage implements PersistentStorage {
 
     return item;
   }
-  setItem(key: string, value: object | object[] | string | string[] | number | boolean) {
-    if (value === undefined) {
-      localStorage.removeItem(key);
-    } else {
-      localStorage.setItem(key, JSON.stringify(value));
-    }
+  setItem(key: string, value: object | string | number | boolean | (object | string | number | boolean)[]) {
+    localStorage.setItem(key, JSON.stringify(value));
   }
 }
-
-export const persistentStorage = new LocalStorage();
