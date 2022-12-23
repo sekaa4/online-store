@@ -45,4 +45,10 @@ export enum ConstantsDom {
   STATE = 'state',
   SEARCH_BAR = 'search-bar',
   VIEW_MODE = 'view-mode',
+  CARD_CONTAINER = 'card_container',
+  CARD_NAME = 'card-name',
+  H3 = 'h3',
+  CARD_IMG = 'card-img',
+  ATTENTION = 'attention',
+  SORRY_NO_PRODUCTS = 'sorry no product'
 }
