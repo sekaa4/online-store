@@ -1,4 +1,6 @@
+import { ValueStorage } from "./LocalStorage.type";
+
 export interface PersistentStorage {
   getItem(key: string): string | null;
-  setItem(key: string, value: object | string | number | boolean | (object | string | number | boolean)[]): void;
+  setItem(key: string, value: ValueStorage): void;
 }

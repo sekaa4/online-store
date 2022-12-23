@@ -1,4 +1,5 @@
 import { PersistentStorage } from '../interfaces/LocalStorage';
+import { ValueStorage } from '../interfaces/LocalStorage.type';
 
 export class LocalStorage implements PersistentStorage {
   getItem(key: string) {
@@ -15,7 +16,7 @@ export class LocalStorage implements PersistentStorage {
     return item;
   }
 
-  setItem(key: string, value: object | string | number | boolean | (object | string | number | boolean)[]) {
+  setItem(key: string, value: ValueStorage) {
     localStorage.setItem(key, JSON.stringify(value));
   }
 }
