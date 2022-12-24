@@ -1,4 +1,4 @@
-import { ValueStorage } from "./LocalStorage.type";
+import { ValueStorage } from './LocalStorage.type';
 
 export interface PersistentStorage {
   getItem(key: string): string | null;
