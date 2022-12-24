@@ -6,3 +6,8 @@
     @include columns($width: 10%);
     justify-content: center;
 }
+
+.layout-column {
+    display: flex;
+    flex-direction: column;
+}
