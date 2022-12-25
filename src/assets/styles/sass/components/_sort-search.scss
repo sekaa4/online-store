@@ -27,7 +27,7 @@
 .sort-products {
   @include font($size: 1.4rem, $height: 1.6rem, $weight: 500);
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   flex-wrap: nowrap;
   width: 100%;
 
