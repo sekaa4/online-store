@@ -2,8 +2,9 @@ import { ConstantsDom } from '../../models/Dom';
 import { DataProducts } from '../../interfaces/Data';
 import Card from '../elements/CreateCard';
 import { createElement, elementDomStorage } from '../elements/generateElement';
+import { LocalStorage } from '../../utils/persistentStorage';
 
-export function createCardColumn(data: DataProducts) {
+export function createCardsList(data: DataProducts) {
   const card: Card = new Card(ConstantsDom.ARTICLE, data, {
     classes: [ConstantsDom.CARD_CONTAINER_COLUMN, ConstantsDom.BLOCK_SHADOWED_COLUMN],
   });
@@ -51,15 +52,16 @@ export function createCardColumn(data: DataProducts) {
   return card;
 }
 
-export function renderCardsColumn(data: DataProducts[]): HTMLElement[] {
+export function renderCardsList(data: DataProducts[]): HTMLElement[] {
   elementDomStorage.get(ConstantsDom.CARD_CONTAINER_COLUMN);
   const arrayData: Card[] = [];
   const arrayDataCard: HTMLElement[] = [];
   data.forEach((cardData) => {
-    const card = createCardColumn(cardData);
+    const card = createCardsList(cardData);
     arrayData.push(card);
     arrayDataCard.push(card.elem);
   });
-  // положить arraydata в localstorage
+  const CardsListStorage = new LocalStorage();
+  CardsListStorage.setItem('cardsList', arrayData);
   return arrayDataCard;
 }

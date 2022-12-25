@@ -4,9 +4,8 @@ import { ConstantsDom } from '../../models/Dom';
 import { createAside } from '../filters/createAside';
 import createSortSearch from '../sort-products/createSortSearch';
 import { renderCards } from './cards';
-import { renderCardsColumn } from './cardsColumn';
+import { renderCardsList } from './сardsList';
 import { DataProducts } from '../../interfaces/Data';
-import Card from '../elements/CreateCard';
 
 export function renderMain(data: DataProducts[]): void {
   const main: CreateElement = new CreateElement(ConstantsDom.MAIN, {
@@ -33,21 +32,22 @@ export function renderMain(data: DataProducts[]): void {
 
   const cardsWrapper: HTMLElement = createElement(ConstantsDom.DIV, HTMLElement, {
     parentElement: itemsContainer,
-    classes: [ConstantsDom.CARDS_WRAPPER, ConstantsDom.LAYOUT_5],
+    classes: [ConstantsDom.CARDS_WRAPPER, ConstantsDom.LAYOUT_5], //renderCards
   });
 
   // const cardsWrapperColumn: HTMLElement = createElement(ConstantsDom.DIV, HTMLElement, {
   //   parentElement: itemsContainer,
-  //   classes: [ConstantsDom.CARDS_WRAPPER, ConstantsDom.LAYOUT_COLUMN],
+  //   classes: [ConstantsDom.CARDS_WRAPPER, ConstantsDom.LAYOUT_COLUMN], //renderCardsList
   // });
 
   //TODO: return instanse of CreateElement mb you'll need a copy in the future.
   const divAside: CreateElement = createAside();
   filterContainer.append(divAside.elem);
+  //renderCards
   const divCards = renderCards(data);
   cardsWrapper.append(...divCards);
-
-  // const divCards = renderCardsColumn(data);
+  //renderCardsList
+  // const divCards = renderCardsList(data);
   // cardsWrapperColumn.append(...divCards);
 
   document.body.append(main.elem);

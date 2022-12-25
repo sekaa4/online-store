@@ -2,6 +2,7 @@ import { ConstantsDom } from '../../models/Dom';
 import { DataProducts } from '../../interfaces/Data';
 import Card from '../elements/CreateCard';
 import { createElement, elementDomStorage } from '../elements/generateElement';
+import { LocalStorage } from '../../utils/persistentStorage';
 
 export function createCard(data: DataProducts) {
   const card: Card = new Card(ConstantsDom.ARTICLE, data, {
@@ -60,6 +61,7 @@ export function renderCards(data: DataProducts[]): HTMLElement[] {
     arrayData.push(card);
     arrayDataCard.push(card.elem);
   });
-  // положить arraydata в localstorage
+  const CardsListStorage = new LocalStorage();
+  CardsListStorage.setItem('cards', arrayData);
   return arrayDataCard;
 }
