@@ -3,8 +3,8 @@ import { createElement } from '../elements/generateElement';
 import { ConstantsDom } from '../../models/Dom';
 import { createAside } from '../filters/createAside';
 import createSortSearch from '../sort-products/createSortSearch';
-import { renderCards } from './cards';
-import { renderCardsList } from './сardsList';
+import { renderCards } from './renderCards';
+import { renderCardsList } from './renderCardsList';
 import { DataProducts } from '../../interfaces/Data';
 
 export function renderMain(data: DataProducts[]): void {
@@ -43,10 +43,14 @@ export function renderMain(data: DataProducts[]): void {
   //TODO: return instanse of CreateElement mb you'll need a copy in the future.
   const divAside: CreateElement = createAside();
   filterContainer.append(divAside.elem);
+
   //renderCards
+
   const divCards = renderCards(data);
   cardsWrapper.append(...divCards);
+
   //renderCardsList
+
   // const divCards = renderCardsList(data);
   // cardsWrapperColumn.append(...divCards);
 

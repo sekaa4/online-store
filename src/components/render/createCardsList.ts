@@ -1,8 +1,7 @@
 import { ConstantsDom } from '../../models/Dom';
 import { DataProducts } from '../../interfaces/Data';
 import Card from '../elements/CreateCard';
-import { createElement, elementDomStorage } from '../elements/generateElement';
-import { LocalStorage } from '../../utils/persistentStorage';
+import { createElement } from '../elements/generateElement';
 
 export function createCardsList(data: DataProducts) {
   const cardShell: Card = new Card(ConstantsDom.DIV, data, {
@@ -111,18 +110,4 @@ export function createCardsList(data: DataProducts) {
   });
   document.body.append(cardShell.elem);
   return cardShell;
-}
-
-export function renderCardsList(data: DataProducts[]): HTMLElement[] {
-  elementDomStorage.get(ConstantsDom.CARD_CONTAINER_COLUMN);
-  const arrayData: Card[] = [];
-  const arrayDataCard: HTMLElement[] = [];
-  data.forEach((cardData) => {
-    const card = createCardsList(cardData);
-    arrayData.push(card);
-    arrayDataCard.push(card.elem);
-  });
-  const CardsListStorage = new LocalStorage();
-  CardsListStorage.setItem('cardsList', arrayData);
-  return arrayDataCard;
 }
