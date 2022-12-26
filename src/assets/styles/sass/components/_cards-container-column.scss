@@ -4,29 +4,61 @@
     row-gap: 1rem;
 }
 
+.cards-shell > article {
+    padding: 0 2rem 2rem;
+}
+
+.card__name-column-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .card__container-column {
-    width: 117.0rem;
-    height: 15.0rem;
+    width: 120.4rem;
+    height: 21.3rem;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .card-block__image-column {
-    width: 24.2rem;
-    height: 15.0rem;
+    width: 25.0rem;
+    height: 21.0rem;
 }
 .card__image-column {
-    padding: 1rem;
     display: block;
-    width: 24.2rem;
-    height: 15.0rem;
+    width: 25.0rem;
+    height: 21.0rem;
     object-fit: cover;
 }
 
 .card__content-column {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+}
+
+.card__content-column {
+    max-width: 30rem;
+    margin-right: 20rem;  
+}
+
+.card__elements-column {
+    display: flex;
     flex-direction: row;
-    
+    align-items: center;
+    >* {
+        margin-left: 2rem;
+    }
+}
+
+.card__price-column {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: $color-price;
+}
+
+.card__name-stock-column {
+    color: $color-rating;
 }

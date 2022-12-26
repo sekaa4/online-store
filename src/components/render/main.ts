@@ -30,25 +30,25 @@ export function renderMain(data: DataProducts[]): void {
   const sortSearch: CreateElement = createSortSearch();
   itemsContainer.append(sortSearch.elem);
 
-  const cardsWrapper: HTMLElement = createElement(ConstantsDom.DIV, HTMLElement, {
-    parentElement: itemsContainer,
-    classes: [ConstantsDom.CARDS_WRAPPER, ConstantsDom.LAYOUT_5], //renderCards
-  });
-
-  // const cardsWrapperColumn: HTMLElement = createElement(ConstantsDom.DIV, HTMLElement, {
+  // const cardsWrapper: HTMLElement = createElement(ConstantsDom.DIV, HTMLElement, {
   //   parentElement: itemsContainer,
-  //   classes: [ConstantsDom.CARDS_WRAPPER, ConstantsDom.LAYOUT_COLUMN], //renderCardsList
+  //   classes: [ConstantsDom.CARDS_WRAPPER, ConstantsDom.LAYOUT_5], //renderCards
   // });
+
+  const cardsWrapperColumn: HTMLElement = createElement(ConstantsDom.DIV, HTMLElement, {
+    parentElement: itemsContainer,
+    classes: [ConstantsDom.CARDS_WRAPPER, ConstantsDom.LAYOUT_COLUMN], //renderCardsList
+  });
 
   //TODO: return instanse of CreateElement mb you'll need a copy in the future.
   const divAside: CreateElement = createAside();
   filterContainer.append(divAside.elem);
   //renderCards
-  const divCards = renderCards(data);
-  cardsWrapper.append(...divCards);
+  // const divCards = renderCards(data);
+  // cardsWrapper.append(...divCards);
   //renderCardsList
-  // const divCards = renderCardsList(data);
-  // cardsWrapperColumn.append(...divCards);
+  const divCards = renderCardsList(data);
+  cardsWrapperColumn.append(...divCards);
 
   document.body.append(main.elem);
 }
