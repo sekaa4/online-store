@@ -1,13 +1,13 @@
 .layout-3-column {
-    @include columns($width: 30%);
+  @include columns($width: 30%);
 }
 
 .layout-5-column {
-    @include columns($width: 10%);
-    justify-content: center;
+  @include columns($width: 10%);
+  justify-content: center;
 }
 
 .layout-column {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
