@@ -1,5 +1,5 @@
-import { renderCardsColumn } from '../render/cardsColumn';
-import { renderCards } from '../render/cards';
+import { renderCardsList } from '../render/renderCardsList';
+import { renderCards } from '../render/renderCards';
 import { LocalStorage } from '../../utils/persistentStorage';
 import { DataProducts } from '../../interfaces/Data';
 
@@ -28,7 +28,7 @@ export default function layoutHandler(url: URLSearchParams) {
     if (cardsWrapper.classList.contains('layout-5-column')) {
       cardsWrapper.classList.remove('layout-5-column');
       cardsWrapper.classList.add('layout-column');
-      const cardsTable: HTMLElement[] = renderCardsColumn(data);
+      const cardsTable: HTMLElement[] = renderCardsList(data);
       cardsWrapper.innerHTML = '';
       cardsWrapper.append(...cardsTable);
     }

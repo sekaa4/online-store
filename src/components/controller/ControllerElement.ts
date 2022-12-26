@@ -1,7 +1,7 @@
 import getURL from '../getURL';
 import { ControllerElements } from '../../interfaces/ControllerElements';
-import { renderCardsColumn } from '../render/cardsColumn';
-import { renderCards } from '../render/cards';
+import { renderCardsList } from '../render/renderCardsList';
+import { renderCards } from '../render/renderCards';
 import { LocalStorage } from '../../utils/persistentStorage';
 import { DataProducts } from '../../interfaces/Data';
 
@@ -31,7 +31,6 @@ export default class ControllerElement implements ControllerElements {
     });
     target.classList.add('view-mode__active');
     const cardsWrapper: HTMLElement = <HTMLElement>document.querySelector('.cards__wrapper');
-    //const itemsContainer: HTMLElement = <HTMLElement>currentTarget.parentElement;
 
     if (cardsWrapper.classList.contains('layout-column')) {
       cardsWrapper.classList.remove('layout-column');
@@ -66,7 +65,7 @@ export default class ControllerElement implements ControllerElements {
     if (cardsWrapper.classList.contains('layout-5-column')) {
       cardsWrapper.classList.remove('layout-5-column');
       cardsWrapper.classList.add('layout-column');
-      const cardsTable: HTMLElement[] = renderCardsColumn(data);
+      const cardsTable: HTMLElement[] = renderCardsList(data);
       cardsWrapper.innerHTML = '';
       cardsWrapper.append(...cardsTable);
     }
