@@ -5,11 +5,16 @@ import { createElement, elementDomStorage } from '../elements/generateElement';
 import { LocalStorage } from '../../utils/persistentStorage';
 
 export function createCard(data: DataProducts) {
-  const card: Card = new Card(ConstantsDom.ARTICLE, data, {
+  const cardShell: Card = new Card(ConstantsDom.DIV, data, {
+    classes: [ConstantsDom.CARDS_SHELL],
+  });
+
+  const card: HTMLElement = createElement(ConstantsDom.ARTICLE, HTMLElement, {
+    parentElement: cardShell.elem,
     classes: [ConstantsDom.CARD_CONTAINER, ConstantsDom.BLOCK_SHADOWED],
   });
   const div: HTMLElement = createElement(ConstantsDom.DIV, HTMLElement, {
-    parentElement: card.elem,
+    parentElement: card,
     classes: [ConstantsDom.CARD_BLOCK_IMAGE],
   });
   createElement(ConstantsDom.IMG, HTMLElement, {
@@ -21,7 +26,7 @@ export function createCard(data: DataProducts) {
     ],
   });
   const content: HTMLElement = createElement(ConstantsDom.DIV, HTMLElement, {
-    parentElement: card.elem,
+    parentElement: card,
     classes: [ConstantsDom.CARD_CONTENT],
   });
   createElement(ConstantsDom.H3, HTMLElement, {
@@ -48,8 +53,27 @@ export function createCard(data: DataProducts) {
     classes: [ConstantsDom.BUTTON_CARD, ConstantsDom.BUTTON_CARD_BORDER],
     text: ConstantsDom.BUY,
   });
-  document.body.append(card.elem);
-  return card;
+  const info: HTMLElement = createElement(ConstantsDom.DIV, HTMLElement, {
+    parentElement: card,
+    classes: [ConstantsDom.INFO_CARD],
+  });
+  createElement(ConstantsDom.P, HTMLElement, {
+    parentElement: info,
+    classes: [ConstantsDom.CARD_BRAND],
+    text: `Brand: ${data.brand.toString()}`,
+  });
+  createElement(ConstantsDom.P, HTMLElement, {
+    parentElement: info,
+    classes: [ConstantsDom.CARD_CATEGORY],
+    text: `Category: ${data.category.toString()}`,
+  });
+  createElement(ConstantsDom.P, HTMLElement, {
+    parentElement: info,
+    classes: [ConstantsDom.CARD_STOCK],
+    text: `Stock: ${data.stock.toString()}`,
+  });
+  document.body.append(cardShell.elem);
+  return cardShell;
 }
 
 export function renderCards(data: DataProducts[]): HTMLElement[] {

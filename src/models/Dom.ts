@@ -45,6 +45,7 @@ export enum ConstantsDom {
   STATE = 'state',
   SEARCH_BAR = 'search-bar',
   VIEW_MODE = 'view-mode',
+  CARDS_SHELL = 'cards_shell',
   CARD_CONTAINER = 'card__container',
   CARD_NAME = 'card__name',
   H3 = 'h3',
@@ -66,7 +67,6 @@ export enum ConstantsDom {
   CARD_ELEMENTS = 'card__elements',
   CARD_BLOCK_IMAGE = 'card-block__image',
   CARD_INNER = 'card-inner',
-  //column
   CARD_CONTAINER_COLUMN = 'card__container-column',
   CARD_NAME_COLUMN = 'card__name-column',
   CARD_COLUMN = 'card-column',
@@ -83,7 +83,7 @@ export enum ConstantsDom {
   CARD_BLOCK_IMAGE_COLUMN = 'card-block__image-column',
   CARD_INNER_COLUMN = 'card-inner-column',
   LAYOUT_COLUMN = 'layout-column',
-  CARDS_SHELL = 'cards-shell',
+  CARDS_SHELL_COLUMN = 'cards_shell-column',
   CARD_NAME_COLUMN_DIV = 'card__name-column-div',
   CARD_RATING_COLUMN_DIV = 'card__rating-column-div',
   CARD_NAME_RATING_COLUMN = 'card__name-rating-column',
@@ -91,12 +91,14 @@ export enum ConstantsDom {
   CARD_CATEGORY_COLUMN = 'card__name-category-column',
   CARD_DESCRIPTION_COLUMN = 'card__name-description-column',
   CARD_STOCK_COLUMN = 'card__name-stock-column',
-
   CARD_BRAND_COLUMN_DIV = 'card__name-brand-column-div',
   CARD_CATEGORY_COLUMN_DIV = 'card__name-category-column-div',
   CARD_DESCRIPTION_COLUMN_DIV = 'card__name-description-column-div',
   CARD_STOCK_COLUMN_DIV = 'card__name-stock-column-div',
-
   CARD_PRICE_COLUMN_DIV = 'card__name-price-column-div',
   CARD_BUTTON_COLUMN_DIV = 'card__name-button-column-div',
+  INFO_CARD = 'info-card',
+  CARD_BRAND = 'card__name-brand-column-div',
+  CARD_CATEGORY = 'card__name-category-column-div',
+  CARD_STOCK = 'card__name-stock-column-div',
 }

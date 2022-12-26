@@ -6,7 +6,7 @@ import { LocalStorage } from '../../utils/persistentStorage';
 
 export function createCardsList(data: DataProducts) {
   const cardShell: Card = new Card(ConstantsDom.DIV, data, {
-    classes: [ConstantsDom.CARDS_SHELL]
+    classes: [ConstantsDom.CARDS_SHELL_COLUMN],
   });
   const article: HTMLElement = createElement(ConstantsDom.ARTICLE, HTMLElement, {
     parentElement: cardShell.elem,
@@ -76,7 +76,7 @@ export function createCardsList(data: DataProducts) {
     parentElement: divDescription,
     classes: [ConstantsDom.CARD_DESCRIPTION_COLUMN],
     text: `Description: ${data.description.toString()}`,
-  }); 
+  });
 
   const elements: HTMLElement = createElement(ConstantsDom.DIV, HTMLElement, {
     parentElement: card,
@@ -84,7 +84,7 @@ export function createCardsList(data: DataProducts) {
   });
   const divStock: HTMLElement = createElement(ConstantsDom.DIV, HTMLElement, {
     parentElement: elements,
-    classes: [ConstantsDom.CARD_STOCK_COLUMN_DIV]
+    classes: [ConstantsDom.CARD_STOCK_COLUMN_DIV],
   });
   createElement(ConstantsDom.P, HTMLElement, {
     parentElement: divStock,
@@ -93,7 +93,7 @@ export function createCardsList(data: DataProducts) {
   });
   const divPrice: HTMLElement = createElement(ConstantsDom.DIV, HTMLElement, {
     parentElement: elements,
-    classes: [ConstantsDom.CARD_PRICE_COLUMN_DIV]
+    classes: [ConstantsDom.CARD_PRICE_COLUMN_DIV],
   });
   createElement(ConstantsDom.P, HTMLElement, {
     parentElement: divPrice,
@@ -102,7 +102,7 @@ export function createCardsList(data: DataProducts) {
   });
   const divButton: HTMLElement = createElement(ConstantsDom.DIV, HTMLElement, {
     parentElement: elements,
-    classes: [ConstantsDom.CARD_BUTTON_COLUMN_DIV]
+    classes: [ConstantsDom.CARD_BUTTON_COLUMN_DIV],
   });
   createElement(ConstantsDom.BUTTON, HTMLElement, {
     parentElement: divButton,
