@@ -43,3 +43,24 @@
     }
   }
 }
+
+.button-card-column {
+    @extend %font-prim;
+    padding: 8px 30px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all .3s;
+    &_border-column {
+        background: $color-border;
+        border: 1px solid $color-border;
+        color: $color-text;
+        &:hover {
+            background: $color-hovered;
+            border-color: $color-hovered;
+        }
+    }
+}

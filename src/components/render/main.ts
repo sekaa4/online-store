@@ -30,7 +30,12 @@ export function renderMain(data: DataProducts[]): void {
   const sortSearch: CreateElement = createSortSearch();
   itemsContainer.append(sortSearch.elem);
 
-  const cardsWrapper: HTMLElement = createElement(ConstantsDom.DIV, HTMLElement, {
+  // const cardsWrapper: HTMLElement = createElement(ConstantsDom.DIV, HTMLElement, {
+  //   parentElement: itemsContainer,
+  //   classes: [ConstantsDom.CARDS_WRAPPER, ConstantsDom.LAYOUT_5],
+  // });
+
+  const cardsWrapperColumn: HTMLElement = createElement(ConstantsDom.DIV, HTMLElement, {
     parentElement: itemsContainer,
     classes: [ConstantsDom.CARDS_WRAPPER, ConstantsDom.LAYOUT_5], //renderCards
   });
