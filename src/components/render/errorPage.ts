@@ -2,7 +2,7 @@ import { createElement } from '../elements/generateElement';
 import { ConstantsDom } from '../../models/Dom';
 import CreateElement from '../elements/CreateElement';
 
-export function errorPage() {
+export function errorPage(): CreateElement {
   const divError: CreateElement = new CreateElement(ConstantsDom.DIV, {
     classes: [ConstantsDom.ERROR_DIV],
   });
