@@ -5,6 +5,7 @@ import { createAside } from '../filters/createAside';
 import createSortSearch from '../sort-products/createSortSearch';
 import { renderCards } from './renderCards';
 import { DataProducts } from '../../interfaces/Data';
+import { errorPage } from './errorPage';
 
 export function renderMain(data: DataProducts[]): void {
   const main: CreateElement = new CreateElement(ConstantsDom.MAIN, {
@@ -15,6 +16,9 @@ export function renderMain(data: DataProducts[]): void {
     parentElement: main.elem,
     classes: [ConstantsDom.WRAPPER, ConstantsDom.MAIN_WRAPPER],
   });
+
+  // const error = errorPage();
+  // wrapper.append(error.elem); //errorPage
 
   const filterContainer: HTMLElement = createElement(ConstantsDom.DIV, HTMLElement, {
     parentElement: wrapper,
@@ -34,7 +38,7 @@ export function renderMain(data: DataProducts[]): void {
     classes: [ConstantsDom.CARDS_WRAPPER, ConstantsDom.LAYOUT_5],
   });
 
-  //TODO: return instanse of CreateElement mb you'll need a copy in the future.
+  // TODO: return instanse of CreateElement mb you'll need a copy in the future.
   const divAside: CreateElement = createAside();
   filterContainer.append(divAside.elem);
 

@@ -101,4 +101,15 @@ export enum ConstantsDom {
   CARD_BRAND = 'card__name-brand-column-div',
   CARD_CATEGORY = 'card__name-category-column-div',
   CARD_STOCK = 'card__name-stock-column-div',
+
+  ERROR_DIV = 'error-div',
+  ERROR_NUMBER = 'error-number',
+  ERROR_NUMBER_PARAGRAPH = 'error-number__paragraph',
+  ERROR_TITLE = 'error-title',
+  ERROR_TITLE_PARAGRAPH = 'error-title__paragraph',
+  ERROR_DESCRIPTION = 'error-description',
+  ERROR_DESCRIPTION_PARAGRAPH = 'error-description__paragraph',
+  ERROR_BUTTON = 'error-button',
+  ERROR_BUTTON_BORDERED = 'error-button__click_border',
+  ERROR_BUTTON_CLICK = 'error-button__click',
 }
