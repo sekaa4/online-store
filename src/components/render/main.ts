@@ -5,9 +5,10 @@ import { createAside } from '../filters/createAside';
 import createSortSearch from '../sort-products/createSortSearch';
 import { renderCards } from './renderCards';
 import { DataProducts } from '../../interfaces/Data';
-import { errorPage } from './errorPage';
+import { LocalStorage } from '../../utils/persistentStorage';
+//import { errorPage } from './errorPage';
 
-export function renderMain(data: DataProducts[]): void {
+export function renderMain(): void {
   const main: CreateElement = new CreateElement(ConstantsDom.MAIN, {
     classes: [ConstantsDom.MAIN],
   });
@@ -42,6 +43,10 @@ export function renderMain(data: DataProducts[]): void {
   const divAside: CreateElement = createAside();
   filterContainer.append(divAside.elem);
 
+  const persistentStorage = new LocalStorage();
+  const data: DataProducts[] = persistentStorage.getItem('data');
+  const state: HTMLElement = <HTMLElement>itemsContainer.querySelector('.state__value');
+  state.textContent = data.length.toString();
   const divCards = renderCards(data);
   cardsWrapperColumn.append(...divCards);
 

@@ -6,5 +6,6 @@ export default async function getData(): Promise<DataObject> {
   const products = data.products;
   const persistentStorage = new LocalStorage();
   persistentStorage.setItem('data', products);
+  persistentStorage.setItem('dataCurrent', products);
   return data;
 }
