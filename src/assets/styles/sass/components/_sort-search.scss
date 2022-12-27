@@ -18,10 +18,16 @@
   cursor: pointer;
 }
 
+.view-mode__active {
+  border: 2px solid #01579B;
+  border-radius: 4px;
+  filter: invert(18%) sepia(90%) saturate(2301%) hue-rotate(190deg) brightness(97%) contrast(102%);
+}
+
 .sort-products {
   @include font($size: 1.4rem, $height: 1.6rem, $weight: 500);
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   flex-wrap: nowrap;
   width: 100%;
 
