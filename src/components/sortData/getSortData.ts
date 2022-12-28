@@ -1,16 +1,24 @@
 import { DataProducts } from '../../interfaces/Data';
 import { ConstantsDom } from '../../models/Dom';
-import { SortName } from '../../interfaces/SortName.type';
 
-export default function getSortData(data: DataProducts[], sortName: SortName): DataProducts[] {
+export default function getSortData(data: DataProducts[], sortName: string): DataProducts[] {
+  const optionsArr: NodeListOf<HTMLOptionElement> = document.querySelectorAll('.select__option');
+  const [selectName, priceAsc, priceDesc, ratingAsc, ratingDesc]: HTMLOptionElement[] = Array.from(optionsArr);
   switch (sortName) {
     case ConstantsDom.PRICE_ASC:
-      return data.sort((a, b) => (a['price'] > b['price'] ? 1 : -1));
+      priceAsc.selected = true;
+      return data.sort((a, b) => a['price'] - b['price']);
     case ConstantsDom.PRICE_DESC:
-      return data.sort((a, b) => (a['price'] < b['price'] ? 1 : -1));
+      priceDesc.selected = true;
+      return data.sort((a, b) => b['price'] - a['price']);
     case ConstantsDom.RATING_ASC:
-      return data.sort((a, b) => (a['rating'] > b['rating'] ? 1 : -1));
+      ratingAsc.selected = true;
+      return data.sort((a, b) => a['rating'] - b['rating']);
     case ConstantsDom.RATING_DESC:
-      return data.sort((a, b) => (a['rating'] < b['rating'] ? 1 : -1));
+      ratingDesc.selected = true;
+      return data.sort((a, b) => b['rating'] - a['rating']);
+    default:
+      selectName.selected = true;
+      return data;
   }
 }

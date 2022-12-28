@@ -111,6 +111,7 @@ export enum ConstantsDom {
   ERROR_BUTTON = 'error-button',
   ERROR_BUTTON_BORDERED = 'error-button__click_border',
   ERROR_BUTTON_CLICK = 'error-button__click',
+  DATA_CURRENT = 'dataCurrent',
   PRICE_ASC = 'price-ASC',
   PRICE_DESC = 'price-DESC',
   RATING_ASC = 'rating-ASC',
