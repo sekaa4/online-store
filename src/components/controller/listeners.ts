@@ -11,16 +11,14 @@ import history from '../../utils/history';
       stateHandler();
     });
   } else {
-    addEventListener('DOMContentLoaded', history);
     const data = await getData();
 
     if (data.products) {
+      buildPage();
+      history();
       addEventListener('popstate', () => {
         stateHandler();
       });
-
-      buildPage();
-      stateHandler();
     }
   }
 })();

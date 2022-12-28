@@ -1,4 +1,5 @@
 import { createElement } from '../elements/generateElement';
+import ControllerSortElement from '../controller/ControllerSortElement';
 
 export default function createSortBar(elem: HTMLDivElement): HTMLDivElement {
   const select: HTMLSelectElement = createElement('select', HTMLSelectElement, {
@@ -39,6 +40,9 @@ export default function createSortBar(elem: HTMLDivElement): HTMLDivElement {
     text: 'Sort by rating DESC:',
     attributes: [['value', 'rating-DESC']],
   });
+
+  const controllerSort = new ControllerSortElement(select);
+  controllerSort.start();
 
   elem.append(select);
   return elem;
