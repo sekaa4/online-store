@@ -2,6 +2,7 @@ import { ConstantsDom } from '../../models/Dom';
 import stateHandler from './stateHandler';
 import checkSearchParams from '../../utils/checkSearchParams';
 import { ControllerSortElements } from '../../interfaces/ControllerSortElements';
+import { SortName } from '../../interfaces/SortName.type';
 
 export default class ControllerSortElement implements ControllerSortElements {
   constructor(private elem: HTMLSelectElement, public classes?: string[]) {
@@ -15,36 +16,24 @@ export default class ControllerSortElement implements ControllerSortElements {
         const optionElement = <HTMLSelectElement>e.target;
         switch (optionElement.value) {
           case ConstantsDom.PRICE_ASC:
-            this.sortPriceASC();
+            this.sortItems(ConstantsDom.PRICE_ASC);
             break;
           case ConstantsDom.PRICE_DESC:
-            this.sortPriceDESC();
+            this.sortItems(ConstantsDom.PRICE_DESC);
             break;
           case ConstantsDom.RATING_ASC:
-            this.sortRatingASC();
+            this.sortItems(ConstantsDom.RATING_ASC);
             break;
           case ConstantsDom.RATING_DESC:
-            this.sortRatingDESC();
+            this.sortItems(ConstantsDom.RATING_DESC);
             break;
         }
       }
     });
   }
 
-  sortPriceASC(): void {
-    checkSearchParams('sort', ConstantsDom.PRICE_ASC);
-    stateHandler();
-  }
-  sortPriceDESC(): void {
-    checkSearchParams('sort', ConstantsDom.PRICE_DESC);
-    stateHandler();
-  }
-  sortRatingASC(): void {
-    checkSearchParams('sort', ConstantsDom.RATING_ASC);
-    stateHandler();
-  }
-  sortRatingDESC(): void {
-    checkSearchParams('sort', ConstantsDom.RATING_DESC);
+  sortItems(sortName: SortName): void {
+    checkSearchParams('sort', sortName);
     stateHandler();
   }
 }

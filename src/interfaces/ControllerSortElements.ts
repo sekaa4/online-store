@@ -1,8 +1,6 @@
-import { DataProducts } from './Data';
+import { SortName } from './SortName.type';
 
 export interface ControllerSortElements {
-  sortPriceASC(data: DataProducts[]): void;
-  sortPriceDESC(data: DataProducts[]): void;
-  sortRatingASC(data: DataProducts[]): void;
-  sortRatingDESC(data: DataProducts[]): void;
+  start(): void;
+  sortItems(param: SortName): void;
 }

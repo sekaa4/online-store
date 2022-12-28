@@ -1,6 +1,7 @@
 import { ControllerElements } from '../../interfaces/ControllerElements';
 import stateHandler from './stateHandler';
 import checkSearchParams from '../../utils/checkSearchParams';
+import { ConstantsDom } from '../../models/Dom';
 
 export default class ControllerElement implements ControllerElements {
   constructor(private elem: HTMLElement, public classes?: string[]) {
@@ -22,13 +23,13 @@ export default class ControllerElement implements ControllerElements {
 
   activeTable(): void {
     checkSearchParams('list', 'false');
-    localStorage.removeItem('dataCurrent');
+    localStorage.removeItem(ConstantsDom.DATA_CURRENT);
     stateHandler();
   }
 
   activeList(): void {
     checkSearchParams('list', 'true');
-    localStorage.removeItem('dataCurrent');
+    localStorage.removeItem(ConstantsDom.DATA_CURRENT);
     stateHandler();
   }
 }

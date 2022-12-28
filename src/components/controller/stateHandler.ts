@@ -6,6 +6,7 @@ import { renderCardsList } from '../render/renderCardsList';
 import { LocalStorage } from '../../utils/persistentStorage';
 import { DataProducts } from '../../interfaces/Data';
 import { buildPage } from '../buildPage';
+import { ConstantsDom } from '../../models/Dom';
 
 export default function stateHandler() {
   const local: LocalStorage = new LocalStorage();
@@ -16,7 +17,7 @@ export default function stateHandler() {
     sortHandler(url);
     layoutHandler(url);
 
-    const data: DataProducts[] = local.getItem('dataCurrent') || local.getItem('data');
+    const data: DataProducts[] = local.getItem(ConstantsDom.DATA_CURRENT) || local.getItem('data');
     const state: HTMLElement = <HTMLElement>document.querySelector('.state__value');
     state.textContent = data.length.toString();
 
