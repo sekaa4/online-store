@@ -8,9 +8,8 @@ export default class ControllerFilterElement implements ControllerFilterElements
     this.classes = classes || [];
   }
 
-  start(): void {
+  start() {
     this.elem.addEventListener('click', (e: MouseEvent): void => {
-      console.log(e.target);
       const target: HTMLElement = <HTMLElement>e.target;
 
       if (target.closest('.aside__button')) {
@@ -75,7 +74,7 @@ export default class ControllerFilterElement implements ControllerFilterElements
     });
   }
 
-  searchCheckbox(items: NodeListOf<HTMLElement>): HTMLElement | undefined {
+  searchCheckbox(items: NodeListOf<HTMLElement>) {
     const arrList = Array.from(items);
     return arrList.find((item) => {
       const input: HTMLInputElement = <HTMLInputElement>item.querySelector('.input__checkbox');
@@ -83,7 +82,7 @@ export default class ControllerFilterElement implements ControllerFilterElements
     });
   }
 
-  filterItems(filterName: string, subName: string): void {
+  filterItems(filterName: string, subName: string) {
     checkSearchParams(filterName, subName);
     stateHandler();
   }

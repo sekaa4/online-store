@@ -13,8 +13,6 @@
   color: #01579B;
 }
 
-//.label__checkbox {}
-
 .checkbox__line {
   @include font($size: 1.2rem, $height: 2.4rem, $weight: normal);
   display: flex;
