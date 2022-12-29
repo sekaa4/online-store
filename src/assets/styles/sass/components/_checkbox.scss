@@ -13,14 +13,32 @@
   color: #01579B;
 }
 
-.label__checkbox {}
+//.label__checkbox {}
 
 .checkbox__line {
-  @include font($size: 1.2rem, $height: 1.6rem, $weight: normal);
+  @include font($size: 1.2rem, $height: 2.4rem, $weight: normal);
   display: flex;
   flex-direction: row;
   align-items: center;
   flex-wrap: wrap;
   column-gap: 0.8rem;
   width: 100%;
+}
+
+.item__active_not {
+  opacity: 0.7;
+}
+
+.input__checkbox {
+  cursor: pointer;
+}
+
+
+.label__checkbox {
+  flex-grow: 1;
+  cursor: pointer;
+}
+
+.span__checkbox {
+  pointer-events: none;
 }

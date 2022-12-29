@@ -1,14 +1,17 @@
 import CreateElement from '../elements/CreateElement';
+import { DataProducts } from '../../interfaces/Data';
 
-export default function createFilter(name: string, data: [string, string[] | number[]][]) {
+export default function createFilter(name: string, data: [string, DataProducts[]][]) {
   const filter = new CreateElement('div', {
     classes: [`${name.toLowerCase()}__list`],
   });
 
   if (data.length > 0) {
     data.forEach((item) => {
+      const [nameData, dataArray] = item;
       const checkboxLine: CreateElement = new CreateElement('div', {
         classes: ['checkbox__line', 'item__active'],
+        attributes: [['data-name', `${nameData}`]],
       });
       const label: CreateElement = new CreateElement('label', {
         classes: ['label', 'label__checkbox'],
@@ -18,18 +21,25 @@ export default function createFilter(name: string, data: [string, string[] | num
       });
       const span: CreateElement = new CreateElement('span', {
         classes: ['span', 'span__checkbox'],
+        attributes: [['data-count', `${dataArray.length}`]],
       });
-      if (typeof item[0] === 'string') {
-        if (input.elem instanceof HTMLInputElement) {
+      if (typeof nameData === 'string') {
+        if (input.elem instanceof HTMLInputElement && name === 'Category') {
           input.elem.type = 'checkbox';
-          input.elem.id = item[0];
+          input.elem.id = nameData;
+          input.elem.setAttribute('data-count', `${dataArray.length}`);
+        }
+        if (input.elem instanceof HTMLInputElement && name === 'Brand') {
+          input.elem.type = 'checkbox';
+          input.elem.id = nameData;
+          input.elem.setAttribute('data-category', `${dataArray[0].category}`);
         }
         if (label.elem instanceof HTMLLabelElement) {
-          label.elem.htmlFor = item[0];
-          label.elem.innerHTML = item[0];
+          label.elem.htmlFor = nameData;
+          label.elem.innerHTML = nameData;
         }
       }
-      if (Array.isArray(item[1])) span.elem.innerHTML = `(${item[1].length}/${item[1].length})`;
+      if (Array.isArray(dataArray)) span.elem.innerHTML = `(${dataArray.length}/${dataArray.length})`;
 
       checkboxLine.elem.append(input.elem, label.elem, span.elem);
       filter.elem.append(checkboxLine.elem);
