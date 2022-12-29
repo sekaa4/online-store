@@ -7,8 +7,9 @@ import { AllDataSort } from '../../interfaces/DataSort.type';
 import { createElement } from '../elements/generateElement';
 import { LocalStorage } from '../../utils/persistentStorage';
 import { DataProducts } from '../../interfaces/Data';
+import ControllerFilterElement from '../controller/ControllerFilterElement';
 
-export function createAside() {
+export function createAside(): CreateElement {
   const divAside: CreateElement = new CreateElement('div', {
     classes: ['main__aside', 'aside'],
   });
@@ -57,6 +58,9 @@ export function createAside() {
     multiSliderPrice.append(...slidersElemPrice);
     multiSliderStock.append(...slidersElemStock);
   }
+
+  const controllerFilter = new ControllerFilterElement(divAside.elem);
+  controllerFilter.start();
 
   return divAside;
 }
