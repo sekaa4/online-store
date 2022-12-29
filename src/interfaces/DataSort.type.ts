@@ -6,7 +6,7 @@ type SortData = {
   [index in KeysDataProducts]?: string[] | number[];
 };
 type AllDataSort = {
-  [index in KeysDataProducts]?: Map<string, string[] | number[]>;
+  [index in KeysDataProducts]?: Map<string, DataProducts[]>;
 };
 
 export { SortsName, KeysDataProducts, SortData, AllDataSort };
