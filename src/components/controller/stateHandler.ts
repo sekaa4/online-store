@@ -1,37 +1,52 @@
 import parseSearchParams from '../parseSearchParams';
 import layoutHandler from './layoutHandler';
 import sortHandler from './sortHandler';
+import searchHandler from './searchHandler';
 import { renderCards } from '../render/renderCards';
 import { renderCardsList } from '../render/renderCardsList';
-import { LocalStorage } from '../../utils/persistentStorage';
-import { DataProducts } from '../../interfaces/Data';
 import { buildPage } from '../buildPage';
 import { ConstantsDom } from '../../models/Dom';
+import { inputSearch, imageSearch } from '../sort-products/createSearchBar';
 
 export default function stateHandler() {
-  const local: LocalStorage = new LocalStorage();
-
-  if (window.history.state.path) {
+  if (window.history.state.path && window.history.state.path !== './') {
     const cardsWrapper: HTMLElement = <HTMLElement>document.querySelector('.cards__wrapper');
     const url: URLSearchParams = parseSearchParams(window.history.state.path);
     sortHandler(url);
+    searchHandler(url);
     layoutHandler(url);
 
-    const data: DataProducts[] = local.getItem(ConstantsDom.DATA_CURRENT) || local.getItem('data');
-    const state: HTMLElement = <HTMLElement>document.querySelector('.state__value');
-    state.textContent = data.length.toString();
-
     if (cardsWrapper.classList.contains('layout-5-column')) {
-      const cardsTable: HTMLElement[] = renderCards(data);
+      const cardsTable: string | HTMLElement[] = renderCards();
       cardsWrapper.innerHTML = '';
-      cardsWrapper.append(...cardsTable);
+      if (typeof cardsTable === 'string') {
+        cardsWrapper.innerHTML = cardsTable;
+        localStorage.removeItem(ConstantsDom.DATA_CURRENT);
+      } else {
+        cardsWrapper.append(...cardsTable);
+        localStorage.removeItem(ConstantsDom.DATA_CURRENT);
+      }
     } else if (cardsWrapper.classList.contains('layout-column')) {
-      const cardsTable: HTMLElement[] = renderCardsList(data);
+      const cardsTable: string | HTMLElement[] = renderCardsList();
       cardsWrapper.innerHTML = '';
-      cardsWrapper.append(...cardsTable);
+      if (typeof cardsTable === 'string') {
+        cardsWrapper.innerHTML = cardsTable;
+        localStorage.removeItem(ConstantsDom.DATA_CURRENT);
+      } else {
+        cardsWrapper.append(...cardsTable);
+        localStorage.removeItem(ConstantsDom.DATA_CURRENT);
+      }
     }
   } else {
-    document.body.innerHTML = '';
-    buildPage();
+    if (imageSearch.classList.contains('active__image')) {
+      document.body.innerHTML = '';
+      localStorage.removeItem(ConstantsDom.DATA_CURRENT);
+      buildPage();
+      inputSearch.focus();
+    } else {
+      document.body.innerHTML = '';
+      localStorage.removeItem(ConstantsDom.DATA_CURRENT);
+      buildPage();
+    }
   }
 }
