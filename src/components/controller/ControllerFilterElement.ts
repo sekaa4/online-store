@@ -1,6 +1,7 @@
 import stateHandler from './stateHandler';
 import checkSearchParams from '../../utils/checkSearchParams';
 import { ControllerFilterElements } from '../../interfaces/ControllerFilterElements';
+import { ConstantsDom } from '../../models/Dom';
 
 export default class ControllerFilterElement implements ControllerFilterElements {
   constructor(private elem: HTMLElement, public classes?: string[]) {
@@ -14,6 +15,7 @@ export default class ControllerFilterElement implements ControllerFilterElements
 
       if (target.closest('.aside__button')) {
         if (target.innerHTML === 'Reset Filters') {
+          localStorage.removeItem(ConstantsDom.DATA_CURRENT);
           this.filterItems('reset', './');
         }
       }
@@ -29,7 +31,6 @@ export default class ControllerFilterElement implements ControllerFilterElements
 
         if (target.closest('.category__list')) {
           const labelCheckbox: string = <string>target.id;
-          console.log(labelCheckbox);
           this.filterItems('category', labelCheckbox);
         } else if (target.closest('.brand__list')) {
           const labelCheckbox: string = <string>target.id;

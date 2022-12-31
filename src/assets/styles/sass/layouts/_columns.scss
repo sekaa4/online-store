@@ -4,7 +4,7 @@
 
 .layout-5-column {
   @include columns($width: 10%);
-  justify-content: center;
+  justify-content: left;
 }
 
 .layout-column {

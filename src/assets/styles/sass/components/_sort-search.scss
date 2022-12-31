@@ -54,7 +54,6 @@
   }
 }
 
-
 .sort-products__view-mode {
   display: flex;
   flex-wrap: nowrap;
@@ -68,7 +67,6 @@
 
 .search-bar__input {
   width: max(89%, 13.8rem);
-  cursor: pointer;
 }
 
 .search-bar__input:focus {
@@ -77,10 +75,24 @@
 
 .search-bar__image {
   display: block;
-  background-image: url('../../icons/search-btn-main.svg');
+  background-image: url('../../icons/delete.svg');
   background-repeat: no-repeat;
   background-size: cover;
   height: 4.2rem;
   width: 4.2rem;
+  opacity: 0;
+}
+
+.active__image {
+  opacity: 1;
   cursor: pointer;
+}
+
+.focus__image {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.sort-products__search-bar {
+  position: relative;
 }
