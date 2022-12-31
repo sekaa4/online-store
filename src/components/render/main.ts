@@ -4,9 +4,9 @@ import { ConstantsDom } from '../../models/Dom';
 import { createAside } from '../filters/createAside';
 import createSortSearch from '../sort-products/createSortSearch';
 import { renderCards } from './renderCards';
-import { DataProducts } from '../../interfaces/Data';
-import { LocalStorage } from '../../utils/persistentStorage';
 //import { errorPage } from './errorPage';
+
+export let cardsWrapperElem: HTMLDivElement;
 
 export function renderMain(): void {
   const main: CreateElement = new CreateElement(ConstantsDom.MAIN, {
@@ -34,21 +34,18 @@ export function renderMain(): void {
   const sortSearch: CreateElement = createSortSearch();
   itemsContainer.append(sortSearch.elem);
 
-  const cardsWrapperColumn: HTMLElement = createElement(ConstantsDom.DIV, HTMLElement, {
+  const cardsWrapper: HTMLElement = createElement(ConstantsDom.DIV, HTMLElement, {
     parentElement: itemsContainer,
     classes: [ConstantsDom.CARDS_WRAPPER, ConstantsDom.LAYOUT_5],
   });
+  cardsWrapperElem = <HTMLDivElement>cardsWrapper;
 
   // TODO: return instanse of CreateElement mb you'll need a copy in the future.
   const divAside: CreateElement = createAside();
   filterContainer.append(divAside.elem);
 
-  const persistentStorage = new LocalStorage();
-  const data: DataProducts[] = persistentStorage.getItem('data');
-  const state: HTMLElement = <HTMLElement>itemsContainer.querySelector('.state__value');
-  state.textContent = data.length.toString();
-  const divCards = renderCards(data);
-  cardsWrapperColumn.append(...divCards);
+  const divCards: string | HTMLElement[] = renderCards();
+  typeof divCards === 'string' ? divCards : cardsWrapper.append(...divCards);
 
   document.body.append(main.elem);
 }
