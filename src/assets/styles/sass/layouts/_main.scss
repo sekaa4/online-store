@@ -1,6 +1,7 @@
 .main__wrapper {
   display: flex;
   flex-wrap: nowrap;
+  flex: auto;
   padding-top: 3.2rem;
   column-gap: 1.5rem;
 }
