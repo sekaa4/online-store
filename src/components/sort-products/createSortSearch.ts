@@ -2,8 +2,8 @@ import CreateElement from '../elements/CreateElement';
 import { createElement } from '../elements/generateElement';
 import { ConstantsDom } from '../../models/Dom';
 import createSortBar from './createSortBar';
-import createState from './createState';
-import createSearchBar from './createSearchBar';
+import { createState } from './createState';
+import { createSearchBar } from './createSearchBar';
 import createViewMode from './createViewMode';
 
 export default function createSortSearch() {
