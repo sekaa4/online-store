@@ -1,6 +1,8 @@
 import { createElement } from '../elements/generateElement';
 
-export default function createState(elem: HTMLDivElement): HTMLDivElement {
+export let stateElem: HTMLSpanElement;
+
+export function createState(elem: HTMLDivElement): HTMLDivElement {
   const stateTitle: HTMLSpanElement = createElement('span', HTMLSpanElement, {
     classes: ['title', 'state__title'],
     text: 'Found: ',
@@ -10,6 +12,7 @@ export default function createState(elem: HTMLDivElement): HTMLDivElement {
     classes: ['value', 'state__value'],
     text: '0',
   });
+  stateElem = stateDescription;
 
   elem.append(stateTitle, stateDescription);
 
