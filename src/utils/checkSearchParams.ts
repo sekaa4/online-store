@@ -17,13 +17,18 @@ export default function checkSearchParams(key: string, value: string) {
 
   if (url.searchParams.has(key) && url.searchParams.get(key) !== value) {
     if (key === 'sort' || key === 'list' || key === 'search' || key === 'price' || key === 'stock') {
-      url.searchParams.set(key, value);
-      window.history.state.id += 1;
-      window.history.pushState({ id: window.history.state.id, path: url.search }, '', url.search);
+      if (key === 'search' && value === '') {
+        url.searchParams.delete(key);
+        window.history.state.id += 1;
+        window.history.pushState({ id: window.history.state.id, path: url.search || './' }, '', url.search || './');
+      } else {
+        url.searchParams.set(key, value);
+        window.history.state.id += 1;
+        window.history.pushState({ id: window.history.state.id, path: url.search }, '', url.search);
+      }
     } else {
       const oldValue: string = <string>url.searchParams.get(key);
       const values: string[] = oldValue.split('↕');
-      console.log(values);
       if (values.includes(value)) {
         values.splice(values.indexOf(value), 1);
         const newValue = values.join('↕');
@@ -37,7 +42,7 @@ export default function checkSearchParams(key: string, value: string) {
         window.history.pushState({ id: window.history.state.id, path: url.search }, '', url.search);
       }
     }
-  } else if (key !== 'sort' && key !== 'list' && key !== 'search' && key !== 'price' && key !== 'stock') {
+  } else if (key !== 'sort' && key !== 'list' && key !== 'price' && key !== 'stock') {
     url.searchParams.delete(key);
     window.history.state.id += 1;
     window.history.pushState({ id: window.history.state.id, path: url.search || './' }, '', url.search || './');
