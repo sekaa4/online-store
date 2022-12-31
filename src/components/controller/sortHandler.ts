@@ -4,7 +4,7 @@ import { ConstantsDom } from '../../models/Dom';
 import getSortData from '../sortData/getSortData';
 
 export default function sortHandler(url: URLSearchParams): void {
-  const sortName = url.get('sort');
+  const sortName: string | null = url.get('sort');
   if (!sortName) {
     const optionsArr: NodeListOf<HTMLOptionElement> = document.querySelectorAll('.select__option');
     const [selectName]: HTMLOptionElement[] = Array.from(optionsArr);
