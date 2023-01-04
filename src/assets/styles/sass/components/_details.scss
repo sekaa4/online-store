@@ -1,0 +1,201 @@
+.details-div {
+    width: 153.2rem;
+}
+.title-details {
+    @include font($size: 4.2rem, $height: 3.6rem, $weight: 600);
+    text-align: center;
+}
+
+.product-details {
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+    padding: 3rem;
+}
+
+.photos-details {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.photos-column-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0 4rem 0 0;
+}
+
+.photo-basic-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-details {
+    display: block;
+    width: 16rem;
+    height: 16rem;
+    object-fit: fill;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    border-radius: 5%;
+}
+
+.img-details:hover {
+    transform: scale(1.1);
+    transition: .3s;
+}
+
+.img-basic-details {
+    display: block;
+    width: 35rem;
+    height: 25rem;
+    object-fit: fill;
+    border-radius: 5%;
+}
+
+.img-basic-details {
+    display: inline-block;
+  }
+
+.active-details {
+    border: 0.4rem solid $color-border;
+    border-radius: 50%;
+}
+
+.description-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 3rem;
+}
+
+.description-div {
+    max-width: 30rem;   
+}
+
+.details-rating-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4rem;
+    background-color: $color-light;
+}
+
+.details-brand-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4rem;
+    background-color: $color-description;
+}
+
+.details-category-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4rem;
+    background-color: $color-light;
+}
+
+.details-description-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $color-description;
+}
+
+.details-stock-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4rem;
+    background-color: $color-light;   
+}
+
+.details-rating {
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.details-brand {
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.details-category {
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.details-description {
+    text-align: left;
+    white-space: wrap;
+    text-align: center;
+}
+
+.details-stock {
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.button-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-details-div {
+    margin-left: 3rem;
+}
+
+.details-price-div {
+    margin-bottom: 1.5rem;
+}
+
+.details-price {
+    font-size: 2.8rem;
+    font-weight: 600;
+    color: $color-price;
+}
+
+.details-button-div {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 1rem
+}
+
+.crums-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 3rem 3rem 5rem;
+    font-size: 2rem;
+    text-transform: uppercase;
+}
+
+.bread-crums-a {
+    color: $color-hovered;
+    text-decoration: none;
+}
+
+.bread-crums-one {
+    color: $color-hovered;
+}
+
+.bread-crums-two {
+    color: $color-hovered;
+}
+
+.bread-crums-tree {
+    color: $color-hovered;
+}
