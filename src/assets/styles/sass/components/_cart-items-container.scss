@@ -1,0 +1,66 @@
+.cards__wrapper {
+  column-gap: 1rem;
+  row-gap: 1rem;
+  margin: 0 auto;
+}
+
+.cards_shell-column > article {
+  padding: 0 2rem 2rem;
+}
+
+.card__name-column-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card__container-column {
+  width: 120.4rem;
+  height: 21.3rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-block__image-column {
+  width: 25.0rem;
+  height: 21.0rem;
+}
+
+.card__image-column {
+  display: block;
+  width: 25.0rem;
+  height: 21.0rem;
+  object-fit: fill;
+}
+
+.card__content-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.card__content-column {
+  max-width: 30rem;
+  margin-right: 20rem;
+}
+
+.card__elements-column {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  > * {
+    margin-left: 2rem;
+  }
+}
+
+.card__price-column {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: $color-price;
+}
+
+.card__name-stock-column {
+  color: $color-rating;
+}
