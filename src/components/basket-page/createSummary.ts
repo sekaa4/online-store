@@ -1,6 +1,7 @@
 import { createElement } from '../elements/generateElement';
 import { ConstantsDom } from '../../models/Dom';
 import { DataProducts } from '../../interfaces/Data';
+import { renderModal } from '../render/renderModal';
 
 const promo = {
   rs: 'Rolling Scopes School - discount 10%',
@@ -190,11 +191,8 @@ export function createSummary(data: DataProducts[]) {
   };
 
   buttonBuyNow.onclick = () => {
-    createElement(ConstantsDom.SPAN, HTMLSpanElement, {
-      parentElement: summaryElem,
-      classes: ['modal'],
-      text: 'Modal window',
-    });
+    const modal = renderModal();
+    document.body.append(modal.elem);
   };
 
   return summaryElem;

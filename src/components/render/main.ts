@@ -5,7 +5,7 @@ import { createAside } from '../filters/createAside';
 import createSortSearch from '../sort-products/createSortSearch';
 import { renderCards } from './renderCards';
 //import { errorPage } from './errorPage';
-//import { renderBasket } from './renderBasket';
+import { renderBasket } from './renderBasket';
 
 export let cardsWrapperElem: HTMLDivElement;
 export let mainElem: CreateElement;
@@ -60,7 +60,7 @@ export function renderMain(): void {
   typeof divCards === 'string' ? divCards : cardsWrapper.append(...divCards);
 
   //renderBasket
-  //renderBasket();
+  renderBasket();
 
   document.body.append(main.elem);
 }
