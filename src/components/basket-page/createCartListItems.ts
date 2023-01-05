@@ -213,16 +213,6 @@ export function createCartListItems(data: DataProducts[], elem: HTMLElement) {
       text: `€${basketItem.price}`,
     });
 
-    // const divPrice: HTMLElement = createElement(ConstantsDom.DIV, HTMLElement, {
-    //   parentElement: elements,
-    //   classes: ['product-item-elements__price-container', 'price-container'],
-    // });
-    // createElement(ConstantsDom.P, HTMLElement, {
-    //   parentElement: divPrice,
-    //   classes: ['price-container__text'],
-    //   text: `Price: ${basketItem.price.toString()} $`,
-    // });
-
     const totalPrice: HTMLDivElement = createElement(ConstantsDom.DIV, HTMLDivElement, {
       parentElement: cartItem,
       classes: ['item-price'],
@@ -253,15 +243,6 @@ export function createCartListItems(data: DataProducts[], elem: HTMLElement) {
       classes: ['stock-container__text', 'title-name'],
       text: `Stock: ${basketItem.stock.toString()}`,
     });
-    // const divPrice: HTMLElement = createElement(ConstantsDom.DIV, HTMLElement, {
-    //   parentElement: elements,
-    //   classes: ['product-item-elements__price-container', 'price-container'],
-    // });
-    // createElement(ConstantsDom.P, HTMLElement, {
-    //   parentElement: divPrice,
-    //   classes: ['price-container__text'],
-    //   text: `Price: ${basketItem.price.toString()} $`,
-    // });
 
     const divButton: HTMLElement = createElement(ConstantsDom.DIV, HTMLElement, {
       parentElement: elements,
