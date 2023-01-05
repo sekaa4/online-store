@@ -20,6 +20,7 @@
 @import "layouts/header";
 @import "layouts/main";
 @import "layouts/footer";
+@import "layouts/cart-page";
 
 //components
 @import "components/aside";
@@ -30,5 +31,6 @@
 @import "components/sort-search";
 @import "components/cards-container";
 @import "components/cards-container-column";
+@import "components/cart-items-container";
 @import "components/error-page.scss";
 @import "components/details";

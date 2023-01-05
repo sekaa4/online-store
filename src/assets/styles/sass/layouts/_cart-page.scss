@@ -1,0 +1,40 @@
+.cart-page__content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart-page__content {
+  padding: 4.8rem 0;
+}
+
+.cart-content {
+  flex: auto;
+}
+
+.cart-content__products-list {
+  display: flex;
+  flex: auto;
+  flex-wrap: wrap;
+  max-width: 71%;
+  row-gap: 2rem;
+}
+
+.products-list__title-and-control {
+  display: flex;
+  width: 100%;
+}
+
+.cart-content__summary {
+  flex: auto;
+  max-width: 27%;
+}
+
+.list-item {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 2rem;
+}
+
+.product-item-container {
+  text-align: center;
+}
