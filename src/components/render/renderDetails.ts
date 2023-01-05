@@ -1,6 +1,5 @@
 import { createElement } from '../elements/generateElement';
 import { ConstantsDom } from '../../models/Dom';
-import CreateElement from '../elements/CreateElement';
 import { DataProducts } from '../../interfaces/Data';
 import Card from '../elements/CreateCard';
 import { elementDomStorage } from '../elements/generateElement';
