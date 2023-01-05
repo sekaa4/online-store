@@ -8,10 +8,8 @@ export function renderBasket() {
   const cartPage: HTMLDivElement = createElement(ConstantsDom.DIV, HTMLDivElement, {
     classes: [ConstantsDom.WRAPPER, 'cart-page', 'cart-page__wrapper'],
   });
-  //stateElem.textContent = data.length.toString();
 
   const basketItems: HTMLElement = createBasketContent();
   cartPage.append(basketItems);
   mainElem.elem.append(cartPage);
-  //return arrayDataCard;
 }

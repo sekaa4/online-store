@@ -5,7 +5,7 @@ import { createAside } from '../filters/createAside';
 import createSortSearch from '../sort-products/createSortSearch';
 import { renderCards } from './renderCards';
 //import { errorPage } from './errorPage';
-import { renderBasket } from './renderBasket';
+//import { renderBasket } from './renderBasket';
 
 export let cardsWrapperElem: HTMLDivElement;
 export let mainElem: CreateElement;
@@ -22,11 +22,11 @@ export function renderMain(): void {
   });
   //renderDetails
 
-  const persistentStorage = new LocalStorage();
-  const data: DataProducts[] = persistentStorage.getItem('data');
-  console.log(data);
-  const details = renderDetails(data);
-  wrapper.append(...details);
+  // const persistentStorage = new LocalStorage();
+  // const data: DataProducts[] = persistentStorage.getItem('data');
+  // console.log(data);
+  // const details = renderDetails(data);
+  // wrapper.append(...details);
 
   //renderError
 
@@ -59,7 +59,8 @@ export function renderMain(): void {
   const divCards: string | HTMLElement[] = renderCards();
   typeof divCards === 'string' ? divCards : cardsWrapper.append(...divCards);
 
-  renderBasket();
+  //renderBasket
+  //renderBasket();
 
   document.body.append(main.elem);
 }

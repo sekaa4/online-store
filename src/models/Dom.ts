@@ -11,7 +11,6 @@ export enum ConstantsDom {
   INPUT = 'input',
   EMPTY = '',
   H1 = 'h1',
-  H2 = 'h2',
   HEADER = 'header',
   IMG = 'img',
   LOGO = 'logo',

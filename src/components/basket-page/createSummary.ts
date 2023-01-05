@@ -28,7 +28,7 @@ export function createSummary(data: DataProducts[]) {
   createElement(ConstantsDom.SPAN, HTMLSpanElement, {
     parentElement: countProducts,
     classes: ['count-products__description'],
-    text: 'Products',
+    text: 'Products:',
   });
 
   const countNumber = createElement(ConstantsDom.SPAN, HTMLSpanElement, {
@@ -46,7 +46,7 @@ export function createSummary(data: DataProducts[]) {
   createElement(ConstantsDom.SPAN, HTMLSpanElement, {
     parentElement: totalPriceProducts,
     classes: ['count-products__description'],
-    text: 'Total',
+    text: 'Total:',
   });
 
   createElement(ConstantsDom.SPAN, HTMLSpanElement, {
@@ -77,11 +77,9 @@ export function createSummary(data: DataProducts[]) {
 
   const buttonBuyNow: HTMLButtonElement = createElement(ConstantsDom.BUTTON, HTMLButtonElement, {
     parentElement: summaryElem,
-    classes: ['button', 'button-buy-now'],
+    classes: ['button', 'button-buy-now', ConstantsDom.BUTTON_CARD_COLUMN, ConstantsDom.BUTTON_CARD_BORDER_COLUMN],
     text: 'Buy Now',
   });
-
-  ////////////////////////////////////
 
   const currentPriceProducts: HTMLDivElement = createElement(ConstantsDom.DIV, HTMLDivElement, {
     classes: ['summary__total-price', 'current-total-price'],
@@ -114,7 +112,6 @@ export function createSummary(data: DataProducts[]) {
     classes: ['apply-codes__promo-table'],
   });
 
-  /////////////////////////////////////
   const arrDiscount: string[] = [];
   let appliedDiscount = false;
   promoInput.oninput = () => {
@@ -132,8 +129,6 @@ export function createSummary(data: DataProducts[]) {
         text: discount,
       });
 
-      /////////////////////////////////////////////
-
       if (!arrDiscount.includes(discount)) {
         console.log(arrDiscount);
         const addButton: HTMLButtonElement = createElement(ConstantsDom.BUTTON, HTMLButtonElement, {
@@ -141,8 +136,6 @@ export function createSummary(data: DataProducts[]) {
           classes: ['res-promo-add'],
           text: 'ADD',
         });
-
-        /////////////////////////////////////////////////////
 
         addButton.onclick = () => {
           const text: string = <string>resPromoTitle.textContent;
@@ -152,7 +145,7 @@ export function createSummary(data: DataProducts[]) {
 
           const appliedPromo: HTMLDivElement = createElement(ConstantsDom.DIV, HTMLDivElement, {
             parentElement: appliedDiv,
-            classes: ['apply-codes__title'],
+            classes: ['apply-codes__promo-title'],
             text: text,
           });
 
@@ -168,6 +161,7 @@ export function createSummary(data: DataProducts[]) {
             arrDiscount.splice(arrDiscount.indexOf(value), 1);
             if (arrDiscount.length === 0) {
               currentPriceProducts.remove();
+              applyCodes.remove();
               totalPriceProducts.classList.remove('old-price');
               appliedDiscount = false;
             }
@@ -176,7 +170,7 @@ export function createSummary(data: DataProducts[]) {
           };
 
           if (!appliedDiscount) {
-            totalPriceProducts.after(currentPriceProducts, appliedDiv);
+            totalPriceProducts.after(currentPriceProducts, applyCodes);
             appliedDiscount = true;
           } else {
             currentPriceNumber.textContent = 'new Price';
