@@ -1,15 +1,16 @@
 import { ConstantsDom } from '../../models/Dom';
 import { DataProducts } from '../../interfaces/Data';
-import CreateElement from '../elements/CreateElement';
 import Card from '../elements/CreateCard';
-import { LocalStorage } from '../../utils/persistentStorage';
 import { createElement } from '../elements/generateElement';
-import createCartListItems from './createCartListItems';
 import createDescription from '../../utils/createDescription';
+import { countProductsNumberElem } from './createSummary';
 
-export default function createCartListItem(data: DataProducts[], elem: HTMLElement) {
+export function createCartListItems(data: DataProducts[], elem: HTMLElement) {
   const arrayData: Card[] = [];
   const arrayDataCard: HTMLElement[] = [];
+
+  let counter: number = data.length;
+
   const listItemsElem: HTMLDivElement = createElement(ConstantsDom.DIV, HTMLDivElement, {
     classes: ['cart-content__products-list', 'products-list'],
   });
@@ -19,7 +20,7 @@ export default function createCartListItem(data: DataProducts[], elem: HTMLEleme
     classes: ['products-list__title-and-control', 'title-and-control'],
   });
 
-  const titleListItems: HTMLHeadElement = createElement(ConstantsDom.H3, HTMLHeadElement, {
+  createElement(ConstantsDom.H2, HTMLHeadElement, {
     parentElement: titleAndControl,
     classes: ['products-list__title', 'title-item-list'],
     text: 'Products in Cart',
@@ -265,14 +266,14 @@ export default function createCartListItem(data: DataProducts[], elem: HTMLEleme
     arrayData.push(cartItems);
     arrayDataCard.push(cartItems.elem);
     productsListItem.append(cartItems.elem);
-    //local.setItem('basketList', arrayData);
-    //basketContent.elem.append(cartItem);
 
     buttonMinus.onclick = () => {
       if (countNumber.textContent) {
         let numberCount: number = +countNumber.textContent;
         const dicNumber = --numberCount;
         if (dicNumber < 1) {
+          counter--;
+          countProductsNumberElem.textContent = counter.toString();
           cartItems.elem.remove();
           const productList = productsListItem.children;
           if (productList.length === 0) {
@@ -287,6 +288,8 @@ export default function createCartListItem(data: DataProducts[], elem: HTMLEleme
           //!TODO: Delete carts if dataCart === 0;
           return;
         }
+        counter--;
+        countProductsNumberElem.textContent = counter.toString();
         totalPriceNumber.textContent = (dicNumber * basketItem.price).toString();
         countNumber.textContent = dicNumber.toString();
       }
@@ -300,7 +303,8 @@ export default function createCartListItem(data: DataProducts[], elem: HTMLEleme
           buttonPlus.disabled = true;
           return;
         }
-
+        counter++;
+        countProductsNumberElem.textContent = counter.toString();
         totalPriceNumber.textContent = (incNumber * basketItem.price).toString();
         countNumber.textContent = incNumber.toString();
       }
