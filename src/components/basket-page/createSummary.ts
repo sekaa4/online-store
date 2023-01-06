@@ -133,7 +133,6 @@ export function createSummary(data: DataProducts[]) {
       });
 
       if (!arrDiscount.includes(discount)) {
-        console.log(arrDiscount);
         const addButton: HTMLButtonElement = createElement(ConstantsDom.BUTTON, HTMLButtonElement, {
           parentElement: resPromo,
           classes: ['res-promo-add'],

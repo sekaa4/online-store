@@ -15,7 +15,7 @@ export let cardsWrapperElem: HTMLDivElement;
 export let mainElem: CreateElement;
 
 export function renderMain(): void {
-  const path: string = window.location.pathname;
+  const path: string = window.location.pathname + window.location.search;
 
   const main: CreateElement = new CreateElement(ConstantsDom.MAIN, {
     classes: [ConstantsDom.MAIN],
@@ -27,27 +27,25 @@ export function renderMain(): void {
     classes: [ConstantsDom.WRAPPER, ConstantsDom.MAIN_WRAPPER],
   });
 
-  if (path.startsWith('/product-details')) {
-    const number = path.split('/').pop();
+  if (/\/product-details\/.*\//g.test(path) || /\/product-details\/.*\/?/g.test(path)) {
+    const number = window.location.pathname.split('/')[2];
     const persistentStorage = new LocalStorage();
     const data: DataProducts[] = persistentStorage.getItem('data');
     const isDataNumber = data.find((item) => item.id.toString() === number);
     if (isDataNumber) {
-      // fetch(`https://dummyjson.com/products/${number}`)
-      //   .then((res) => res.json())
-      //   .then((data: DataProducts) => {
-      //     const details: Card = renderDetails(data);
-      //     wrapper.append(details.elem);
-      //   });
-      const details: Card = renderDetails(isDataNumber);
-      wrapper.append(details.elem);
+      fetch(`https://dummyjson.com/products/${number}`)
+        .then((res) => res.json())
+        .then((data: DataProducts) => {
+          const details: Card = renderDetails(data);
+          wrapper.append(details.elem);
+        });
     } else {
       const error = errorPage();
       wrapper.append(error.elem);
     }
-  } else if (path === '/cart' || path.includes('/cart/?')) {
+  } else if (/\/cart/g.test(path) || /\/cart\/.*\/?/g.test(path)) {
     renderBasket();
-  } else if (path === '/') {
+  } else if (window.location.pathname === '/') {
     const filterContainer: HTMLElement = createElement(ConstantsDom.DIV, HTMLElement, {
       parentElement: wrapper,
       classes: [ConstantsDom.FILTER_CONTAINER],
