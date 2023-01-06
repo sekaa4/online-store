@@ -163,3 +163,26 @@
     }
   }
 }
+
+.button-modal-confirm {
+  @extend %font-prim;
+  padding: 11px 45px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.6rem;
+  line-height: 2.2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all .3s;
+
+  &_border {
+    background: $color-hovered;
+    border: 1px solid $color-hovered;
+    color: $color-text;
+
+    &:hover {
+      background: $color-border;
+      border-color: $color-border;
+    }
+  }
+}
