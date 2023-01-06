@@ -6,7 +6,7 @@ export default function checkSearchParams(key: string, value: string) {
     window.history.state.id += 1;
     window.history.pushState({ id: window.history.state.id, path: value }, '', value);
     return;
-  } else if (window.location.pathname === '/') {
+  } else if (key === 'reset' && window.location.pathname === '/') {
     window.history.replaceState({ id: window.history.state.id, path: '/' }, '', '/');
     return;
   }
