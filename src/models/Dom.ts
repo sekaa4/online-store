@@ -228,4 +228,5 @@ export enum ConstantsDom {
   CREDIT_BLOCK = 'credit-block',
   INPUT_VALID = 'input-valid',
   CREDIT_IMG = 'credit-img',
+  SVG_IMG = 'svg_img',
 }

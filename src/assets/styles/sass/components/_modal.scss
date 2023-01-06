@@ -21,6 +21,13 @@
 }
 
 .modal__close-icon {
+    display: block;
+    background-image: url('../../icons/close.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 2.5rem;
+    width: 2.5rem;
+    cursor: pointer;
     position: absolute;
     top: 30px;
     right: 26px;
