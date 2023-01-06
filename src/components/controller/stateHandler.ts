@@ -12,6 +12,7 @@ export default function stateHandler() {
   const historyPath: string = <string>window.history.state.path;
 
   if (historyPath && historyPath.includes('?')) {
+    document.body.innerHTML = '';
     buildPage();
     const cardsWrapper: HTMLElement = <HTMLElement>document.querySelector('.cards__wrapper');
     const url: URLSearchParams = parseSearchParams(window.history.state.path);
