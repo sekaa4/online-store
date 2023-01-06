@@ -50,11 +50,7 @@ module.exports = {
   },
   optimization: optimization(),
   devServer: {
-    historyApiFallback: {
-      rewrites: [
-        { from: /./, to: 'index.html' },
-      ],
-    },
+    historyApiFallback: true,
     open: true,
     compress: true,
     port: 8080,
@@ -80,7 +76,7 @@ module.exports = {
       redirects: [{
         from: "/*",
         to: "/index.html",
-        status: 301,
+        status: 200,
         force: false,
       },
       ],

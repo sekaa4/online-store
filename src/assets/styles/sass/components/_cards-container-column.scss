@@ -64,3 +64,8 @@
 .card__name-stock-column {
   color: $color-rating;
 }
+
+.data-cards__empty {
+  width: 100%;
+  flex-grow: 1;
+}

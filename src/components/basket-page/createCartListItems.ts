@@ -4,6 +4,7 @@ import Card from '../elements/CreateCard';
 import { createElement } from '../elements/generateElement';
 import createDescription from '../../utils/createDescription';
 import { countProductsNumberElem } from './createSummary';
+import history from '../../utils/history';
 
 export function createCartListItems(data: DataProducts[], elem: HTMLElement) {
   const arrayData: Card[] = [];
@@ -316,6 +317,16 @@ export function createCartListItems(data: DataProducts[], elem: HTMLElement) {
         }
         return;
       }
+    };
+
+    cartItems.elem.onclick = (e) => {
+      const target: Element = <Element>e.target;
+      if (target.closest('product-item-elements__button-container') || target.closest('.item-count')) return;
+
+      window.history.state.id += 1;
+      const path = `/product-details/${basketItem.id.toString()}`;
+      window.history.pushState({ id: window.history.state.id, path: path }, '', path);
+      history();
     };
   });
 

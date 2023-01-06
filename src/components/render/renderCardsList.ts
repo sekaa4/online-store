@@ -5,14 +5,20 @@ import { elementDomStorage } from '../elements/generateElement';
 import { LocalStorage } from '../../utils/persistentStorage';
 import { createCardsList } from './createCardsList';
 import { stateElem } from '../sort-products/createState';
+import createDescription from '../../utils/createDescription';
 
-export function renderCardsList(): string | HTMLElement[] {
+export function renderCardsList(): HTMLElement | HTMLElement[] {
   const local = new LocalStorage();
   const data: DataProducts[] = local.getItem(ConstantsDom.DATA_CURRENT) || local.getItem('data');
   stateElem.textContent = data.length.toString();
 
   if (data.length === 0) {
-    return 'Products not found, try another request search';
+    const description = 'Products not found, try another request search';
+    const elemEmpty: HTMLHeadElement = createDescription(HTMLHeadElement, {
+      classes: ['data-cards__empty', 'description__empty'],
+      text: description,
+    });
+    return elemEmpty;
   }
 
   elementDomStorage.get(ConstantsDom.CARD_CONTAINER_COLUMN);

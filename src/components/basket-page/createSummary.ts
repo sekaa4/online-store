@@ -9,6 +9,7 @@ const promo = {
 };
 
 export let countProductsNumberElem: HTMLSpanElement;
+export let btnBuy: HTMLButtonElement;
 
 export function createSummary(data: DataProducts[]) {
   const summaryElem: HTMLDivElement = createElement(ConstantsDom.DIV, HTMLDivElement, {
@@ -81,6 +82,7 @@ export function createSummary(data: DataProducts[]) {
     classes: ['button', 'button-buy-now', ConstantsDom.BUTTON_CARD_COLUMN, ConstantsDom.BUTTON_CARD_BORDER_COLUMN],
     text: 'Buy Now',
   });
+  btnBuy = buttonBuyNow;
 
   const currentPriceProducts: HTMLDivElement = createElement(ConstantsDom.DIV, HTMLDivElement, {
     classes: ['summary__total-price', 'current-total-price'],
@@ -131,7 +133,6 @@ export function createSummary(data: DataProducts[]) {
       });
 
       if (!arrDiscount.includes(discount)) {
-        console.log(arrDiscount);
         const addButton: HTMLButtonElement = createElement(ConstantsDom.BUTTON, HTMLButtonElement, {
           parentElement: resPromo,
           classes: ['res-promo-add'],
@@ -192,6 +193,7 @@ export function createSummary(data: DataProducts[]) {
 
   buttonBuyNow.onclick = () => {
     const modal = renderModal();
+    document.body.style.overflow = 'hidden';
     document.body.append(modal.elem);
   };
 

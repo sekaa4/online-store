@@ -1,6 +1,7 @@
 import { createElement } from '../elements/generateElement';
 import { ConstantsDom } from '../../models/Dom';
 import CreateElement from '../elements/CreateElement';
+import history from '../../utils/history';
 
 export function errorPage(): CreateElement {
   const divError: CreateElement = new CreateElement(ConstantsDom.DIV, {
@@ -42,6 +43,14 @@ export function errorPage(): CreateElement {
     classes: [ConstantsDom.ERROR_BUTTON_CLICK, ConstantsDom.ERROR_BUTTON_BORDERED],
     text: 'GO TO MAIN PAGE',
   });
+
+  buttonError.onclick = () => {
+    window.history.state.id += 1;
+    const path = '/';
+    window.history.pushState({ id: window.history.state.id, path: path }, '', path);
+    history();
+  };
+
   document.body.append(divError.elem);
   return divError;
 }
