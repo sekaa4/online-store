@@ -4,6 +4,7 @@ import { DataProducts } from '../../interfaces/Data';
 import Card from '../elements/CreateCard';
 import { elementDomStorage } from '../elements/generateElement';
 import history from '../../utils/history';
+import { btnBuy } from '../basket-page/createSummary';
 
 export function createDetails(data: DataProducts) {
   const divDetails: Card = new Card(ConstantsDom.DIV, data, {
@@ -196,12 +197,12 @@ export function createDetails(data: DataProducts) {
     parentElement: buttonDiv,
     classes: [ConstantsDom.DETAILS_BUTTON_DIV],
   });
-  createElement(ConstantsDom.BUTTON, HTMLElement, {
+  const buyButton: HTMLButtonElement = createElement(ConstantsDom.BUTTON, HTMLButtonElement, {
     parentElement: divButton,
     classes: [ConstantsDom.BUTTON_DETAILS_BUTTON, ConstantsDom.BUTTON_DETAILS_BORDER],
     text: ConstantsDom.BUY,
   });
-  createElement(ConstantsDom.BUTTON, HTMLElement, {
+  createElement(ConstantsDom.BUTTON, HTMLButtonElement, {
     parentElement: divButton,
     classes: [ConstantsDom.BUTTON_DETAILS_BUTTON_ADD, ConstantsDom.BUTTON_DETAILS_BORDER_ADD],
     text: ConstantsDom.BUY_ADD,
@@ -213,6 +214,15 @@ export function createDetails(data: DataProducts) {
     window.history.pushState({ id: window.history.state.id, path: path }, '', path);
 
     history();
+  });
+
+  buyButton.addEventListener('click', () => {
+    window.history.state.id += 1;
+    const path = '/cart';
+    window.history.pushState({ id: window.history.state.id, path: path }, '', path);
+
+    history();
+    btnBuy.dispatchEvent(new Event('click'));
   });
   return divDetails;
 }

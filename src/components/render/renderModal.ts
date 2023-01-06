@@ -167,12 +167,14 @@ export function renderModal(): CreateElement {
     const svg: HTMLElement = <HTMLElement>e.target;
     if (svg.classList.contains('modal__close-icon')) {
       document.querySelector('.overlay')?.remove();
+      document.body.style.overflow = '';
     }
   });
   document.body.addEventListener('click', (e: Event) => {
     const clsModal: HTMLElement = <HTMLElement>e.target;
     if (clsModal.classList.contains('overlay_modal') == true) {
       document.querySelector('.overlay')?.remove();
+      document.body.style.overflow = '';
     }
   });
   document.body.append(divOverlay.elem);
