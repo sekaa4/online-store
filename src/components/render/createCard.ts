@@ -2,10 +2,12 @@ import { ConstantsDom } from '../../models/Dom';
 import { DataProducts } from '../../interfaces/Data';
 import Card from '../elements/CreateCard';
 import { createElement } from '../elements/generateElement';
+import history from '../../utils/history';
 
 export function createCard(data: DataProducts) {
   const cardShell: Card = new Card(ConstantsDom.DIV, data, {
     classes: [ConstantsDom.CARDS_SHELL],
+    attributes: [['id', `${data.id}`]],
   });
 
   const card: HTMLElement = createElement(ConstantsDom.ARTICLE, HTMLElement, {
@@ -72,5 +74,15 @@ export function createCard(data: DataProducts) {
     text: `Stock: ${data.stock.toString()}`,
   });
   document.body.append(cardShell.elem);
+
+  cardShell.elem.addEventListener('click', (e) => {
+    const target: Element = <Element>e.target;
+    if (target.classList.contains(ConstantsDom.BUTTON_CARD)) return;
+
+    window.history.state.id += 1;
+    const path = `/product-details/${data.id.toString()}`;
+    window.history.pushState({ id: window.history.state.id, path: path }, '', path);
+    history();
+  });
   return cardShell;
 }

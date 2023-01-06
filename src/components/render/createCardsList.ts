@@ -2,6 +2,7 @@ import { ConstantsDom } from '../../models/Dom';
 import { DataProducts } from '../../interfaces/Data';
 import Card from '../elements/CreateCard';
 import { createElement } from '../elements/generateElement';
+import history from '../../utils/history';
 
 export function createCardsList(data: DataProducts) {
   const cardShell: Card = new Card(ConstantsDom.DIV, data, {
@@ -108,6 +109,17 @@ export function createCardsList(data: DataProducts) {
     classes: [ConstantsDom.BUTTON_CARD_COLUMN, ConstantsDom.BUTTON_CARD_BORDER_COLUMN],
     text: ConstantsDom.BUY,
   });
+
+  cardShell.elem.addEventListener('click', (e) => {
+    const target: Element = <Element>e.target;
+    if (target.classList.contains(ConstantsDom.BUTTON_CARD_COLUMN)) return;
+
+    window.history.state.id += 1;
+    const path = `/product-details/${data.id.toString()}`;
+    window.history.pushState({ id: window.history.state.id, path: path }, '', path);
+    history();
+  });
+
   document.body.append(cardShell.elem);
   return cardShell;
 }
