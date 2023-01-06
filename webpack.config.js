@@ -76,7 +76,7 @@ module.exports = {
       redirects: [{
         from: "/*",
         to: "/index.html",
-        status: 301,
+        status: 200,
         force: false,
       },
       ],

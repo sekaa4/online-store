@@ -7,6 +7,7 @@ const history = () => {
       '',
       window.location.search || window.location.pathname || './'
     );
+
     stateHandler();
   } else stateHandler();
 };
