@@ -9,7 +9,10 @@ import { ConstantsDom } from '../../models/Dom';
 import { inputSearch, imageSearch } from '../sort-products/createSearchBar';
 
 export default function stateHandler() {
-  if (window.history.state.path && window.history.state.path !== './') {
+  const historyPath: string = <string>window.history.state.path;
+
+  if (historyPath && historyPath.includes('?')) {
+    buildPage();
     const cardsWrapper: HTMLElement = <HTMLElement>document.querySelector('.cards__wrapper');
     const url: URLSearchParams = parseSearchParams(window.history.state.path);
     sortHandler(url);
@@ -17,20 +20,20 @@ export default function stateHandler() {
     layoutHandler(url);
 
     if (cardsWrapper.classList.contains('layout-5-column')) {
-      const cardsTable: string | HTMLElement[] = renderCards();
+      const cardsTable: HTMLElement | HTMLElement[] = renderCards();
       cardsWrapper.innerHTML = '';
-      if (typeof cardsTable === 'string') {
-        cardsWrapper.innerHTML = cardsTable;
+      if (cardsTable instanceof HTMLElement) {
+        cardsWrapper.append(cardsTable);
         localStorage.removeItem(ConstantsDom.DATA_CURRENT);
       } else {
         cardsWrapper.append(...cardsTable);
         localStorage.removeItem(ConstantsDom.DATA_CURRENT);
       }
     } else if (cardsWrapper.classList.contains('layout-column')) {
-      const cardsTable: string | HTMLElement[] = renderCardsList();
+      const cardsTable: HTMLElement | HTMLElement[] = renderCardsList();
       cardsWrapper.innerHTML = '';
-      if (typeof cardsTable === 'string') {
-        cardsWrapper.innerHTML = cardsTable;
+      if (cardsTable instanceof HTMLElement) {
+        cardsWrapper.append(cardsTable);
         localStorage.removeItem(ConstantsDom.DATA_CURRENT);
       } else {
         cardsWrapper.append(...cardsTable);
@@ -38,7 +41,7 @@ export default function stateHandler() {
       }
     }
   } else {
-    if (imageSearch.classList.contains('active__image')) {
+    if (imageSearch?.classList.contains('active__image')) {
       document.body.innerHTML = '';
       localStorage.removeItem(ConstantsDom.DATA_CURRENT);
       buildPage();

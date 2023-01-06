@@ -2,9 +2,12 @@ import getURL from '../components/getURL';
 
 export default function checkSearchParams(key: string, value: string) {
   const url: URL = getURL(window.location.toString());
-  if (key === 'reset') {
+  if (key === 'reset' && window.location.pathname !== '/') {
     window.history.state.id += 1;
     window.history.pushState({ id: window.history.state.id, path: value }, '', value);
+    return;
+  } else if (window.location.pathname === '/') {
+    window.history.replaceState({ id: window.history.state.id, path: '/' }, '', '/');
     return;
   }
 
