@@ -50,11 +50,7 @@ module.exports = {
   },
   optimization: optimization(),
   devServer: {
-    historyApiFallback: {
-      rewrites: [
-        { from: /./, to: 'index.html' },
-      ],
-    },
+    historyApiFallback: true,
     open: true,
     compress: true,
     port: 8080,
