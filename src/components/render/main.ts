@@ -33,14 +33,14 @@ export function renderMain(): void {
     const data: DataProducts[] = persistentStorage.getItem('data');
     const isDataNumber = data.find((item) => item.id.toString() === number);
     if (isDataNumber) {
-      // fetch(`https://dummyjson.com/products/${number}`)
-      //   .then((res) => res.json())
-      //   .then((data: DataProducts) => {
-      //     const details: Card = renderDetails(data);
-      //     wrapper.append(details.elem);
-      //   });
-      const details: Card = renderDetails(isDataNumber);
-      wrapper.append(details.elem);
+      fetch(`https://dummyjson.com/products/${number}`)
+        .then((res) => res.json())
+        .then((data: DataProducts) => {
+          const details: Card = renderDetails(data);
+          wrapper.append(details.elem);
+        });
+      // const details: Card = renderDetails(isDataNumber);
+      // wrapper.append(details.elem);
     } else {
       const error = errorPage();
       wrapper.append(error.elem);
