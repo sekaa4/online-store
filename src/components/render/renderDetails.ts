@@ -3,6 +3,7 @@ import { ConstantsDom } from '../../models/Dom';
 import { DataProducts } from '../../interfaces/Data';
 import Card from '../elements/CreateCard';
 import { elementDomStorage } from '../elements/generateElement';
+import history from '../../utils/history';
 
 export function createDetails(data: DataProducts) {
   const divDetails: Card = new Card(ConstantsDom.DIV, data, {
@@ -16,10 +17,9 @@ export function createDetails(data: DataProducts) {
     parentElement: blockDetails,
     classes: [ConstantsDom.CRUMS_DETAILS],
   });
-  createElement(ConstantsDom.A, HTMLElement, {
+  const store: HTMLElement = createElement(ConstantsDom.P, HTMLElement, {
     parentElement: breadCrums,
     classes: [ConstantsDom.BREAD_CRUMS_A],
-    attributes: [[ConstantsDom.HREF, '#']],
     text: 'Store',
   });
   createElement(ConstantsDom.P, HTMLElement, {
@@ -77,16 +77,13 @@ export function createDetails(data: DataProducts) {
 
   for (let i = 0; i < data.images.length; i++) {
     const url = data.images[i];
-    console.log(url);
     const req = new XMLHttpRequest();
     req.open('GET', url, false);
     req.send();
-    console.log(req.getResponseHeader('content-length'));
     const test = req.getResponseHeader('content-length');
     map.set(test, url);
   }
   const arr = Array.from(map.values());
-  console.log(arr);
   arr.forEach((element) => {
     createElement(ConstantsDom.IMG, HTMLElement, {
       parentElement: photosColumn,
@@ -209,22 +206,20 @@ export function createDetails(data: DataProducts) {
     classes: [ConstantsDom.BUTTON_DETAILS_BUTTON_ADD, ConstantsDom.BUTTON_DETAILS_BORDER_ADD],
     text: ConstantsDom.BUY_ADD,
   });
-  document.body.append(divDetails.elem);
+
+  store.addEventListener('click', () => {
+    window.history.state.id += 1;
+    const path = '/';
+    window.history.pushState({ id: window.history.state.id, path: path }, '', path);
+
+    history();
+  });
   return divDetails;
 }
 
-export function renderDetails(data: DataProducts[]): HTMLElement[] {
+export function renderDetails(data: DataProducts): Card {
   elementDomStorage.get(ConstantsDom.DIV);
-  const arrayDataCard: HTMLElement[] = [];
-  // data.forEach((cardData) => {
-  //   const card = createDetails(cardData);
-  //   arrayDataCard.push(card.elem);
-  // });
 
-  for (let i = 0; i < data.length; i++) {
-    const card = createDetails(data[i]);
-    arrayDataCard.push(card.elem);
-    break;
-  }
-  return arrayDataCard;
+  const card = createDetails(data);
+  return card;
 }
