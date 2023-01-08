@@ -4,7 +4,7 @@ import { ControllerFilterElements } from '../../interfaces/ControllerFilterEleme
 import { ConstantsDom } from '../../models/Dom';
 
 export default class ControllerFilterElement implements ControllerFilterElements {
-  constructor(private elem: HTMLElement, public classes?: string[]) {
+  constructor(public elem: HTMLElement, public classes?: string[]) {
     this.elem = elem;
     this.classes = classes || [];
   }
@@ -26,9 +26,6 @@ export default class ControllerFilterElement implements ControllerFilterElements
       const parent: HTMLDivElement = <HTMLDivElement>target.parentElement;
 
       if (target.closest('.category__list') || target.closest('.brand__list')) {
-        const checkboxLine: NodeListOf<HTMLElement> = this.elem.querySelectorAll('.checkbox__line');
-        const inputCheckboxActive: HTMLElement | undefined = this.searchCheckbox(checkboxLine);
-
         if (target.closest('.category__list')) {
           const labelCheckbox: string = <string>target.id;
           this.filterItems('category', labelCheckbox);
@@ -36,34 +33,12 @@ export default class ControllerFilterElement implements ControllerFilterElements
           const labelCheckbox: string = <string>target.id;
           this.filterItems('brand', labelCheckbox);
         }
-
-        if (checkboxLine.length > 0 && inputCheckboxActive) {
-          checkboxLine.forEach((item) => {
-            const input: HTMLInputElement = <HTMLInputElement>item.querySelector('.input__checkbox');
-            const span: HTMLSpanElement = <HTMLSpanElement>item.querySelector('.span__checkbox');
-            if (input.checked) {
-              item.classList.add('item__active');
-              item.classList.remove('item__active_not');
-              span.innerHTML = `(${span.dataset.count}/${span.dataset.count})`;
-            } else {
-              item.classList.remove('item__active');
-              item.classList.add('item__active_not');
-              span.innerHTML = `(0/${span.dataset.count})`;
-            }
-          });
-        } else {
-          checkboxLine.forEach((item) => {
-            const span: HTMLSpanElement = <HTMLSpanElement>item.querySelector('.span__checkbox');
-            item.classList.remove('item__active_not');
-            item.classList.add('item__active');
-            span.innerHTML = `(${span.dataset.count}/${span.dataset.count})`;
-          });
-        }
       }
 
       if (target.classList.contains('slider1') || target.classList.contains('slider2')) {
         const sliderOne: HTMLInputElement = <HTMLInputElement>parent.querySelector('.slider1');
         const sliderTwo: HTMLInputElement = <HTMLInputElement>parent.querySelector('.slider2');
+
         const value = `${sliderOne.value}↕${sliderTwo.value}`;
 
         if (target.closest('.dual-slider__price')) {
