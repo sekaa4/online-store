@@ -2,6 +2,8 @@ import { getSortDataFilter } from './getSortDataFilter';
 import { DataProducts } from '../../interfaces/Data';
 import { SortsName, KeysDataProducts, SortData, AllDataSort } from '../../interfaces/DataSort.type';
 
+export let allSortData: AllDataSort;
+
 export function getAllSortData(data: DataProducts[], sortsName: SortsName): AllDataSort {
   const sortData: SortData = getSortData(data, sortsName);
   const allDataSort: AllDataSort = Object.keys(sortData).reduce((acc, filterName) => {
@@ -18,6 +20,9 @@ export function getAllSortData(data: DataProducts[], sortsName: SortsName): AllD
     });
     return { ...acc, [filterName]: cacheDataMap };
   }, {});
+
+  allSortData = allDataSort;
+
   return allDataSort;
 }
 

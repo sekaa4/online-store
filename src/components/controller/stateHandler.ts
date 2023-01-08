@@ -7,29 +7,18 @@ import { renderCardsList } from '../render/renderCardsList';
 import { buildPage } from '../buildPage';
 import { ConstantsDom } from '../../models/Dom';
 import { inputSearch, imageSearch } from '../sort-products/createSearchBar';
-import { stateElem } from '../sort-products/createState';
+import filterHandler from './filterHandler';
 
 export default function stateHandler() {
   const historyPath: string = <string>window.history.state.path;
-
-  if (imageSearch?.classList.contains('active__image')) {
-    document.body.innerHTML = '';
-    localStorage.removeItem(ConstantsDom.DATA_CURRENT);
-    buildPage();
-    inputSearch.focus();
-  } else {
-    document.body.innerHTML = '';
-    localStorage.removeItem(ConstantsDom.DATA_CURRENT);
-    buildPage();
-  }
 
   if (historyPath && historyPath.includes('?') && window.location.pathname === '/') {
     const cardsWrapper: HTMLElement = <HTMLElement>document.querySelector('.cards__wrapper');
     const url: URLSearchParams = parseSearchParams(window.history.state.path);
     sortHandler(url);
     searchHandler(url);
+    filterHandler(url);
     layoutHandler(url);
-    console.log(stateElem);
 
     if (cardsWrapper.classList.contains('layout-5-column')) {
       const cardsTable: HTMLElement | HTMLElement[] = renderCards();
@@ -51,6 +40,17 @@ export default function stateHandler() {
         cardsWrapper.append(...cardsTable);
         localStorage.removeItem(ConstantsDom.DATA_CURRENT);
       }
+    }
+  } else {
+    if (imageSearch?.classList.contains('active__image')) {
+      localStorage.removeItem(ConstantsDom.DATA_CURRENT);
+      document.body.innerHTML = '';
+      buildPage();
+      inputSearch.focus();
+    } else {
+      document.body.innerHTML = '';
+      localStorage.removeItem(ConstantsDom.DATA_CURRENT);
+      buildPage();
     }
   }
 }

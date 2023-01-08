@@ -1,13 +1,15 @@
 import CreateElement from '../elements/CreateElement';
 import createFilter from './createFilter';
 import { getAllSortData } from '../sortData/getAllSortData';
-import createMultiSlider from './createMultiSlider';
+import { createMultiSlider } from './createMultiSlider';
 import createButtons from './createButtons';
 import { AllDataSort } from '../../interfaces/DataSort.type';
 import { createElement } from '../elements/generateElement';
 import { LocalStorage } from '../../utils/persistentStorage';
 import { DataProducts } from '../../interfaces/Data';
 import ControllerFilterElement from '../controller/ControllerFilterElement';
+
+export let controllerFilterElement: HTMLElement;
 
 export function createAside(): CreateElement {
   const divAside: CreateElement = new CreateElement('div', {
@@ -61,6 +63,7 @@ export function createAside(): CreateElement {
 
   const controllerFilter = new ControllerFilterElement(divAside.elem);
   controllerFilter.start();
+  controllerFilterElement = divAside.elem;
 
   return divAside;
 }

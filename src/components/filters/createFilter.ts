@@ -21,7 +21,10 @@ export default function createFilter(name: string, data: [string, DataProducts[]
       });
       const span: CreateElement = new CreateElement('span', {
         classes: ['span', 'span__checkbox'],
-        attributes: [['data-count', `${dataArray.length}`]],
+        attributes: [
+          ['data-count', `${dataArray.length}`],
+          ['data-id', `${nameData}`],
+        ],
       });
       if (typeof nameData === 'string') {
         if (input.elem instanceof HTMLInputElement && name === 'Category') {
