@@ -1,218 +1,286 @@
 .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: $color-overlay;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $color-overlay;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .modal {
-    position: relative;
-    border-radius: 10px;
-    background-color: $color-light;
-    width: 675px;
-    min-height: 120px;
-    max-height: 90%;
-    overflow: auto;
+  position: relative;
+  border-radius: 10px;
+  background-color: $color-light;
+  width: 675px;
+  min-height: 120px;
+  max-height: 90%;
+  overflow: auto;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.modal__submit-complete {
+  text-align: center;
+  vertical-align: middle;
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
 }
 
 .modal__close-icon {
-    display: block;
-    background-image: url('../../icons/close.svg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 2.5rem;
-    width: 2.5rem;
-    cursor: pointer;
-    position: absolute;
-    top: 30px;
-    right: 26px;
-    cursor: pointer;
-    svg {
-        pointer-events: none;
-    }
+  display: block;
+  background-image: url('../../icons/close.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 2.5rem;
+  width: 2.5rem;
+  cursor: pointer;
+  position: absolute;
+  top: 30px;
+  right: 26px;
+  cursor: pointer;
+
+  svg {
+    pointer-events: none;
+  }
 }
 
 .personal-details {
-    padding: 3rem;
+  padding: 3rem;
 }
 
 .form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .credit-cards {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .input-name-div {
-    margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .input-phone-div {
-    margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .input-address-div {
-    margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .input-email-div {
-    margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .input-name {
-    border: 0.3rem solid $color-border;
-    border-radius: 1rem 1rem 1rem 1rem;    
-    width: 40rem;
-    min-height: 3.5rem;
+  outline: none;
+  border: 0.3rem solid $color-border;
+  border-radius: 1rem 1rem 1rem 1rem;
+  width: 40rem;
+  min-height: 3.5rem;
+  padding-left: 2rem;
 }
 
 .input-name::-webkit-input-placeholder {
-    text-align: center; 
-    color: $color-text-placeholder
+  text-align: center;
+  color: $color-text-placeholder
 }
 
 .input-name::-moz-placeholder {
-    text-align: center;
-    color: $color-text-placeholder
- }
+  text-align: center;
+  color: $color-text-placeholder
+}
 
 .input-phone {
-    border: 0.3rem solid $color-border;
-    border-radius: 1rem 1rem 1rem 1rem;  
-    width: 40rem;
-    min-height: 3.5rem;
+  outline: none;
+  border: 0.3rem solid $color-border;
+  border-radius: 1rem 1rem 1rem 1rem;
+  width: 40rem;
+  min-height: 3.5rem;
+  padding-left: 2rem;
 }
 
 .input-phone::-webkit-input-placeholder {
-    text-align: center; 
-    color: $color-text-placeholder
+  text-align: center;
+  color: $color-text-placeholder
 }
 
 .input-phone::-moz-placeholder {
-    text-align: center;
-    color: $color-text-placeholder
- }
+  text-align: center;
+  color: $color-text-placeholder
+}
 
 .input-address {
-    border: 0.3rem solid $color-border;
-    border-radius: 1rem 1rem 1rem 1rem;  
-    width: 40rem;
-    min-height: 3.5rem;
+  outline: none;
+  border: 0.3rem solid $color-border;
+  border-radius: 1rem 1rem 1rem 1rem;
+  width: 40rem;
+  min-height: 3.5rem;
+  padding-left: 2rem;
 }
 
 .input-address::-webkit-input-placeholder {
-    text-align: center; 
-    color: $color-text-placeholder
+  text-align: center;
+  color: $color-text-placeholder
 }
 
 .input-address::-moz-placeholder {
-    text-align: center;
-    color: $color-text-placeholder
- }
+  text-align: center;
+  color: $color-text-placeholder
+}
 
 .input-email {
-    border: 0.3rem solid $color-border;
-    border-radius: 1rem 1rem 1rem 1rem;  
-    width: 40rem;
-    min-height: 3.5rem;
+  outline: none;
+  border: 0.3rem solid $color-border;
+  border-radius: 1rem 1rem 1rem 1rem;
+  width: 40rem;
+  min-height: 3.5rem;
+  padding-left: 2rem;
 }
 
 .input-email::-webkit-input-placeholder {
-    text-align: center; 
-    color: $color-text-placeholder
+  text-align: center;
+  color: $color-text-placeholder
 }
 
 .input-email::-moz-placeholder {
-    text-align: center;
-    color: $color-text-placeholder
- }
+  text-align: center;
+  color: $color-text-placeholder
+}
 
 .credit-cards {
-    min-height: 20rem;
-    max-width: 35rem;
-    border: 0.3rem solid $color-border;
-    border-radius: 1rem 1rem 1rem 1rem;  
-    background: linear-gradient(to right, $color-border, $color-light);
-    margin-bottom: 1.5rem;
+  min-height: 20rem;
+  max-width: 35rem;
+  border: 0.3rem solid $color-border;
+  border-radius: 1rem 1rem 1rem 1rem;
+  background: linear-gradient(to right, $color-border, $color-light);
+  margin-bottom: 1.5rem;
 }
 
 .input-card {
-    min-height: 3rem;
-    min-width: 25rem;
-    border: 0.2rem solid $color-border;
-    border-radius: 0.5rem 0.5rem 0.5rem 0.5rem; 
-    margin: 3rem;
+  outline: none;
+  min-height: 3rem;
+  min-width: 25rem;
+  border: 0.2rem solid $color-border;
+  border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+  margin: 3rem;
+  text-align: center;
 }
 
 .input-card::-webkit-input-placeholder {
-    text-align: center; 
-    color: $color-text-placeholder
+  text-align: center;
+  color: $color-text-placeholder
 }
 
 .input-card::-moz-placeholder {
-    text-align: center;
-    color: $color-text-placeholder
- }
+  text-align: center;
+  color: $color-text-placeholder
+}
 
 .input-valid {
-    max-width: 5.5rem;
-    min-height: 2.5rem;
-    border: 0.2rem solid $color-border;
-    border-radius: 0.5rem 0.5rem 0.5rem 0.5rem; 
-    margin: 0 2rem 2rem 0.5rem;
+  outline: none;
+  max-width: 5.5rem;
+  min-height: 2.5rem;
+  border: 0.2rem solid $color-border;
+  border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+  margin: 0 2rem 2rem 0.5rem;
+  text-align: center;
 }
 
 .input-valid::-webkit-input-placeholder {
-    text-align: center; 
-    color: $color-text-placeholder
+  text-align: center;
+  color: $color-text-placeholder
 }
 
 .input-valid::-moz-placeholder {
-    text-align: center;
-    color: $color-text-placeholder
- }
+  text-align: center;
+  color: $color-text-placeholder
+}
 
 .cvv-code {
-    max-width: 5.5rem;
-    min-height: 2.5rem;
-    border: 0.2rem solid $color-border;
-    border-radius: 0.5rem 0.5rem 0.5rem 0.5rem; 
-    margin: 0 2rem 2rem 0.5rem;
+  outline: none;
+  max-width: 5.5rem;
+  min-height: 2.5rem;
+  border: 0.2rem solid $color-border;
+  border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+  margin: 0 2rem 2rem 0.5rem;
+  text-align: center;
 }
 
 .cvv-code::-webkit-input-placeholder {
-    text-align: center; 
-    color: $color-text-placeholder
+  text-align: center;
+  color: $color-text-placeholder
 }
 
 .cvv-code::-moz-placeholder {
-    text-align: center;
-    color: $color-text-placeholder
- }
+  text-align: center;
+  color: $color-text-placeholder
+}
 
 .label-span {
-    font-size: 1.3rem;
-    color: $color-light;
+  font-size: 1.3rem;
+  color: $color-light;
+}
+
+.credit-card-details {
+  margin-bottom: 1.5rem;
 }
 
 .credit-img {
-    min-width: 10rem;
-    border: 0.3rem solid $color-border;
-    border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
-    background: $color-light;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  border: 0.3rem solid $color-border;
+  border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+  background: $color-light;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5rem;
+  width: 10rem;
+  object-fit: fill;
+}
+
+.modal-error {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  color: red;
+}
+
+.input-error {
+  border: 0.3rem solid $color-price;
+}
+
+.modal-correct {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  color: $color-border;
 }

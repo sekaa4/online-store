@@ -235,4 +235,9 @@ export enum ConstantsDom {
   PRICE_SPAN_COUNT = 'price-span-count',
   PRICE_SPAN_CURRENCY = 'price-span-currency',
   BLOCK_SHADOWED_LIST_BASKET = 'block-shadowed-list-basket',
+  MODAL_ERROR = 'modal-error',
+  MODAL_CORRECT = 'modal-correct',
+  MAX_LENGTH = 'maxlength',
+  CARD_NUMBER_LENGTH = '28',
+  TEXT = 'text',
 }
