@@ -229,4 +229,10 @@ export enum ConstantsDom {
   INPUT_VALID = 'input-valid',
   CREDIT_IMG = 'credit-img',
   SVG_IMG = 'svg_img',
+  BLOCK_SHADOWED_BASKET = 'block-shadowed-basket',
+  PRICE_DIV = 'price-div',
+  PRICE_SPAN = 'price-span',
+  PRICE_SPAN_COUNT = 'price-span-count',
+  PRICE_SPAN_CURRENCY = 'price-span-currency',
+  BLOCK_SHADOWED_LIST_BASKET = 'block-shadowed-list-basket',
 }

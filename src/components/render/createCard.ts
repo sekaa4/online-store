@@ -3,6 +3,7 @@ import { DataProducts } from '../../interfaces/Data';
 import Card from '../elements/CreateCard';
 import { createElement } from '../elements/generateElement';
 import history from '../../utils/history';
+import { itemsBasket } from '../basket-items/itemsToBasket';
 
 export function createCard(data: DataProducts) {
   const cardShell: Card = new Card(ConstantsDom.DIV, data, {
@@ -76,8 +77,11 @@ export function createCard(data: DataProducts) {
   document.body.append(cardShell.elem);
 
   cardShell.elem.addEventListener('click', (e) => {
-    const target: Element = <Element>e.target;
-    if (target.classList.contains(ConstantsDom.BUTTON_CARD)) return;
+    const target: HTMLElement = <HTMLElement>e.target;
+    if (target.classList.contains(ConstantsDom.BUTTON_CARD)) {
+      itemsBasket(target, cardShell.elem, data);
+      return;
+    }
 
     window.history.state.id += 1;
     const path = `/product-details/${data.id.toString()}`;

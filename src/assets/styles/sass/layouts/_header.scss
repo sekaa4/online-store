@@ -47,3 +47,27 @@
   background: $color-counter;
   color: $color-light;
 }
+
+.price-div {
+  padding: 0.8rem 2.5rem 0.8rem 2.5rem;
+  border: 0.1rem solid $color-border-header;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+  border-bottom-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+}
+
+.price-span {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.price-span-count {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.price-span-currency {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
