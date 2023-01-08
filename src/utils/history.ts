@@ -1,4 +1,5 @@
 import stateHandler from '../components/controller/stateHandler';
+import { buildPage } from '../components/buildPage';
 
 const history = () => {
   if (!window.history.state) {
@@ -8,8 +9,12 @@ const history = () => {
       window.location.search || window.location.pathname || './'
     );
 
+    buildPage();
     stateHandler();
-  } else stateHandler();
+  } else {
+    buildPage();
+    stateHandler();
+  }
 };
 
 export default history;
