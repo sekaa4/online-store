@@ -5,6 +5,7 @@ import Card from '../elements/CreateCard';
 import { elementDomStorage } from '../elements/generateElement';
 import history from '../../utils/history';
 import { btnBuy } from '../basket-page/createSummary';
+import { itemsDetails } from '../basket-items/itemsDetailsBasket';
 
 export function createDetails(data: DataProducts) {
   const divDetails: Card = new Card(ConstantsDom.DIV, data, {
@@ -202,7 +203,7 @@ export function createDetails(data: DataProducts) {
     classes: [ConstantsDom.BUTTON_DETAILS_BUTTON, ConstantsDom.BUTTON_DETAILS_BORDER],
     text: ConstantsDom.BUY,
   });
-  createElement(ConstantsDom.BUTTON, HTMLButtonElement, {
+  const detailsButton: HTMLElement = createElement(ConstantsDom.BUTTON, HTMLButtonElement, {
     parentElement: divButton,
     classes: [ConstantsDom.BUTTON_DETAILS_BUTTON_ADD, ConstantsDom.BUTTON_DETAILS_BORDER_ADD],
     text: ConstantsDom.BUY_ADD,
@@ -224,6 +225,25 @@ export function createDetails(data: DataProducts) {
     history();
     btnBuy.dispatchEvent(new Event('click'));
   });
+
+  const basketObject = { id: data.id, price: data.price, count: 1 };
+  if (localStorage.getItem('basketItem')) {
+    const basketItem = <string>localStorage.getItem('basketItem');
+    if (!basketItem.includes(`"id":${basketObject.id}`)) {
+      detailsButton.innerHTML = 'ADD TO CARD';
+    } else {
+      detailsButton.innerHTML = 'DROP TO CARD';
+    }
+  }
+
+  divDetails.elem.addEventListener('click', (e) => {
+    const target: HTMLElement = <HTMLElement>e.target;
+    if (target.classList.contains(ConstantsDom.BUTTON_DETAILS_BUTTON_ADD)) {
+      itemsDetails(target, divDetails.elem, data);
+      return;
+    }
+  });
+
   return divDetails;
 }
 

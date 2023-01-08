@@ -14,9 +14,11 @@ export function itemsBasket(buttonActive: HTMLElement, cardActive: HTMLElement, 
     if (localStorage.getItem('basketItem')) {
       const basketItem = <string>localStorage.getItem('basketItem');
       const arrayA = <ItemBasket[]>JSON.parse(basketItem);
+
       if (!basketItem.includes(`"id":${basketObject.id}`)) {
         arrayA.push(basketObject);
       }
+
       localStorage.setItem('basketItem', JSON.stringify(arrayA));
 
       let countNumber = 0;
@@ -29,6 +31,7 @@ export function itemsBasket(buttonActive: HTMLElement, cardActive: HTMLElement, 
         numberBasket.innerHTML = arrayA.length.toString();
       });
     } else {
+      numberBasket.innerHTML = '1';
       localStorage.setItem('basketItem', JSON.stringify(basketArray));
       count.innerHTML = basketObject.price.toString();
     }
