@@ -50,7 +50,7 @@ export function createCard(data: DataProducts) {
     classes: [ConstantsDom.CARD_PRICE],
     text: `Price: ${data.price.toString()} $`,
   });
-  createElement(ConstantsDom.BUTTON, HTMLElement, {
+  const buttonCard: HTMLElement = createElement(ConstantsDom.BUTTON, HTMLElement, {
     parentElement: elements,
     classes: [ConstantsDom.BUTTON_CARD, ConstantsDom.BUTTON_CARD_BORDER],
     text: ConstantsDom.BUY,
@@ -76,6 +76,20 @@ export function createCard(data: DataProducts) {
   });
   document.body.append(cardShell.elem);
 
+  const basketObject = { id: data.id, price: data.price, count: 1 };
+  if (localStorage.getItem('basketItem')) {
+    const basketItem = <string>localStorage.getItem('basketItem');
+    if (!basketItem.includes(`"id":${basketObject.id}`)) {
+      buttonCard.innerHTML = 'BUY';
+      cardShell.elem.classList.add(ConstantsDom.BLOCK_SHADOWED);
+      cardShell.elem.classList.remove(ConstantsDom.BLOCK_SHADOWED_BASKET);
+    } else {
+      buttonCard.innerHTML = 'DROP';
+      cardShell.elem.classList.remove(ConstantsDom.BLOCK_SHADOWED);
+      cardShell.elem.classList.add(ConstantsDom.BLOCK_SHADOWED_BASKET);
+    }
+  }
+
   cardShell.elem.addEventListener('click', (e) => {
     const target: HTMLElement = <HTMLElement>e.target;
     if (target.classList.contains(ConstantsDom.BUTTON_CARD)) {
@@ -88,5 +102,6 @@ export function createCard(data: DataProducts) {
     window.history.pushState({ id: window.history.state.id, path: path }, '', path);
     history();
   });
+
   return cardShell;
 }

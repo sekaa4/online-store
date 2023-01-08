@@ -1,13 +1,10 @@
-import { ConstantsDom } from '../../models/Dom';
 import { DataProducts } from '../../interfaces/Data';
 import { ItemBasket } from '../../interfaces/ItemToBasket';
 import { count, numberBasket } from '../render/header';
 
-export function itemsListBasket(buttonActive: HTMLElement, cardActive: HTMLElement, data: DataProducts) {
-  if (buttonActive.innerHTML === 'BUY') {
-    buttonActive.innerHTML = 'DROP';
-    cardActive.classList.remove(ConstantsDom.BLOCK_SHADOWED_COLUMN);
-    cardActive.classList.add(ConstantsDom.BLOCK_SHADOWED_LIST_BASKET);
+export function itemsDetails(buttonActive: HTMLElement, cardActive: HTMLElement, data: DataProducts) {
+  if (buttonActive.innerHTML === 'ADD TO CARD') {
+    buttonActive.innerHTML = 'DROP TO CARD';
 
     const basketObject = { id: data.id, price: data.price, count: 1 };
     const basketArray = [basketObject];
@@ -33,10 +30,8 @@ export function itemsListBasket(buttonActive: HTMLElement, cardActive: HTMLEleme
       localStorage.setItem('basketItem', JSON.stringify(basketArray));
       count.innerHTML = basketObject.price.toString();
     }
-  } else if (buttonActive.innerHTML === 'DROP') {
-    buttonActive.innerHTML = 'BUY';
-    cardActive.classList.remove(ConstantsDom.BLOCK_SHADOWED_LIST_BASKET);
-    cardActive.classList.add(ConstantsDom.BLOCK_SHADOWED_COLUMN);
+  } else if (buttonActive.innerHTML === 'DROP TO CARD') {
+    buttonActive.innerHTML = 'ADD TO CARD';
     const basketItem = <string>localStorage.getItem('basketItem');
     const arrayA = <ItemBasket[]>JSON.parse(basketItem);
 

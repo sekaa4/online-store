@@ -106,12 +106,26 @@ export function createCardsList(data: DataProducts) {
     parentElement: elements,
     classes: [ConstantsDom.CARD_BUTTON_COLUMN_DIV],
   });
-  createElement(ConstantsDom.BUTTON, HTMLElement, {
+  const divButtonList: HTMLElement = createElement(ConstantsDom.BUTTON, HTMLElement, {
     parentElement: divButton,
     classes: [ConstantsDom.BUTTON_CARD_COLUMN, ConstantsDom.BUTTON_CARD_BORDER_COLUMN],
     text: ConstantsDom.BUY,
   });
   document.body.append(cardShell.elem);
+
+  const basketObject = { id: data.id, price: data.price, count: 1 };
+  if (localStorage.getItem('basketItem')) {
+    const basketItem = <string>localStorage.getItem('basketItem');
+    if (!basketItem.includes(`"id":${basketObject.id}`)) {
+      divButtonList.innerHTML = 'BUY';
+      cardShell.elem.classList.add(ConstantsDom.BLOCK_SHADOWED_COLUMN);
+      cardShell.elem.classList.remove(ConstantsDom.BLOCK_SHADOWED_LIST_BASKET);
+    } else {
+      divButtonList.innerHTML = 'DROP';
+      cardShell.elem.classList.remove(ConstantsDom.BLOCK_SHADOWED_COLUMN);
+      cardShell.elem.classList.add(ConstantsDom.BLOCK_SHADOWED_LIST_BASKET);
+    }
+  }
 
   cardShell.elem.addEventListener('click', (e) => {
     const target: HTMLElement = <HTMLElement>e.target;
