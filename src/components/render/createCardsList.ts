@@ -3,10 +3,12 @@ import { DataProducts } from '../../interfaces/Data';
 import Card from '../elements/CreateCard';
 import { createElement } from '../elements/generateElement';
 import history from '../../utils/history';
+import { itemsListBasket } from '../basket-items/itemsListToBasket';
 
 export function createCardsList(data: DataProducts) {
   const cardShell: Card = new Card(ConstantsDom.DIV, data, {
     classes: [ConstantsDom.CARDS_SHELL_COLUMN],
+    attributes: [['id', `${data.id}`]],
   });
   const article: HTMLElement = createElement(ConstantsDom.ARTICLE, HTMLElement, {
     parentElement: cardShell.elem,
@@ -109,10 +111,14 @@ export function createCardsList(data: DataProducts) {
     classes: [ConstantsDom.BUTTON_CARD_COLUMN, ConstantsDom.BUTTON_CARD_BORDER_COLUMN],
     text: ConstantsDom.BUY,
   });
+  document.body.append(cardShell.elem);
 
   cardShell.elem.addEventListener('click', (e) => {
-    const target: Element = <Element>e.target;
-    if (target.classList.contains(ConstantsDom.BUTTON_CARD_COLUMN)) return;
+    const target: HTMLElement = <HTMLElement>e.target;
+    if (target.classList.contains(ConstantsDom.BUTTON_CARD_COLUMN)) {
+      itemsListBasket(target, cardShell.elem, data);
+      return;
+    }
 
     window.history.state.id += 1;
     const path = `/product-details/${data.id.toString()}`;
@@ -120,6 +126,5 @@ export function createCardsList(data: DataProducts) {
     history();
   });
 
-  document.body.append(cardShell.elem);
   return cardShell;
 }

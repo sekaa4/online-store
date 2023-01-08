@@ -47,7 +47,17 @@ h3 {
   border-radius: 5px;
 }
 
+.block-shadowed-basket {
+  box-shadow: 5px 10px 30px rgba(8, 192, 23, 1);
+  border-radius: 5px;
+}
+
 .block-shadowed-column {
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+}
+
+.block-shadowed-list-basket {
+  box-shadow: 5px 10px 30px rgba(8, 192, 23, 1);
   border-radius: 5px;
 }
