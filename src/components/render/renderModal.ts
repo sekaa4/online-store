@@ -1,6 +1,15 @@
 import { createElement } from '../elements/generateElement';
 import { ConstantsDom } from '../../models/Dom';
 import CreateElement from '../elements/CreateElement';
+import history from '../../utils/history';
+import { validateName } from '../validate-data/validateName';
+import { validateAddress } from '../validate-data/validateAddress';
+import { validatePhone } from '../validate-data/validatePhone';
+import { validateEmail } from '../validate-data/validateEmail';
+import { validateCardNumber } from '../validate-data/validateCardNumber';
+import { validateCardExpiration } from '../validate-data/validateCardExpiration';
+import { validateCardCvv } from '../validate-data/validateCardCvv';
+import createDescription from '../../utils/createDescription';
 
 export function renderModal(): CreateElement {
   const divOverlay: CreateElement = new CreateElement(ConstantsDom.DIV, {
@@ -35,53 +44,52 @@ export function renderModal(): CreateElement {
     parentElement: form,
     classes: [ConstantsDom.INPUT_NAME_DIV],
   });
-  createElement(ConstantsDom.INPUT_MODAL, HTMLElement, {
+  const inputName: HTMLInputElement = createElement(ConstantsDom.INPUT_MODAL, HTMLInputElement, {
     parentElement: inputNameDiv,
     classes: [ConstantsDom.INPUT_NAME],
     attributes: [
-      [ConstantsDom.TYPE, ConstantsDom.NAME_TEXT],
+      [ConstantsDom.TYPE, ConstantsDom.TEXT],
       [ConstantsDom.PLACEHOLDER, ConstantsDom.NAME_TEXT],
-      [ConstantsDom.ARIA_LABEL, ConstantsDom.REQUIRED],
-      [ConstantsDom.PATTERN, ConstantsDom.PATTERN_NAME],
+      [ConstantsDom.REQUIRED, ''],
     ],
   });
   const inputPhoneDiv: HTMLElement = createElement(ConstantsDom.DIV, HTMLElement, {
     parentElement: form,
     classes: [ConstantsDom.INPUT_PHONE_DIV],
   });
-  createElement(ConstantsDom.INPUT_MODAL, HTMLElement, {
+  const inputPhone: HTMLInputElement = createElement(ConstantsDom.INPUT_MODAL, HTMLInputElement, {
     parentElement: inputPhoneDiv,
     classes: [ConstantsDom.INPUT_PHONE],
     attributes: [
       [ConstantsDom.TYPE, ConstantsDom.PHONE_TEXT],
       [ConstantsDom.PLACEHOLDER, ConstantsDom.PHONE_NUMBER],
-      [ConstantsDom.ARIA_LABEL, ConstantsDom.REQUIRED],
+      [ConstantsDom.REQUIRED, ''],
     ],
   });
-  const inputAddress: HTMLElement = createElement(ConstantsDom.DIV, HTMLElement, {
+  const inputAddressDiv: HTMLElement = createElement(ConstantsDom.DIV, HTMLElement, {
     parentElement: form,
     classes: [ConstantsDom.INPUT_ADDRESS_DIV],
   });
-  createElement(ConstantsDom.INPUT_MODAL, HTMLElement, {
-    parentElement: inputAddress,
+  const inputAddress: HTMLInputElement = createElement(ConstantsDom.INPUT_MODAL, HTMLInputElement, {
+    parentElement: inputAddressDiv,
     classes: [ConstantsDom.INPUT_ADDRESS],
     attributes: [
       [ConstantsDom.TYPE, ConstantsDom.ADDRESS_TEXT],
       [ConstantsDom.PLACEHOLDER, ConstantsDom.DELIVERY_ADDRESS],
-      [ConstantsDom.ARIA_LABEL, ConstantsDom.REQUIRED],
+      [ConstantsDom.REQUIRED, ''],
     ],
   });
-  const inputEmail: HTMLElement = createElement(ConstantsDom.DIV, HTMLElement, {
+  const inputEmailDiv: HTMLElement = createElement(ConstantsDom.DIV, HTMLElement, {
     parentElement: form,
     classes: [ConstantsDom.INPUT_EMAIL_DIV],
   });
-  createElement(ConstantsDom.INPUT_MODAL, HTMLElement, {
-    parentElement: inputEmail,
+  const inputEmail: HTMLInputElement = createElement(ConstantsDom.INPUT_MODAL, HTMLInputElement, {
+    parentElement: inputEmailDiv,
     classes: [ConstantsDom.INPUT_EMAIL],
     attributes: [
       [ConstantsDom.TYPE, ConstantsDom.EMAIL_TEXT],
       [ConstantsDom.PLACEHOLDER, ConstantsDom.EMAIL],
-      [ConstantsDom.ARIA_LABEL, ConstantsDom.REQUIRED],
+      [ConstantsDom.REQUIRED, ''],
     ],
   });
   const creditCardDetails: HTMLElement = createElement(ConstantsDom.DIV, HTMLElement, {
@@ -93,19 +101,25 @@ export function renderModal(): CreateElement {
     classes: [ConstantsDom.CREDIT_CARDS],
   });
 
-  createElement(ConstantsDom.DIV, HTMLElement, {
+  const imgCard: HTMLImageElement = createElement(ConstantsDom.IMG, HTMLImageElement, {
     parentElement: creditCard,
     classes: [ConstantsDom.CREDIT_IMG],
-    text: 'Master Card',
+    attributes: [
+      [
+        'src',
+        'https://i.guim.co.uk/img/media/b73cc57cb1d46ae742efd06b6c58805e8600d482/16_0_2443_1466/master/2443.jpg?width=700&quality=85&auto=format&fit=max&s=fb1dca6cdd4589cd9ef2fc941935de71',
+      ],
+    ],
   });
 
-  createElement(ConstantsDom.INPUT_MODAL, HTMLElement, {
+  const inputCardNumber: HTMLInputElement = createElement(ConstantsDom.INPUT_MODAL, HTMLInputElement, {
     parentElement: creditCard,
     classes: [ConstantsDom.INPUT_CARD],
     attributes: [
-      [ConstantsDom.TYPE, ConstantsDom.PHONE_TEXT],
+      [ConstantsDom.TYPE, ConstantsDom.TEXT],
       [ConstantsDom.PLACEHOLDER, ConstantsDom.CARD_NUMBER],
-      [ConstantsDom.ARIA_LABEL, ConstantsDom.REQUIRED],
+      [ConstantsDom.REQUIRED, ''],
+      [ConstantsDom.MAX_LENGTH, ConstantsDom.CARD_NUMBER_LENGTH],
     ],
   });
   const creditCardBlock: HTMLElement = createElement(ConstantsDom.DIV, HTMLElement, {
@@ -122,16 +136,14 @@ export function renderModal(): CreateElement {
     classes: [ConstantsDom.LABEL_SPAN],
     text: ConstantsDom.VALID,
   });
-  createElement(ConstantsDom.INPUT_MODAL, HTMLElement, {
+  const expirationInput: HTMLInputElement = createElement(ConstantsDom.INPUT_MODAL, HTMLInputElement, {
     parentElement: creditCardBlock,
     classes: [ConstantsDom.INPUT_VALID],
     attributes: [
-      [ConstantsDom.TYPE, ConstantsDom.CARD_TEXT],
+      [ConstantsDom.TYPE, ConstantsDom.TEXT],
       [ConstantsDom.ID, ConstantsDom.EXPIRATION],
-      [ConstantsDom.REQUIRED, ConstantsDom.TRUE],
       [ConstantsDom.PLACEHOLDER, ConstantsDom.MM_YY],
-      [ConstantsDom.ARIA_LABEL, ConstantsDom.REQUIRED],
-      [ConstantsDom.PATTERN, ConstantsDom.PATTERN_TEXT],
+      [ConstantsDom.REQUIRED, ''],
     ],
   });
   const labelCVV: HTMLElement = createElement(ConstantsDom.LABEL, HTMLElement, {
@@ -144,7 +156,8 @@ export function renderModal(): CreateElement {
     classes: [ConstantsDom.LABEL_SPAN],
     text: ConstantsDom.CVV,
   });
-  createElement(ConstantsDom.INPUT_MODAL, HTMLElement, {
+
+  const cvvInput: HTMLInputElement = createElement(ConstantsDom.INPUT_MODAL, HTMLInputElement, {
     parentElement: creditCardBlock,
     classes: [ConstantsDom.CVV_CODE],
     attributes: [
@@ -157,12 +170,14 @@ export function renderModal(): CreateElement {
     parentElement: form,
     classes: [ConstantsDom.BUTTON_MODAL],
   });
-  createElement(ConstantsDom.BUTTON, HTMLElement, {
+
+  const submitButton: HTMLButtonElement = createElement(ConstantsDom.BUTTON, HTMLButtonElement, {
     parentElement: buttonModal,
     classes: [ConstantsDom.BUTTON_MODAL_CONFIRM, ConstantsDom.BUTTON_MODAL_CONFIRM_BORDER],
     attributes: [[ConstantsDom.TYPE, ConstantsDom.SUBMIT]],
     text: ConstantsDom.CONFIRM,
   });
+
   divClose.addEventListener('click', (e: Event) => {
     const svg: HTMLElement = <HTMLElement>e.target;
     if (svg.classList.contains('modal__close-icon')) {
@@ -177,6 +192,146 @@ export function renderModal(): CreateElement {
       document.body.style.overflow = '';
     }
   });
+
+  inputName.addEventListener('blur', () => {
+    validateName(inputName);
+  });
+
+  inputAddress.addEventListener('blur', () => {
+    validateAddress(inputAddress);
+  });
+
+  inputPhone.addEventListener('blur', () => {
+    validatePhone(inputPhone);
+  });
+
+  inputEmail.addEventListener('blur', () => {
+    validateEmail(inputEmail);
+  });
+
+  inputCardNumber.addEventListener('blur', () => {
+    validateCardNumber(inputCardNumber, creditCard);
+  });
+
+  expirationInput.addEventListener('blur', () => {
+    validateCardExpiration(expirationInput, creditCard);
+  });
+
+  cvvInput.addEventListener('blur', () => {
+    validateCardCvv(cvvInput, creditCard);
+  });
+
+  inputCardNumber.addEventListener('input', (event) => {
+    const value: string = inputCardNumber.value;
+    const e: InputEvent = <InputEvent>event;
+    const data: string = <string>e.data;
+
+    if ((e.inputType === 'insertText' && !/[0-9]/.test(data)) || value.length > 28) {
+      inputCardNumber.value = value.slice(0, value.length - 1);
+      return;
+    }
+
+    if (e.inputType === 'deleteContentBackward') {
+      inputCardNumber.value = inputCardNumber.value.trim();
+
+      return;
+    }
+
+    if (/[0-9]{4}/.test(value.slice(-4)) && value.length < 28) {
+      inputCardNumber.value += '    ';
+    }
+
+    if (value.length === 1 && data === '4') {
+      imgCard.src = 'https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png';
+      return;
+    }
+
+    if (value.length === 1 && data === '5') {
+      imgCard.src = 'https://www.mastercard.hu/content/dam/public/mastercardcom/eu/hu/images/mc-logo-52.svg';
+      return;
+    }
+
+    if (value.length === 0) {
+      imgCard.src =
+        'https://i.guim.co.uk/img/media/b73cc57cb1d46ae742efd06b6c58805e8600d482/16_0_2443_1466/master/2443.jpg?width=700&quality=85&auto=format&fit=max&s=fb1dca6cdd4589cd9ef2fc941935de71';
+      return;
+    }
+  });
+
+  expirationInput.addEventListener('input', (event) => {
+    const value: string = expirationInput.value;
+    const e: InputEvent = <InputEvent>event;
+
+    if (value.length > 5) {
+      expirationInput.value = value.slice(0, value.length - 1);
+      return;
+    }
+
+    if (e.inputType === 'deleteContentBackward') {
+      expirationInput.value = expirationInput.value.trim();
+      return;
+    }
+
+    if (/.{2}/.test(value.slice(-2)) && value.length < 4) {
+      expirationInput.value += '/';
+    }
+  });
+
+  cvvInput.addEventListener('input', (event) => {
+    const value: string = cvvInput.value;
+    const e: InputEvent = <InputEvent>event;
+    const data: string = <string>e.data;
+
+    if ((e.inputType === 'insertText' && !/[0-9]/.test(data)) || value.length > 3) {
+      cvvInput.value = value.slice(0, value.length - 1);
+      return;
+    }
+
+    if (e.inputType === 'deleteContentBackward') {
+      cvvInput.value = cvvInput.value.trim();
+      return;
+    }
+  });
+
+  form.addEventListener('submit', (e) => {
+    console.log('submit');
+    e.preventDefault();
+
+    const allInput: HTMLInputElement[] = Array.from(form.querySelectorAll('input'));
+    const errorInput = allInput.find((input) => {
+      return input.classList.contains('input-error');
+    });
+
+    if (!errorInput) {
+      const completeText = 'Thank you for purchasing, wait redirection';
+      divModal.innerHTML = '';
+      divModal.append(
+        createDescription(HTMLHeadElement, {
+          classes: ['modal__submit-complete'],
+          text: completeText,
+        })
+      );
+      localStorage.removeItem('basket');
+      setTimeout(() => {
+        console.log('complete');
+        window.history.state.id += 1;
+        const path = '/';
+        window.history.pushState({ id: window.history.state.id, path: path }, '', path);
+        history();
+      }, 3000);
+    }
+  });
+
+  submitButton.addEventListener('click', () => {
+    validateName(inputName);
+    validateAddress(inputAddress);
+    validatePhone(inputPhone);
+    validateEmail(inputEmail);
+    validateCardNumber(inputCardNumber, creditCard);
+    validateCardExpiration(expirationInput, creditCard);
+    validateCardCvv(cvvInput, creditCard);
+  });
+
   document.body.append(divOverlay.elem);
   return divOverlay;
 }
