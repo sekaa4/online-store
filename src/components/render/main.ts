@@ -27,8 +27,8 @@ export function renderMain(): void {
     classes: [ConstantsDom.WRAPPER, ConstantsDom.MAIN_WRAPPER],
   });
 
-  if (/\/product-details\/.*\//g.test(path) || /\/product-details\/.*\/?/g.test(path)) {
-    const number = window.location.pathname.split('/')[2];
+  if (/\/product-details\/.*/g.test(path) || /\/product-details\/.*\/?/g.test(path)) {
+    const number = window.location.pathname.split('/').at(-1);
     const persistentStorage = new LocalStorage();
     const data: DataProducts[] = persistentStorage.getItem('data');
     const isDataNumber = data.find((item) => item.id.toString() === number);
@@ -43,7 +43,7 @@ export function renderMain(): void {
       const error = errorPage();
       wrapper.append(error.elem);
     }
-  } else if (/\/cart/g.test(path) || /\/cart\/.*\/?/g.test(path)) {
+  } else if ((/\/cart/g.test(path) || /\/cart\/?/g.test(path)) && !/\/cart\/.*\/?/g.test(path)) {
     renderBasket();
   } else if (window.location.pathname === '/') {
     const filterContainer: HTMLElement = createElement(ConstantsDom.DIV, HTMLElement, {
