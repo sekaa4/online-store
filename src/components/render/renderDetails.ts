@@ -10,6 +10,7 @@ import { itemsDetails } from '../basket-items/itemsDetailsBasket';
 export function createDetails(data: DataProducts) {
   const divDetails: Card = new Card(ConstantsDom.DIV, data, {
     classes: [ConstantsDom.DETAILS_DIV],
+    attributes: [['id', `${data.id}`]],
   });
   const blockDetails: HTMLElement = createElement(ConstantsDom.DIV, HTMLElement, {
     parentElement: divDetails.elem,
