@@ -10,6 +10,7 @@ import { validateCardNumber } from '../validate-data/validateCardNumber';
 import { validateCardExpiration } from '../validate-data/validateCardExpiration';
 import { validateCardCvv } from '../validate-data/validateCardCvv';
 import createDescription from '../../utils/createDescription';
+import { renderBasket } from './renderBasket';
 
 export function renderModal(): CreateElement {
   const divOverlay: CreateElement = new CreateElement(ConstantsDom.DIV, {
@@ -319,6 +320,7 @@ export function renderModal(): CreateElement {
       );
       if (localStorage.getItem('basketItem')) {
         localStorage.removeItem('basketItem');
+        renderBasket();
       }
 
       setTimeout(() => {

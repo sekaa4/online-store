@@ -29,7 +29,6 @@ export function renderCards(): HTMLElement[] | HTMLElement {
     arrayData.push(card);
     arrayDataCard.push(card.elem);
   });
-  const CardsListStorage = new LocalStorage();
-  CardsListStorage.setItem('cards', arrayData);
+
   return arrayDataCard;
 }
