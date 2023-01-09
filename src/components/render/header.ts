@@ -92,7 +92,7 @@ export function renderHeader(): void {
     let sumCount = 0;
 
     basketItems.forEach((basketItem: ItemBasket) => {
-      sumPrice += basketItem.price;
+      sumPrice += basketItem.price * basketItem.count;
       sumCount += basketItem.count;
     });
 

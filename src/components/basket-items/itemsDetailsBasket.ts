@@ -38,7 +38,7 @@ export function itemsDetails(buttonActive: HTMLElement, cardActive: HTMLElement,
     const basketObject = { id: data.id, price: data.price, count: 1 };
     arrayA.forEach(function (value) {
       if (basketObject.id == value.id) {
-        count.innerText = (+count.innerText - value.price).toString();
+        count.innerText = (+count.innerText - value.price * value.count).toString();
       }
     });
 

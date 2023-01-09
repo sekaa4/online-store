@@ -17,7 +17,6 @@ export function validateName(input: HTMLInputElement) {
     error.remove();
     input.classList.remove('input-error');
     input.after(correct);
-    console.log('GOOD');
   } else {
     input.classList.add('input-error');
     correct.remove();

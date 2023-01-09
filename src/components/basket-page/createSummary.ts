@@ -2,6 +2,7 @@ import { createElement } from '../elements/generateElement';
 import { ConstantsDom } from '../../models/Dom';
 import { DataProducts } from '../../interfaces/Data';
 import { renderModal } from '../render/renderModal';
+import { count } from '../render/header';
 
 const promo = {
   rs: 'Rolling Scopes School - discount 10%',
@@ -10,6 +11,7 @@ const promo = {
 
 export let countProductsNumberElem: HTMLSpanElement;
 export let btnBuy: HTMLButtonElement;
+export let totalProductsNumberElem: HTMLSpanElement;
 
 export function createSummary(data: DataProducts[]) {
   const summaryElem: HTMLDivElement = createElement(ConstantsDom.DIV, HTMLDivElement, {
@@ -51,11 +53,12 @@ export function createSummary(data: DataProducts[]) {
     text: 'Total:',
   });
 
-  createElement(ConstantsDom.SPAN, HTMLSpanElement, {
+  const totalNumber = createElement(ConstantsDom.SPAN, HTMLSpanElement, {
     parentElement: totalPriceProducts,
     classes: ['count-products__number'],
-    text: 'empty Total',
+    text: `$${count.innerText}`,
   });
+  totalProductsNumberElem = totalNumber;
 
   const promoDivElem: HTMLDivElement = createElement(ConstantsDom.DIV, HTMLDivElement, {
     parentElement: summaryElem,

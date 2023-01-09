@@ -1,16 +1,19 @@
 import { ConstantsDom } from '../../models/Dom';
-import { DataProducts } from '../../interfaces/Data';
 import Card from '../elements/CreateCard';
 import { createElement } from '../elements/generateElement';
 import createDescription from '../../utils/createDescription';
-import { countProductsNumberElem } from './createSummary';
+import { countProductsNumberElem, totalProductsNumberElem } from './createSummary';
 import history from '../../utils/history';
+import { count, numberBasket } from '../render/header';
+import { LocalStorage } from '../../utils/persistentStorage';
+import { ItemBasket } from '../../interfaces/ItemToBasket';
+import { BasketData } from '../../interfaces/BasketData';
 
-export function createCartListItems(data: DataProducts[], elem: HTMLElement) {
+export function createCartListItems(data: BasketData[], elem: HTMLElement) {
   const arrayData: Card[] = [];
   const arrayDataCard: HTMLElement[] = [];
-
-  let counter: number = data.length;
+  const local = new LocalStorage();
+  const basketData: ItemBasket[] = local.getItem('basketItem');
 
   const listItemsElem: HTMLDivElement = createElement(ConstantsDom.DIV, HTMLDivElement, {
     classes: ['cart-content__products-list', 'products-list'],
@@ -188,7 +191,7 @@ export function createCartListItems(data: DataProducts[], elem: HTMLElement) {
     const countNumber: HTMLSpanElement = createElement(ConstantsDom.SPAN, HTMLSpanElement, {
       parentElement: divCountControl,
       classes: ['count-control__button'],
-      text: '1',
+      text: `${basketItem.count}`,
     });
 
     const buttonPlus: HTMLButtonElement = createElement(ConstantsDom.BUTTON, HTMLButtonElement, {
@@ -211,7 +214,7 @@ export function createCartListItems(data: DataProducts[], elem: HTMLElement) {
     createElement(ConstantsDom.DIV, HTMLDivElement, {
       parentElement: divCost,
       classes: ['price-container__number'],
-      text: `€${basketItem.price}`,
+      text: `$${basketItem.price}`,
     });
 
     const totalPrice: HTMLDivElement = createElement(ConstantsDom.DIV, HTMLDivElement, {
@@ -228,7 +231,7 @@ export function createCartListItems(data: DataProducts[], elem: HTMLElement) {
     const totalPriceNumber: HTMLSpanElement = createElement(ConstantsDom.DIV, HTMLSpanElement, {
       parentElement: totalPrice,
       classes: ['total-container__number'],
-      text: `€${basketItem.price}`,
+      text: `$${basketItem.count * basketItem.price}`,
     });
 
     const elements: HTMLElement = createElement(ConstantsDom.DIV, HTMLElement, {
@@ -264,10 +267,17 @@ export function createCartListItems(data: DataProducts[], elem: HTMLElement) {
         let numberCount: number = +countNumber.innerText;
         const dicNumber = --numberCount;
         if (dicNumber < 1) {
-          counter--;
-          countProductsNumberElem.innerText = counter.toString();
+          basketData.forEach((item: ItemBasket, index) => {
+            if (item.id === basketItem.id) {
+              basketData.splice(index, 1);
+            }
+          });
+
+          localStorage.setItem('basketItem', JSON.stringify(basketData));
+
           cartItems.elem.remove();
           const productList = productsListItem.children;
+
           if (productList.length === 0) {
             const description = 'Cart is empty';
             const elemEmpty: HTMLHeadElement = createDescription(HTMLHeadElement, {
@@ -277,35 +287,98 @@ export function createCartListItems(data: DataProducts[], elem: HTMLElement) {
             elem.innerText = '';
             elem.append(elemEmpty);
           }
-          //!TODO: Delete carts if dataCart === 0;
+
+          count.innerText = `$${basketData.reduce((acc: number, item: ItemBasket) => {
+            acc += item.price * item.count;
+            return acc;
+          }, 0)}`;
+
+          numberBasket.innerText = `${basketData
+            .reduce((acc: number, item: ItemBasket) => {
+              acc += item.count;
+              return acc;
+            }, 0)
+            .toString()}`;
+
+          countProductsNumberElem.innerText = numberBasket.innerText;
+          totalProductsNumberElem.innerText = count.innerText;
+          totalPriceNumber.innerText = `$${count.innerText}`;
           return;
         }
-        counter--;
-        countProductsNumberElem.innerText = counter.toString();
-        totalPriceNumber.innerText = `€${dicNumber * basketItem.price}`;
-        countNumber.innerText = dicNumber.toString();
+
+        basketData.forEach((item: ItemBasket) => {
+          if (item.id === basketItem.id) {
+            item.count--;
+            countNumber.innerText = item.count.toString();
+            totalPriceNumber.innerText = `$${item.price * item.count}`;
+          }
+        });
+        localStorage.setItem('basketItem', JSON.stringify(basketData));
+
+        count.innerText = `$${basketData.reduce((acc: number, item: ItemBasket) => {
+          acc += item.price * item.count;
+          return acc;
+        }, 0)}`;
+
+        numberBasket.innerText = `${basketData
+          .reduce((acc: number, item: ItemBasket) => {
+            acc += item.count;
+            return acc;
+          }, 0)
+          .toString()}`;
+
+        countProductsNumberElem.innerText = numberBasket.innerText;
+        totalProductsNumberElem.innerText = count.innerText;
       }
     };
 
     buttonPlus.onclick = () => {
       if (countNumber.innerText) {
-        let numberCount: number = +countNumber.innerText;
-        const incNumber = ++numberCount;
         if (countNumber.innerText === `${basketItem.stock}`) {
           buttonPlus.disabled = true;
           return;
         }
-        counter++;
-        countProductsNumberElem.innerText = counter.toString();
-        totalPriceNumber.innerText = `€${incNumber * basketItem.price}`;
-        countNumber.innerText = incNumber.toString();
+
+        basketData.forEach((item: ItemBasket) => {
+          if (item.id === basketItem.id) {
+            item.count++;
+            countNumber.innerText = item.count.toString();
+            totalPriceNumber.innerText = (item.price * item.count).toString();
+          }
+        });
+
+        localStorage.setItem('basketItem', JSON.stringify(basketData));
+        count.innerText = `$${basketData.reduce((acc: number, item: ItemBasket) => {
+          acc += item.price * item.count;
+          return acc;
+        }, 0)}`;
+
+        numberBasket.innerText = `${basketData
+          .reduce((acc: number, item: ItemBasket) => {
+            acc += item.count;
+            return acc;
+          }, 0)
+          .toString()}`;
+
+        countProductsNumberElem.innerText = numberBasket.innerText;
+        totalProductsNumberElem.innerText = count.innerText;
       }
     };
 
     buttonDelete.onclick = () => {
       if (cartItems.elem) {
         cartItems.elem.remove();
+        basketData.forEach((item: ItemBasket, index) => {
+          if (item.id === basketItem.id) {
+            basketData.splice(index, 1);
+          }
+        });
+
+        localStorage.setItem('basketItem', JSON.stringify(basketData));
+
+        cartItems.elem.remove();
         const productList = productsListItem.children;
+
         if (productList.length === 0) {
           const description = 'Cart is empty';
           const elemEmpty: HTMLHeadElement = createDescription(HTMLHeadElement, {
@@ -315,18 +388,35 @@ export function createCartListItems(data: DataProducts[], elem: HTMLElement) {
           elem.innerText = '';
           elem.append(elemEmpty);
         }
+
+        count.innerText = `$${basketData.reduce((acc: number, item: ItemBasket) => {
+          acc += item.price * item.count;
+          return acc;
+        }, 0)}`;
+
+        numberBasket.innerText = `${basketData
+          .reduce((acc: number, item: ItemBasket) => {
+            acc += item.count;
+            return acc;
+          }, 0)
+          .toString()}`;
+
+        countProductsNumberElem.innerText = numberBasket.innerText;
+        return;
+
         return;
       }
     };
 
     cartItems.elem.onclick = (e) => {
       const target: Element = <Element>e.target;
-      if (target.closest('product-item-elements__button-container') || target.closest('.item-count')) return;
-
-      window.history.state.id += 1;
-      const path = `/product-details/${basketItem.id.toString()}`;
-      window.history.pushState({ id: window.history.state.id, path: path }, '', path);
-      history();
+      if (target.closest('.product-item-img__container')) {
+        window.history.state.id += 1;
+        const path = `/product-details/${basketItem.id.toString()}`;
+        window.history.pushState({ id: window.history.state.id, path: path }, '', path);
+        history();
+        return;
+      }
     };
   });
 

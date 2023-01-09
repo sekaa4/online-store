@@ -99,7 +99,6 @@ export default function filterHandler(url: URLSearchParams): void {
   const sliderMaxValueStock: number = +slider1Stock.max;
 
   if (!valuePrice === !prevPrice) {
-    console.log('llll');
     range1Price.innerText = `$${slider1Price.value}`;
     range2Price.innerText = `$${slider2Price.value}`;
     slider1Price.value = Math.min(...priceSort).toString();

@@ -22,7 +22,6 @@ export function getAllSortData(data: DataProducts[], sortsName: SortsName): AllD
   }, {});
 
   allSortData = allDataSort;
-
   return allDataSort;
 }
 

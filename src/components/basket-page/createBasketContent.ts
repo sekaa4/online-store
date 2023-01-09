@@ -6,17 +6,20 @@ import createDescription from '../../utils/createDescription';
 import { createCartListItems } from './createCartListItems';
 import { createSummary } from './createSummary';
 import { ItemBasket } from '../../interfaces/ItemToBasket';
+import { BasketData } from '../../interfaces/BasketData';
 
 export default function createBasketContent(): HTMLElement {
   const local = new LocalStorage();
   const basketData: ItemBasket[] = local.getItem('basketItem');
   const data: DataProducts[] = local.getItem('data');
-  let currentData: DataProducts[] = [];
+  let currentData: BasketData[] = [];
 
   if (basketData) {
-    currentData = basketData.reduce((acc: DataProducts[], itemBasket: ItemBasket) => {
+    currentData = basketData.reduce((acc: BasketData[], itemBasket: ItemBasket) => {
       data.forEach((dataProduct: DataProducts) => {
-        dataProduct.id === itemBasket.id ? acc.push(dataProduct) : false;
+        if (dataProduct.id === itemBasket.id) {
+          acc.push({ ...dataProduct, count: itemBasket.count });
+        }
       });
       return acc;
     }, []);

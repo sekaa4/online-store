@@ -11,6 +11,7 @@ import { validateCardExpiration } from '../validate-data/validateCardExpiration'
 import { validateCardCvv } from '../validate-data/validateCardCvv';
 import createDescription from '../../utils/createDescription';
 import { renderBasket } from './renderBasket';
+import { count, numberBasket } from '../render/header';
 
 export function renderModal(): CreateElement {
   const divOverlay: CreateElement = new CreateElement(ConstantsDom.DIV, {
@@ -301,7 +302,6 @@ export function renderModal(): CreateElement {
   });
 
   form.addEventListener('submit', (e) => {
-    console.log('submit');
     e.preventDefault();
 
     const allInput: HTMLInputElement[] = Array.from(form.querySelectorAll('input'));
@@ -320,12 +320,14 @@ export function renderModal(): CreateElement {
       );
       if (localStorage.getItem('basketItem')) {
         localStorage.removeItem('basketItem');
+        count.innerText = '0';
+        numberBasket.innerText = '0';
+
         renderBasket();
       }
 
       setTimeout(() => {
         document.body.style.overflow = '';
-        console.log('complete');
         window.history.state.id += 1;
         const path = '/';
         window.history.pushState({ id: window.history.state.id, path: path }, '', path);
