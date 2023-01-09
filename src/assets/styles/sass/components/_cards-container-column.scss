@@ -15,17 +15,31 @@
 }
 
 .card__container-column {
-  width: 120.4rem;
+  max-width: 120.4rem;
   height: 21.3rem;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @include media-big-tablet {
+    max-width: 70rem;
+  }
+  @include media-mobile {
+    max-width: 40rem;
+  }
 }
 
 .card-block__image-column {
   width: 25.0rem;
   height: 21.0rem;
+  @include media-big-tablet {
+    display: flex;
+    align-items: center;
+  }
+  @include media-mobile {
+    width: 20.0rem;
+    height: 11.0rem;
+  }
 }
 
 .card__image-column {
@@ -33,23 +47,31 @@
   width: 25.0rem;
   height: 21.0rem;
   object-fit: fill;
+  @include media-big-tablet {
+    max-width: 15rem;
+    height: 10rem;
+  }
 }
 
 .card__content-column {
   display: flex;
   flex-direction: column;
-}
-
-.card__content-column {
   max-width: 30rem;
   margin-right: 20rem;
+  @include media-big-tablet {
+    height: 15rem;
+    max-width: 100%;
+    margin: 0;
+  }
+  @include media-mobile {
+    display: none;
+  }
 }
 
 .card__elements-column {
   display: flex;
   flex-direction: row;
   align-items: center;
-
   > * {
     margin-left: 2rem;
   }
@@ -59,10 +81,16 @@
   font-size: 2.5rem;
   font-weight: 600;
   color: $color-price;
+  @include media-big-tablet {
+    font-size: 1.5rem;
+  }
 }
 
 .card__name-stock-column {
   color: $color-rating;
+  @include media-big-tablet {
+    display: none;
+  }
 }
 
 .data-cards__empty {

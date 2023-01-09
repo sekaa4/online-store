@@ -6,6 +6,7 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const EslintPlugin = require('eslint-webpack-plugin');
 const { NetlifyPlugin } = require('netlify-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
@@ -66,6 +67,9 @@ module.exports = {
       minify: {
         collapseWhitespace: isProd,
       },
+    }),
+    new FaviconsWebpackPlugin({
+      logo: './assets/logo/favicon.png',
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({

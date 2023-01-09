@@ -6,7 +6,7 @@
   display: flex;
   @include media-tablet {
     flex-direction: column;
-}
+  }
 }
 
 .footer-logo__container {
