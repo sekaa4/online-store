@@ -39,10 +39,10 @@ export default function createFilter(name: string, data: [string, DataProducts[]
         }
         if (label.elem instanceof HTMLLabelElement) {
           label.elem.htmlFor = nameData;
-          label.elem.innerHTML = nameData;
+          label.elem.innerText = nameData;
         }
       }
-      if (Array.isArray(dataArray)) span.elem.innerHTML = `(${dataArray.length}/${dataArray.length})`;
+      if (Array.isArray(dataArray)) span.elem.innerText = `(${dataArray.length}/${dataArray.length})`;
 
       checkboxLine.elem.append(input.elem, label.elem, span.elem);
       filter.elem.append(checkboxLine.elem);

@@ -6,7 +6,7 @@ export default function createButtons(nameButtons: string[], section: string) {
     const button = new CreateElement('button', {
       classes: ['button', `${section}__button`],
     }).elem;
-    button.innerHTML = nameButton;
+    button.innerText = nameButton;
 
     arrButtons.push(button);
 
@@ -17,9 +17,9 @@ export default function createButtons(nameButtons: string[], section: string) {
 
         const url = window.location.href;
         navigator.clipboard.writeText(url).then(() => {
-          button.textContent = 'Copied!';
+          button.innerText = 'Copied!';
           setTimeout(() => {
-            button.textContent = 'Copy Link';
+            button.innerText = 'Copy Link';
             button.disabled = false;
           }, 1000);
         });

@@ -1,7 +1,6 @@
 import { LocalStorage } from '../../utils/persistentStorage';
 import { DataProducts } from '../../interfaces/Data';
 import { ConstantsDom } from '../../models/Dom';
-import { slider1Stock, slider2Stock, range1Stock, range2Stock } from './createMultiSlider';
 
 export default function filterStock(value: string): void {
   const local: LocalStorage = new LocalStorage();
@@ -15,11 +14,6 @@ export default function filterStock(value: string): void {
         return acc;
       } else return acc;
     }, []);
-
-    slider1Stock.value = numberMin;
-    slider2Stock.value = numberMax;
-    range1Stock.textContent = `${numberMin}`;
-    range2Stock.textContent = `${numberMax}`;
 
     local.setItem(ConstantsDom.DATA_CURRENT, newData);
   }

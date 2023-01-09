@@ -260,12 +260,12 @@ export function createCartListItems(data: DataProducts[], elem: HTMLElement) {
     productsListItem.append(cartItems.elem);
 
     buttonMinus.onclick = () => {
-      if (countNumber.textContent) {
-        let numberCount: number = +countNumber.textContent;
+      if (countNumber.innerText) {
+        let numberCount: number = +countNumber.innerText;
         const dicNumber = --numberCount;
         if (dicNumber < 1) {
           counter--;
-          countProductsNumberElem.textContent = counter.toString();
+          countProductsNumberElem.innerText = counter.toString();
           cartItems.elem.remove();
           const productList = productsListItem.children;
           if (productList.length === 0) {
@@ -274,31 +274,31 @@ export function createCartListItems(data: DataProducts[], elem: HTMLElement) {
               classes: ['cart-content__empty', 'description__empty'],
               text: description,
             });
-            elem.innerHTML = '';
+            elem.innerText = '';
             elem.append(elemEmpty);
           }
           //!TODO: Delete carts if dataCart === 0;
           return;
         }
         counter--;
-        countProductsNumberElem.textContent = counter.toString();
-        totalPriceNumber.textContent = `€${dicNumber * basketItem.price}`;
-        countNumber.textContent = dicNumber.toString();
+        countProductsNumberElem.innerText = counter.toString();
+        totalPriceNumber.innerText = `€${dicNumber * basketItem.price}`;
+        countNumber.innerText = dicNumber.toString();
       }
     };
 
     buttonPlus.onclick = () => {
-      if (countNumber.textContent) {
-        let numberCount: number = +countNumber.textContent;
+      if (countNumber.innerText) {
+        let numberCount: number = +countNumber.innerText;
         const incNumber = ++numberCount;
-        if (countNumber.textContent === `${basketItem.stock}`) {
+        if (countNumber.innerText === `${basketItem.stock}`) {
           buttonPlus.disabled = true;
           return;
         }
         counter++;
-        countProductsNumberElem.textContent = counter.toString();
-        totalPriceNumber.textContent = `€${incNumber * basketItem.price}`;
-        countNumber.textContent = incNumber.toString();
+        countProductsNumberElem.innerText = counter.toString();
+        totalPriceNumber.innerText = `€${incNumber * basketItem.price}`;
+        countNumber.innerText = incNumber.toString();
       }
     };
 
@@ -312,7 +312,7 @@ export function createCartListItems(data: DataProducts[], elem: HTMLElement) {
             classes: ['cart-content__empty', 'description__empty'],
             text: description,
           });
-          elem.innerHTML = '';
+          elem.innerText = '';
           elem.append(elemEmpty);
         }
         return;

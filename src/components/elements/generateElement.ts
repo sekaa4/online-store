@@ -24,7 +24,7 @@ export function createElement<T extends typeof HTMLElement>(
     const element: HTMLElement = document.createElement(elemName);
     if (classes && element instanceof HTMLElement) {
       element.classList.add(...classes);
-      element.textContent = text;
+      element.innerText = text;
     }
     if (attributes) {
       for (let i = 0; i < attributes.length; i++) {

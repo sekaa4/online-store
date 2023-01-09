@@ -4,8 +4,8 @@ import { ItemBasket } from '../../interfaces/ItemToBasket';
 import { count, numberBasket } from '../render/header';
 
 export function itemsListBasket(buttonActive: HTMLElement, cardActive: HTMLElement, data: DataProducts) {
-  if (buttonActive.innerHTML === 'BUY') {
-    buttonActive.innerHTML = 'DROP';
+  if (buttonActive.innerText === 'BUY') {
+    buttonActive.innerText = 'DROP';
     cardActive.classList.remove(ConstantsDom.BLOCK_SHADOWED_COLUMN);
     cardActive.classList.add(ConstantsDom.BLOCK_SHADOWED_LIST_BASKET);
 
@@ -22,19 +22,19 @@ export function itemsListBasket(buttonActive: HTMLElement, cardActive: HTMLEleme
       let countNumber = 0;
       arrayA.forEach(function (value) {
         countNumber = +value.price + +countNumber;
-        count.innerHTML = countNumber.toString();
+        count.innerText = countNumber.toString();
       });
 
       arrayA.forEach(function () {
-        numberBasket.innerHTML = arrayA.length.toString();
+        numberBasket.innerText = arrayA.length.toString();
       });
     } else {
-      numberBasket.innerHTML = '1';
+      numberBasket.innerText = '1';
       localStorage.setItem('basketItem', JSON.stringify(basketArray));
-      count.innerHTML = basketObject.price.toString();
+      count.innerText = basketObject.price.toString();
     }
-  } else if (buttonActive.innerHTML === 'DROP') {
-    buttonActive.innerHTML = 'BUY';
+  } else if (buttonActive.innerText === 'DROP') {
+    buttonActive.innerText = 'BUY';
     cardActive.classList.remove(ConstantsDom.BLOCK_SHADOWED_LIST_BASKET);
     cardActive.classList.add(ConstantsDom.BLOCK_SHADOWED_COLUMN);
     const basketItem = <string>localStorage.getItem('basketItem');
@@ -43,12 +43,12 @@ export function itemsListBasket(buttonActive: HTMLElement, cardActive: HTMLEleme
     const basketObject = { id: data.id, price: data.price, count: 1 };
     arrayA.forEach(function (value) {
       if (basketObject.id == value.id) {
-        count.innerHTML = (+count.innerHTML - value.price).toString();
+        count.innerText = (+count.innerText - value.price).toString();
       }
     });
 
     arrayA.forEach(function () {
-      numberBasket.innerHTML = (arrayA.length - 1).toString();
+      numberBasket.innerText = (arrayA.length - 1).toString();
     });
 
     arrayA.forEach((elem: ItemBasket, index: number) => {

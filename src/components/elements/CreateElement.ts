@@ -13,7 +13,7 @@ export default class CreateElement {
         if (className) {
           typeof className === 'string' ? elem.classList.add(className) : elem.classList.add(...className);
         }
-        elem.innerHTML = text ? text : '';
+        elem.innerText = text ? text : '';
         this.elem.append(elem);
       }
     } else {
@@ -22,7 +22,7 @@ export default class CreateElement {
           typeof className === 'string'
             ? elementName.elem.classList.add(className)
             : elementName.elem.classList.add(...className);
-          elementName.elem.innerHTML = text ? text : '';
+          elementName.elem.innerText = text ? text : '';
         }
       }
       this.elem.append(elementName.elem);

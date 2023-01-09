@@ -140,7 +140,7 @@ export function createSummary(data: DataProducts[]) {
         });
 
         addButton.onclick = () => {
-          const text: string = <string>resPromoTitle.textContent;
+          const text: string = <string>resPromoTitle.innerText;
           arrDiscount.push(discount);
           totalPriceProducts.classList.add('old-price');
           addButton.remove();
@@ -159,7 +159,8 @@ export function createSummary(data: DataProducts[]) {
 
           dropButton.onclick = () => {
             appliedPromo.remove();
-            const value: string = <string>dropButton.previousElementSibling?.textContent;
+            const elem: HTMLElement = <HTMLElement>dropButton.previousElementSibling;
+            const value: string = <string>elem.innerText;
             arrDiscount.splice(arrDiscount.indexOf(value), 1);
             if (arrDiscount.length === 0) {
               currentPriceProducts.remove();
@@ -175,7 +176,7 @@ export function createSummary(data: DataProducts[]) {
             totalPriceProducts.after(currentPriceProducts, applyCodes);
             appliedDiscount = true;
           } else {
-            currentPriceNumber.textContent = 'new Price';
+            currentPriceNumber.innerText = 'new Price';
           }
         };
 
