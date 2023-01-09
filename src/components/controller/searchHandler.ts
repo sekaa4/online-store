@@ -34,7 +34,7 @@ export default function searchHandler(url: URLSearchParams): void {
   });
 
   inputSearch.value = searchValue;
-  stateElem.textContent = newData.length.toString();
+  stateElem.innerText = newData.length.toString();
   local.setItem(ConstantsDom.DATA_CURRENT, newData);
 
   return;

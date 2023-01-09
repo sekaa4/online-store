@@ -10,6 +10,8 @@ import { validateCardNumber } from '../validate-data/validateCardNumber';
 import { validateCardExpiration } from '../validate-data/validateCardExpiration';
 import { validateCardCvv } from '../validate-data/validateCardCvv';
 import createDescription from '../../utils/createDescription';
+import { renderBasket } from './renderBasket';
+import { count, numberBasket } from '../render/header';
 
 export function renderModal(): CreateElement {
   const divOverlay: CreateElement = new CreateElement(ConstantsDom.DIV, {
@@ -226,6 +228,27 @@ export function renderModal(): CreateElement {
     const e: InputEvent = <InputEvent>event;
     const data: string = <string>e.data;
 
+    if (value.length === 1 && data === '4') {
+      imgCard.src = 'https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png';
+      return;
+    }
+
+    if (value.length === 1 && data === '5') {
+      imgCard.src = 'https://www.mastercard.hu/content/dam/public/mastercardcom/eu/hu/images/mc-logo-52.svg';
+      return;
+    }
+
+    if (value.length === 1 && data === '7') {
+      imgCard.src = 'https://upload.wikimedia.org/wikipedia/commons/3/39/PayPal_logo.svg';
+      return;
+    }
+
+    if (value.length === 0) {
+      imgCard.src =
+        'https://i.guim.co.uk/img/media/b73cc57cb1d46ae742efd06b6c58805e8600d482/16_0_2443_1466/master/2443.jpg?width=700&quality=85&auto=format&fit=max&s=fb1dca6cdd4589cd9ef2fc941935de71';
+      return;
+    }
+
     if ((e.inputType === 'insertText' && !/[0-9]/.test(data)) || value.length > 28) {
       inputCardNumber.value = value.slice(0, value.length - 1);
       return;
@@ -240,29 +263,14 @@ export function renderModal(): CreateElement {
     if (/[0-9]{4}/.test(value.slice(-4)) && value.length < 28) {
       inputCardNumber.value += '    ';
     }
-
-    if (value.length === 1 && data === '4') {
-      imgCard.src = 'https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png';
-      return;
-    }
-
-    if (value.length === 1 && data === '5') {
-      imgCard.src = 'https://www.mastercard.hu/content/dam/public/mastercardcom/eu/hu/images/mc-logo-52.svg';
-      return;
-    }
-
-    if (value.length === 0) {
-      imgCard.src =
-        'https://i.guim.co.uk/img/media/b73cc57cb1d46ae742efd06b6c58805e8600d482/16_0_2443_1466/master/2443.jpg?width=700&quality=85&auto=format&fit=max&s=fb1dca6cdd4589cd9ef2fc941935de71';
-      return;
-    }
   });
 
   expirationInput.addEventListener('input', (event) => {
     const value: string = expirationInput.value;
     const e: InputEvent = <InputEvent>event;
+    const data: string = <string>e.data;
 
-    if (value.length > 5) {
+    if ((e.inputType === 'insertText' && !/[0-9]/.test(data)) || value.length > 5) {
       expirationInput.value = value.slice(0, value.length - 1);
       return;
     }
@@ -272,7 +280,7 @@ export function renderModal(): CreateElement {
       return;
     }
 
-    if (/.{2}/.test(value.slice(-2)) && value.length < 4) {
+    if (/[0-9]{2}/.test(value.slice(-2)) && value.length < 3) {
       expirationInput.value += '/';
     }
   });
@@ -294,7 +302,6 @@ export function renderModal(): CreateElement {
   });
 
   form.addEventListener('submit', (e) => {
-    console.log('submit');
     e.preventDefault();
 
     const allInput: HTMLInputElement[] = Array.from(form.querySelectorAll('input'));
@@ -304,16 +311,23 @@ export function renderModal(): CreateElement {
 
     if (!errorInput) {
       const completeText = 'Thank you for purchasing, wait redirection';
-      divModal.innerHTML = '';
+      divModal.innerText = '';
       divModal.append(
         createDescription(HTMLHeadElement, {
           classes: ['modal__submit-complete'],
           text: completeText,
         })
       );
-      localStorage.removeItem('basket');
+      if (localStorage.getItem('basketItem')) {
+        localStorage.removeItem('basketItem');
+        count.innerText = '0';
+        numberBasket.innerText = '0';
+
+        renderBasket();
+      }
+
       setTimeout(() => {
-        console.log('complete');
+        document.body.style.overflow = '';
         window.history.state.id += 1;
         const path = '/';
         window.history.pushState({ id: window.history.state.id, path: path }, '', path);

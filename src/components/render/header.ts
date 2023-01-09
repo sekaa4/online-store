@@ -3,6 +3,7 @@ import logo from '../../assets/logo/logo.png';
 import { ConstantsDom } from '../../models/Dom';
 import { renderBasket } from './renderBasket';
 import history from '../../utils/history';
+import { ItemBasket } from '../../interfaces/ItemToBasket';
 
 export let count: HTMLElement;
 export let numberBasket: HTMLElement;
@@ -83,6 +84,21 @@ export function renderHeader(): void {
     window.history.pushState({ id: window.history.state.id, path: path }, '', path);
     history();
   };
+
+  if (localStorage.getItem('basketItem')) {
+    const basketItemString: string = <string>localStorage.getItem('basketItem');
+    const basketItems: ItemBasket[] = JSON.parse(basketItemString);
+    let sumPrice = 0;
+    let sumCount = 0;
+
+    basketItems.forEach((basketItem: ItemBasket) => {
+      sumPrice += basketItem.price * basketItem.count;
+      sumCount += basketItem.count;
+    });
+
+    count.innerText = sumPrice.toString();
+    numberBasket.innerText = sumCount.toString();
+  }
 
   document.body.append(header);
 }

@@ -22,7 +22,7 @@ export default function stateHandler() {
 
     if (cardsWrapper.classList.contains('layout-5-column')) {
       const cardsTable: HTMLElement | HTMLElement[] = renderCards();
-      cardsWrapper.innerHTML = '';
+      cardsWrapper.innerText = '';
       if (cardsTable instanceof HTMLElement) {
         cardsWrapper.append(cardsTable);
         localStorage.removeItem(ConstantsDom.DATA_CURRENT);
@@ -32,7 +32,7 @@ export default function stateHandler() {
       }
     } else if (cardsWrapper.classList.contains('layout-column')) {
       const cardsTable: HTMLElement | HTMLElement[] = renderCardsList();
-      cardsWrapper.innerHTML = '';
+      cardsWrapper.innerText = '';
       if (cardsTable instanceof HTMLElement) {
         cardsWrapper.append(cardsTable);
         localStorage.removeItem(ConstantsDom.DATA_CURRENT);
@@ -44,11 +44,11 @@ export default function stateHandler() {
   } else {
     if (imageSearch?.classList.contains('active__image')) {
       localStorage.removeItem(ConstantsDom.DATA_CURRENT);
-      document.body.innerHTML = '';
+      document.body.innerText = '';
       buildPage();
       inputSearch.focus();
     } else {
-      document.body.innerHTML = '';
+      document.body.innerText = '';
       localStorage.removeItem(ConstantsDom.DATA_CURRENT);
       buildPage();
     }

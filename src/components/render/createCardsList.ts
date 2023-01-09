@@ -117,11 +117,11 @@ export function createCardsList(data: DataProducts) {
   if (localStorage.getItem('basketItem')) {
     const basketItem = <string>localStorage.getItem('basketItem');
     if (!basketItem.includes(`"id":${basketObject.id}`)) {
-      divButtonList.innerHTML = 'BUY';
+      divButtonList.innerText = 'BUY';
       cardShell.elem.classList.add(ConstantsDom.BLOCK_SHADOWED_COLUMN);
       cardShell.elem.classList.remove(ConstantsDom.BLOCK_SHADOWED_LIST_BASKET);
     } else {
-      divButtonList.innerHTML = 'DROP';
+      divButtonList.innerText = 'DROP';
       cardShell.elem.classList.remove(ConstantsDom.BLOCK_SHADOWED_COLUMN);
       cardShell.elem.classList.add(ConstantsDom.BLOCK_SHADOWED_LIST_BASKET);
     }

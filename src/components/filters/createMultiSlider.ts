@@ -73,7 +73,7 @@ export function createMultiSlider(name: string): HTMLElement[] {
     if (parseInt(slider2.value) - parseInt(slider1.value) <= minGap) {
       slider1.value = (parseInt(slider2.value) - minGap).toString();
     }
-    range1.textContent = name.toLowerCase() === 'price' ? `$${slider1.value}` : `${slider1.value}`;
+    range1.innerText = name.toLowerCase() === 'price' ? `$${slider1.value}` : `${slider1.value}`;
 
     fillColor();
   }
@@ -82,7 +82,7 @@ export function createMultiSlider(name: string): HTMLElement[] {
     if (parseInt(slider2.value) - parseInt(slider1.value) <= minGap) {
       slider2.value = (parseInt(slider1.value) + minGap).toString();
     }
-    range2.textContent = name.toLowerCase() === 'price' ? `$${slider2.value}` : `${slider2.value}`;
+    range2.innerText = name.toLowerCase() === 'price' ? `$${slider2.value}` : `${slider2.value}`;
 
     fillColor();
   }

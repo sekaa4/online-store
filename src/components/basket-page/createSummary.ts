@@ -2,6 +2,7 @@ import { createElement } from '../elements/generateElement';
 import { ConstantsDom } from '../../models/Dom';
 import { DataProducts } from '../../interfaces/Data';
 import { renderModal } from '../render/renderModal';
+import { count } from '../render/header';
 
 const promo = {
   rs: 'Rolling Scopes School - discount 10%',
@@ -10,6 +11,7 @@ const promo = {
 
 export let countProductsNumberElem: HTMLSpanElement;
 export let btnBuy: HTMLButtonElement;
+export let totalProductsNumberElem: HTMLSpanElement;
 
 export function createSummary(data: DataProducts[]) {
   const summaryElem: HTMLDivElement = createElement(ConstantsDom.DIV, HTMLDivElement, {
@@ -51,11 +53,12 @@ export function createSummary(data: DataProducts[]) {
     text: 'Total:',
   });
 
-  createElement(ConstantsDom.SPAN, HTMLSpanElement, {
+  const totalNumber = createElement(ConstantsDom.SPAN, HTMLSpanElement, {
     parentElement: totalPriceProducts,
     classes: ['count-products__number'],
-    text: 'empty Total',
+    text: `$${count.innerText}`,
   });
+  totalProductsNumberElem = totalNumber;
 
   const promoDivElem: HTMLDivElement = createElement(ConstantsDom.DIV, HTMLDivElement, {
     parentElement: summaryElem,
@@ -140,7 +143,7 @@ export function createSummary(data: DataProducts[]) {
         });
 
         addButton.onclick = () => {
-          const text: string = <string>resPromoTitle.textContent;
+          const text: string = <string>resPromoTitle.innerText;
           arrDiscount.push(discount);
           totalPriceProducts.classList.add('old-price');
           addButton.remove();
@@ -159,7 +162,8 @@ export function createSummary(data: DataProducts[]) {
 
           dropButton.onclick = () => {
             appliedPromo.remove();
-            const value: string = <string>dropButton.previousElementSibling?.textContent;
+            const elem: HTMLElement = <HTMLElement>dropButton.previousElementSibling;
+            const value: string = <string>elem.innerText;
             arrDiscount.splice(arrDiscount.indexOf(value), 1);
             if (arrDiscount.length === 0) {
               currentPriceProducts.remove();
@@ -175,7 +179,7 @@ export function createSummary(data: DataProducts[]) {
             totalPriceProducts.after(currentPriceProducts, applyCodes);
             appliedDiscount = true;
           } else {
-            currentPriceNumber.textContent = 'new Price';
+            currentPriceNumber.innerText = 'new Price';
           }
         };
 

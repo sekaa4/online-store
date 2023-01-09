@@ -80,11 +80,11 @@ export function createCard(data: DataProducts) {
   if (localStorage.getItem('basketItem')) {
     const basketItem = <string>localStorage.getItem('basketItem');
     if (!basketItem.includes(`"id":${basketObject.id}`)) {
-      buttonCard.innerHTML = 'BUY';
+      buttonCard.innerText = 'BUY';
       cardShell.elem.classList.add(ConstantsDom.BLOCK_SHADOWED);
       cardShell.elem.classList.remove(ConstantsDom.BLOCK_SHADOWED_BASKET);
     } else {
-      buttonCard.innerHTML = 'DROP';
+      buttonCard.innerText = 'DROP';
       cardShell.elem.classList.remove(ConstantsDom.BLOCK_SHADOWED);
       cardShell.elem.classList.add(ConstantsDom.BLOCK_SHADOWED_BASKET);
     }

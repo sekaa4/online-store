@@ -17,7 +17,6 @@ export function validateCardExpiration(input: HTMLInputElement, creditCard: HTML
     error.remove();
     input.classList.remove('input-error');
     creditCard.after(correct);
-    console.log('GOOD');
   } else {
     input.classList.add('input-error');
     correct.remove();

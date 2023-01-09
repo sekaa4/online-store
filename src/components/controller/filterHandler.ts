@@ -65,7 +65,7 @@ export default function filterHandler(url: URLSearchParams): void {
       const span: HTMLSpanElement = <HTMLSpanElement>item.querySelector('.span__checkbox');
       item.classList.remove('item__active');
       item.classList.add('item__active_not');
-      span.innerHTML = `(0/${span.dataset.count})`;
+      span.innerText = `(0/${span.dataset.count})`;
     });
   }
 
@@ -75,7 +75,7 @@ export default function filterHandler(url: URLSearchParams): void {
     const spanCount: HTMLSpanElement = <HTMLSpanElement>categoryLineElem.querySelector(`[data-id="${categoryName}"]`);
     categoryLineElem.classList.add('item__active');
     categoryLineElem.classList.remove('item__active_not');
-    spanCount.innerHTML = `(${data.length}/${spanCount.dataset.count})`;
+    spanCount.innerText = `(${data.length}/${spanCount.dataset.count})`;
   });
 
   brandArray.forEach((brand) => {
@@ -84,7 +84,7 @@ export default function filterHandler(url: URLSearchParams): void {
     const spanCount: HTMLSpanElement = <HTMLSpanElement>brandListElem.querySelector(`[data-id="${brandName}"]`);
     brandElemLine.classList.add('item__active');
     brandElemLine.classList.remove('item__active_not');
-    spanCount.innerHTML = `(${data.length}/${spanCount.dataset.count})`;
+    spanCount.innerText = `(${data.length}/${spanCount.dataset.count})`;
   });
 
   const priceSort = Array.from(priceList.keys())
@@ -95,32 +95,44 @@ export default function filterHandler(url: URLSearchParams): void {
     .map((stock) => +stock)
     .sort((a: number, b: number) => +a - +b);
 
-  if (valuePrice === prevPrice) {
-    slider1Price.value = Math.min(...priceSort).toString();
-    slider2Price.value = Math.max(...priceSort).toString();
-    range1Price.textContent = `$${slider1Price.value}`;
-    range2Price.textContent = `$${slider2Price.value}`;
-
-    range1Stock.textContent = `${slider1Stock.value}`;
-    range2Stock.textContent = `${slider2Stock.value}`;
-    slider1Stock.value = Math.min(...stockSort).toString();
-    slider2Stock.value = Math.max(...stockSort).toString();
-    prevPrice = valuePrice;
-  } else if (prevPrice !== valuePrice) {
-    range1Price.textContent = `$${slider1Price.value}`;
-    range2Price.textContent = `$${slider2Price.value}`;
-    slider1Price.value = Math.min(...priceSort).toString();
-    slider2Price.value = Math.max(...priceSort).toString();
-
-    slider1Stock.value = Math.min(...stockSort).toString();
-    slider2Stock.value = Math.max(...stockSort).toString();
-    range1Stock.textContent = `${slider1Stock.value}`;
-    range2Stock.textContent = `${slider2Stock.value}`;
-    prevPrice = valuePrice;
-  }
-
   const sliderMaxValuePrice: number = +slider1Price.max;
   const sliderMaxValueStock: number = +slider1Stock.max;
+
+  if (!valuePrice === !prevPrice) {
+    range1Price.innerText = `$${slider1Price.value}`;
+    range2Price.innerText = `$${slider2Price.value}`;
+    slider1Price.value = Math.min(...priceSort).toString();
+    slider2Price.value = Math.max(...priceSort).toString();
+
+    slider1Stock.value = Math.min(...stockSort).toString();
+    slider2Stock.value = Math.max(...stockSort).toString();
+    range1Stock.innerText = `${slider1Stock.value}`;
+    range2Stock.innerText = `${slider2Stock.value}`;
+  } else if (prevPrice !== valuePrice) {
+    range1Price.innerText = `$${slider1Price.value}`;
+    range2Price.innerText = `$${slider2Price.value}`;
+    slider1Price.value = Math.min(...priceSort).toString();
+    slider2Price.value = Math.max(...priceSort).toString();
+
+    range1Stock.innerText = `${slider1Stock.value}`;
+    range2Stock.innerText = `${slider2Stock.value}`;
+    slider1Stock.value = Math.min(...stockSort).toString();
+    slider2Stock.value = Math.max(...stockSort).toString();
+
+    prevPrice = valuePrice;
+  } else {
+    slider1Price.value = Math.min(...priceSort).toString();
+    slider2Price.value = Math.max(...priceSort).toString();
+    range1Price.innerText = `$${slider1Price.value}`;
+    range2Price.innerText = `$${slider2Price.value}`;
+
+    range1Stock.innerText = `${slider1Stock.value}`;
+    range2Stock.innerText = `${slider2Stock.value}`;
+    slider1Stock.value = Math.min(...stockSort).toString();
+    slider2Stock.value = Math.max(...stockSort).toString();
+
+    prevPrice = valuePrice;
+  }
 
   const percent1Price = (parseInt(slider1Price.value) / sliderMaxValuePrice) * 100;
   const percent2Price = (parseInt(slider2Price.value) / sliderMaxValuePrice) * 100;

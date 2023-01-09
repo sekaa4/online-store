@@ -4,7 +4,7 @@ import createBasketContent from '../basket-page/createBasketContent';
 import { ConstantsDom } from '../../models/Dom';
 
 export function renderBasket() {
-  mainElem.elem.innerHTML = '';
+  mainElem.elem.innerText = '';
   const cartPage: HTMLDivElement = createElement(ConstantsDom.DIV, HTMLDivElement, {
     classes: [ConstantsDom.WRAPPER, 'cart-page', 'cart-page__wrapper'],
   });

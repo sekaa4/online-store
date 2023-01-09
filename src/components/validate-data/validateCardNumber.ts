@@ -17,7 +17,6 @@ export function validateCardNumber(input: HTMLInputElement, creditCard: HTMLElem
     error.remove();
     input.classList.remove('input-error');
     creditCard.after(correct);
-    console.log('GOOD');
   } else {
     input.classList.add('input-error');
     correct.remove();

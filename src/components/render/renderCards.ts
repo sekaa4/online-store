@@ -10,7 +10,7 @@ import createDescription from '../../utils/createDescription';
 export function renderCards(): HTMLElement[] | HTMLElement {
   const local = new LocalStorage();
   const data: DataProducts[] = local.getItem(ConstantsDom.DATA_CURRENT) || local.getItem('data');
-  stateElem.textContent = data.length.toString();
+  stateElem.innerText = data.length.toString();
 
   if (data.length === 0) {
     const description = 'Products not found, try another request search';
@@ -29,7 +29,6 @@ export function renderCards(): HTMLElement[] | HTMLElement {
     arrayData.push(card);
     arrayDataCard.push(card.elem);
   });
-  const CardsListStorage = new LocalStorage();
-  CardsListStorage.setItem('cards', arrayData);
+
   return arrayDataCard;
 }

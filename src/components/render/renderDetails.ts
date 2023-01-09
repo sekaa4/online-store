@@ -3,9 +3,9 @@ import { ConstantsDom } from '../../models/Dom';
 import { DataProducts } from '../../interfaces/Data';
 import Card from '../elements/CreateCard';
 import { elementDomStorage } from '../elements/generateElement';
-import history from '../../utils/history';
 import { btnBuy } from '../basket-page/createSummary';
 import { itemsDetails } from '../basket-items/itemsDetailsBasket';
+import stateHandler from '../controller/stateHandler';
 
 export function createDetails(data: DataProducts) {
   const divDetails: Card = new Card(ConstantsDom.DIV, data, {
@@ -215,7 +215,8 @@ export function createDetails(data: DataProducts) {
     const path = '/';
     window.history.pushState({ id: window.history.state.id, path: path }, '', path);
 
-    history();
+    stateHandler();
+    //history();
   });
 
   buyButton.addEventListener('click', () => {
@@ -223,7 +224,9 @@ export function createDetails(data: DataProducts) {
     const path = '/cart';
     window.history.pushState({ id: window.history.state.id, path: path }, '', path);
 
-    history();
+    itemsDetails(buyButton, divDetails.elem, data);
+
+    stateHandler();
     btnBuy.dispatchEvent(new Event('click'));
   });
 
@@ -231,9 +234,9 @@ export function createDetails(data: DataProducts) {
   if (localStorage.getItem('basketItem')) {
     const basketItem = <string>localStorage.getItem('basketItem');
     if (!basketItem.includes(`"id":${basketObject.id}`)) {
-      detailsButton.innerHTML = 'ADD TO CARD';
+      detailsButton.innerText = 'ADD TO CARD';
     } else {
-      detailsButton.innerHTML = 'DROP TO CARD';
+      detailsButton.innerText = 'DROP TO CARD';
     }
   }
 

@@ -14,7 +14,7 @@ export default class ControllerFilterElement implements ControllerFilterElements
       const target: HTMLElement = <HTMLElement>e.target;
 
       if (target.closest('.aside__button')) {
-        if (target.innerHTML === 'Reset Filters') {
+        if (target.innerText === 'Reset Filters') {
           localStorage.removeItem(ConstantsDom.DATA_CURRENT);
           this.filterItems('reset', '/');
         }
