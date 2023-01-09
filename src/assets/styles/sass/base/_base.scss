@@ -18,14 +18,23 @@ main {
 h1 {
   @extend %font-prim;
   @include font($size: 3.4rem, $height: 4.4rem);
+  @include media-mobile {
+    @include font($size: 2.2rem, $height: 3.2rem); 
+  }
 }
 
 h2 {
   @include font($size: 2.4rem, $height: 3.6rem);
+  @include media-mobile {
+    @include font($size: 1.4rem, $height: 2.3rem); 
+}
 }
 
 h3 {
   @include font($size: 1.8rem, $height: 2.4rem);
+  @include media-mobile {
+    @include font($size: 1.1rem, $height: 2.1rem); 
+}
 }
 
 ::-webkit-scrollbar {

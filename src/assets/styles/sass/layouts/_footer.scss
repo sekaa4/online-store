@@ -4,6 +4,9 @@
 
 .footer__wrapper {
   display: flex;
+  @include media-tablet {
+    flex-direction: column;
+}
 }
 
 .footer-logo__container {
@@ -14,6 +17,10 @@
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: center;
+  margin-left: 5rem;
+  @include media-tablet {
+    margin: auto;
+  }
 
   &:hover {
     cursor: pointer;
@@ -24,6 +31,10 @@
   flex-grow: 1;
   padding-left: 152px;
   align-items: center;
+  @include media-tablet {
+    padding-left: 0;
+    margin: auto;
+  }
 }
 
 .footer-navigation__links {
@@ -36,7 +47,21 @@
     text-decoration: none;
 
     &:hover {
-      color: $color-hovered;
+      color: $color-name;
     }
   }
+}
+
+.footer-copy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 8rem;
+  @include media-tablet {
+    margin: auto;
+  }
+}
+
+.footer-span-copy {
+  color: $color-text;
 }

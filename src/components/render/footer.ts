@@ -11,9 +11,21 @@ export function renderFooter() {
     classes: [ConstantsDom.WRAPPER, ConstantsDom.FOOTER_WRAPPER],
   });
 
+  const footerCopy: HTMLElement = createElement(ConstantsDom.DIV, HTMLElement, {
+    parentElement: wrapper,
+    classes: [ConstantsDom.FOOTER_COPY],
+  });
+
+  createElement(ConstantsDom.SPAN, HTMLElement, {
+    parentElement: footerCopy,
+    classes: [ConstantsDom.FOOTER_SPAN_COPY],
+    text: '2023 © All rights reserved',
+  });
+
   createElement(ConstantsDom.DIV, HTMLElement, {
     parentElement: wrapper,
     classes: [ConstantsDom.FOOTER_LOGO_CONTAINER],
+    attributes: [['onClick', `window.location='${ConstantsDom.RSSCHOOL}'`]],
   });
 
   const nav: HTMLElement = createElement(ConstantsDom.DIV, HTMLElement, {
@@ -33,9 +45,9 @@ export function renderFooter() {
 
   createElement(ConstantsDom.A, HTMLElement, {
     parentElement: links,
-    classes: [ConstantsDom.DEFAULT],
-    text: ConstantsDom.GITHUB,
-    attributes: [[ConstantsDom.HREF, ConstantsDom.OCTOPR]],
+    classes: [ConstantsDom.TEXT_NAME],
+    text: 'Sergey Pansevich',
+    attributes: [[ConstantsDom.HREF, ConstantsDom.GITHUB_SERGEY]],
   });
 
   const colum_one: HTMLElement = createElement(ConstantsDom.DIV, HTMLElement, {
@@ -50,9 +62,9 @@ export function renderFooter() {
 
   createElement(ConstantsDom.A, HTMLElement, {
     parentElement: links_one,
-    classes: [ConstantsDom.DEFAULT],
-    text: ConstantsDom.GITHUB,
-    attributes: [[ConstantsDom.HREF, ConstantsDom.OCTOPR]],
+    classes: [ConstantsDom.TEXT_NAME],
+    text: 'Ilya Navumenka',
+    attributes: [[ConstantsDom.HREF, ConstantsDom.GITHUB_ILYA]],
   });
 
   const colum_two: HTMLElement = createElement(ConstantsDom.DIV, HTMLElement, {
@@ -67,8 +79,8 @@ export function renderFooter() {
 
   createElement(ConstantsDom.A, HTMLElement, {
     parentElement: links_two,
-    classes: [ConstantsDom.DEFAULT],
-    text: ConstantsDom.PRODUCT,
-    attributes: [[ConstantsDom.HREF, ConstantsDom.OCTOPR]],
+    classes: [ConstantsDom.TEXT_NAME],
+    text: ConstantsDom.NAME_RSSCHOOL,
+    attributes: [[ConstantsDom.HREF, ConstantsDom.RSSCHOOL]],
   });
 }
