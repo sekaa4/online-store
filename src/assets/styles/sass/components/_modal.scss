@@ -22,6 +22,24 @@
   vertical-align: middle;
 }
 
+.article-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal__content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.article-modal__content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .modal__submit-complete {
   text-align: center;
   vertical-align: middle;

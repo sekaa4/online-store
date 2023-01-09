@@ -1,10 +1,19 @@
 .cart-page__content {
   display: flex;
   justify-content: space-between;
+  @include media-tablet {
+    display: flex;
+    flex-direction: column;
+ }
 }
 
 .cart-page__content {
   padding: 4.8rem 0;
+  @include media-tablet {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
 }
 
 .cart-content {
@@ -27,6 +36,9 @@
 .cart-content__summary {
   flex: auto;
   max-width: 27%;
+  @include media-tablet {
+   max-width: 100%;
+}
 }
 
 .list-item {

@@ -1,5 +1,6 @@
-.details-div {
-  width: 153.2rem;
+.main__wrapper {
+  display: flex;
+  justify-content: center;
 }
 
 .title-details {
@@ -12,19 +13,42 @@
   text-align: center;
   justify-content: space-between;
   padding: 3rem;
+  @include media-tablet {
+    flex-direction: column;
+    
+  }
 }
 
 .photos-details {
   display: flex;
   text-align: center;
   justify-content: center;
+  @include media-tablet {
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
 }
+
+
 
 .photos-column-details {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin: 0 4rem 0 0;
+  @include media-tablet {
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.test {
+  @include media-tablet {
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .photo-basic-details {
@@ -70,6 +94,9 @@
   justify-content: center;
   align-items: center;
   margin-left: 3rem;
+  @include media-tablet {
+    margin: 0;
+  }
 }
 
 .description-div {
@@ -157,6 +184,9 @@
 
 .button-details-div {
   margin-left: 3rem;
+  @include media-tablet {
+    margin: 0;
+  }
 }
 
 .details-price-div {
@@ -182,6 +212,9 @@
   margin: 3rem 3rem 5rem;
   font-size: 2rem;
   text-transform: uppercase;
+  @include media-tablet {
+    flex-direction: column;
+  }
 }
 
 .bread-crums-a {
