@@ -2,18 +2,20 @@ import { ConstantsDom } from '../../models/Dom';
 import Card from '../elements/CreateCard';
 import { createElement } from '../elements/generateElement';
 import createDescription from '../../utils/createDescription';
-import { countProductsNumberElem, totalProductsNumberElem } from './createSummary';
+import { countProductsNumberElem, totalProductsNumberElem, totalDiscountProductsNumberElem } from './createSummary';
 import history from '../../utils/history';
 import { count, numberBasket } from '../render/header';
 import { LocalStorage } from '../../utils/persistentStorage';
 import { ItemBasket } from '../../interfaces/ItemToBasket';
 import { BasketData } from '../../interfaces/BasketData';
+import { RSPromo } from '../../interfaces/RSPromo.type';
 
 export function createCartListItems(data: BasketData[], elem: HTMLElement) {
   const arrayData: Card[] = [];
   const arrayDataCard: HTMLElement[] = [];
   const local = new LocalStorage();
   const basketData: ItemBasket[] = local.getItem('basketItem');
+  const rsPromo: RSPromo | undefined = local.getItem('RS-promo');
 
   const listItemsElem: HTMLDivElement = createElement(ConstantsDom.DIV, HTMLDivElement, {
     classes: ['cart-content__products-list', 'products-list'],
@@ -263,6 +265,7 @@ export function createCartListItems(data: BasketData[], elem: HTMLElement) {
     productsListItem.append(cartItems.elem);
 
     buttonMinus.onclick = () => {
+      buttonPlus.disabled = false;
       if (countNumber.innerText) {
         let numberCount: number = +countNumber.innerText;
         const dicNumber = --numberCount;
@@ -287,11 +290,11 @@ export function createCartListItems(data: BasketData[], elem: HTMLElement) {
             elem.innerText = '';
             elem.append(elemEmpty);
           }
-
-          count.innerText = `$${basketData.reduce((acc: number, item: ItemBasket) => {
+          const countSum = basketData.reduce((acc: number, item: ItemBasket) => {
             acc += item.price * item.count;
             return acc;
-          }, 0)}`;
+          }, 0);
+          count.innerText = `${countSum}`;
 
           numberBasket.innerText = `${basketData
             .reduce((acc: number, item: ItemBasket) => {
@@ -302,7 +305,18 @@ export function createCartListItems(data: BasketData[], elem: HTMLElement) {
 
           countProductsNumberElem.innerText = numberBasket.innerText;
           totalProductsNumberElem.innerText = count.innerText;
-          totalPriceNumber.innerText = `$${count.innerText}`;
+          totalPriceNumber.innerText = `$${countSum}`;
+          if (rsPromo) {
+            const oldSum: number = basketData.reduce((acc: number, item: ItemBasket) => {
+              acc += item.price * item.count;
+              return acc;
+            }, 0);
+            const disc: number = rsPromo.reduce((acc, curr) => {
+              acc += curr.disc;
+              return acc;
+            }, 0);
+            totalDiscountProductsNumberElem.innerText = `$${(oldSum - oldSum * (disc / 100)).toFixed()}`;
+          }
           return;
         }
 
@@ -315,10 +329,11 @@ export function createCartListItems(data: BasketData[], elem: HTMLElement) {
         });
         localStorage.setItem('basketItem', JSON.stringify(basketData));
 
-        count.innerText = `$${basketData.reduce((acc: number, item: ItemBasket) => {
+        const countSum = basketData.reduce((acc: number, item: ItemBasket) => {
           acc += item.price * item.count;
           return acc;
-        }, 0)}`;
+        }, 0);
+        count.innerText = `${countSum}`;
 
         numberBasket.innerText = `${basketData
           .reduce((acc: number, item: ItemBasket) => {
@@ -328,7 +343,15 @@ export function createCartListItems(data: BasketData[], elem: HTMLElement) {
           .toString()}`;
 
         countProductsNumberElem.innerText = numberBasket.innerText;
-        totalProductsNumberElem.innerText = count.innerText;
+        totalProductsNumberElem.innerText = `$${countSum}`;
+        if (rsPromo) {
+          const oldSum: number = +count.innerText;
+          const disc: number = rsPromo.reduce((acc, curr) => {
+            acc += curr.disc;
+            return acc;
+          }, 0);
+          totalDiscountProductsNumberElem.innerText = `$${(oldSum - oldSum * (disc / 100)).toFixed()}`;
+        }
       }
     };
 
@@ -343,15 +366,16 @@ export function createCartListItems(data: BasketData[], elem: HTMLElement) {
           if (item.id === basketItem.id) {
             item.count++;
             countNumber.innerText = item.count.toString();
-            totalPriceNumber.innerText = (item.price * item.count).toString();
+            totalPriceNumber.innerText = `$${item.price * item.count}`;
           }
         });
 
         localStorage.setItem('basketItem', JSON.stringify(basketData));
-        count.innerText = `$${basketData.reduce((acc: number, item: ItemBasket) => {
+        const countSum = basketData.reduce((acc: number, item: ItemBasket) => {
           acc += item.price * item.count;
           return acc;
-        }, 0)}`;
+        }, 0);
+        count.innerText = `${countSum}`;
 
         numberBasket.innerText = `${basketData
           .reduce((acc: number, item: ItemBasket) => {
@@ -361,11 +385,20 @@ export function createCartListItems(data: BasketData[], elem: HTMLElement) {
           .toString()}`;
 
         countProductsNumberElem.innerText = numberBasket.innerText;
-        totalProductsNumberElem.innerText = count.innerText;
+        totalProductsNumberElem.innerText = `$${countSum}`;
+        if (rsPromo) {
+          const oldSum: number = countSum;
+          const disc: number = rsPromo.reduce((acc, curr) => {
+            acc += curr.disc;
+            return acc;
+          }, 0);
+          totalDiscountProductsNumberElem.innerText = `$${(oldSum - oldSum * (disc / 100)).toFixed()}`;
+        }
       }
     };
 
     buttonDelete.onclick = () => {
+      const rsPromo: RSPromo | undefined = local.getItem('RS-promo');
       if (cartItems.elem) {
         cartItems.elem.remove();
         basketData.forEach((item: ItemBasket, index) => {
@@ -388,11 +421,11 @@ export function createCartListItems(data: BasketData[], elem: HTMLElement) {
           elem.innerText = '';
           elem.append(elemEmpty);
         }
-
-        count.innerText = `$${basketData.reduce((acc: number, item: ItemBasket) => {
+        const countSum = basketData.reduce((acc: number, item: ItemBasket) => {
           acc += item.price * item.count;
           return acc;
-        }, 0)}`;
+        }, 0);
+        count.innerText = `${countSum}`;
 
         numberBasket.innerText = `${basketData
           .reduce((acc: number, item: ItemBasket) => {
@@ -402,8 +435,15 @@ export function createCartListItems(data: BasketData[], elem: HTMLElement) {
           .toString()}`;
 
         countProductsNumberElem.innerText = numberBasket.innerText;
-        return;
-
+        totalProductsNumberElem.innerText = `$${countSum}`;
+        if (rsPromo) {
+          const oldSum: number = countSum;
+          const disc: number = rsPromo.reduce((acc, curr) => {
+            acc += curr.disc;
+            return acc;
+          }, 0);
+          totalDiscountProductsNumberElem.innerText = `$${(oldSum - oldSum * (disc / 100)).toFixed()}`;
+        }
         return;
       }
     };

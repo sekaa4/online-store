@@ -171,4 +171,18 @@
   font-size: 1.8rem;
   border-radius: 1rem;
   min-height: 10rem;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.apply-codes__promo-table {
+  display: flex;
+  column-gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.old-price {
+  text-decoration: line-through;
 }
