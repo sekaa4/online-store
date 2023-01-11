@@ -14,7 +14,7 @@ const correct: HTMLDivElement = createElement(ConstantsDom.DIV, HTMLDivElement, 
 export function validatePhone(input: HTMLInputElement) {
   const value = input.value;
 
-  if (/[+][0-9]{9,}/.test(value)) {
+  if (/^[+]\d{9,}$/.test(value)) {
     error.remove();
     input.classList.remove('input-error');
     input.after(correct);

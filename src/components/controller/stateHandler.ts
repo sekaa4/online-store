@@ -15,9 +15,10 @@ export default function stateHandler() {
   if (historyPath && historyPath.includes('?') && window.location.pathname === '/') {
     const cardsWrapper: HTMLElement = <HTMLElement>document.querySelector('.cards__wrapper');
     const url: URLSearchParams = parseSearchParams(window.history.state.path);
+
+    filterHandler(url);
     sortHandler(url);
     searchHandler(url);
-    filterHandler(url);
     layoutHandler(url);
 
     if (cardsWrapper.classList.contains('layout-5-column')) {
