@@ -3,17 +3,23 @@ import { ConstantsDom } from '../../models/Dom';
 import { DataProducts } from '../../interfaces/Data';
 import { renderModal } from '../render/renderModal';
 import { count } from '../render/header';
+import { LocalStorage } from '../../utils/persistentStorage';
+import { RSPromo } from '../../interfaces/RSPromo.type';
 
-const promo = {
-  rs: 'Rolling Scopes School - discount 10%',
-  epm: 'EPAM Systems - 10%',
-};
+const promo: RSPromo = [
+  { id: 'rs', name: 'Rolling Scopes School', disc: 10 },
+  { id: 'epm', name: 'EPAM Systems', disc: 10 },
+];
 
 export let countProductsNumberElem: HTMLSpanElement;
 export let btnBuy: HTMLButtonElement;
 export let totalProductsNumberElem: HTMLSpanElement;
+export let totalDiscountProductsNumberElem: HTMLSpanElement;
 
 export function createSummary(data: DataProducts[]) {
+  const local = new LocalStorage();
+  const rsPromo: RSPromo | undefined = local.getItem('RS-promo');
+  const rsNewPromo: RSPromo = rsPromo ? [...rsPromo] : [];
   const summaryElem: HTMLDivElement = createElement(ConstantsDom.DIV, HTMLDivElement, {
     classes: ['cart-content__summary', 'summary'],
   });
@@ -50,7 +56,7 @@ export function createSummary(data: DataProducts[]) {
   createElement(ConstantsDom.SPAN, HTMLSpanElement, {
     parentElement: totalPriceProducts,
     classes: ['count-products__description'],
-    text: 'Total:',
+    text: 'Total: ',
   });
 
   const totalNumber = createElement(ConstantsDom.SPAN, HTMLSpanElement, {
@@ -80,12 +86,19 @@ export function createSummary(data: DataProducts[]) {
     text: "Promo for test: 'RS', 'EPM'",
   });
 
-  const buttonBuyNow: HTMLButtonElement = createElement(ConstantsDom.BUTTON, HTMLButtonElement, {
-    parentElement: summaryElem,
-    classes: ['button', 'button-buy-now', ConstantsDom.BUTTON_CARD_COLUMN, ConstantsDom.BUTTON_CARD_BORDER_COLUMN],
-    text: 'Buy Now',
+  const resPromo: HTMLDivElement = createElement(ConstantsDom.DIV, HTMLDivElement, {
+    classes: ['res-promo'],
   });
-  btnBuy = buttonBuyNow;
+
+  const resPromoTitle: HTMLSpanElement = createElement(ConstantsDom.SPAN, HTMLSpanElement, {
+    classes: ['res-promo-title'],
+    text: '',
+  });
+
+  const addButton: HTMLButtonElement = createElement(ConstantsDom.BUTTON, HTMLButtonElement, {
+    classes: ['res-promo-add'],
+    text: 'ADD',
+  });
 
   const currentPriceProducts: HTMLDivElement = createElement(ConstantsDom.DIV, HTMLDivElement, {
     classes: ['summary__total-price', 'current-total-price'],
@@ -94,7 +107,7 @@ export function createSummary(data: DataProducts[]) {
   createElement(ConstantsDom.SPAN, HTMLSpanElement, {
     parentElement: currentPriceProducts,
     classes: ['count-products__description'],
-    text: 'Total',
+    text: 'Total: ',
   });
 
   const currentPriceNumber = createElement(ConstantsDom.SPAN, HTMLSpanElement, {
@@ -102,6 +115,8 @@ export function createSummary(data: DataProducts[]) {
     classes: ['count-products__number'],
     text: 'empty Total',
   });
+
+  totalDiscountProductsNumberElem = currentPriceNumber;
 
   const applyCodes: HTMLDivElement = createElement(ConstantsDom.DIV, HTMLDivElement, {
     classes: ['summary__apply-codes', 'apply-codes'],
@@ -114,85 +129,166 @@ export function createSummary(data: DataProducts[]) {
   });
 
   const appliedDiv: HTMLDivElement = createElement(ConstantsDom.DIV, HTMLDivElement, {
-    parentElement: applyCodes,
     classes: ['apply-codes__promo-table'],
   });
 
-  const arrDiscount: string[] = [];
-  let appliedDiscount = false;
-  promoInput.oninput = () => {
-    const promoTitles = Object.keys(promo) as Array<keyof typeof promo>;
-    const value = promoInput.value.toLowerCase() as keyof typeof promo;
-    if (promoTitles.includes(value)) {
-      const discount = promo[value];
-      const resPromo: HTMLDivElement = createElement(ConstantsDom.DIV, HTMLDivElement, {
-        classes: ['res-promo'],
-      });
+  // const appliedPromo: HTMLDivElement = createElement(ConstantsDom.DIV, HTMLDivElement, {
+  //   classes: ['apply-codes__promo-title'],
+  //   text: '',
+  // });
 
-      const resPromoTitle: HTMLSpanElement = createElement(ConstantsDom.SPAN, HTMLSpanElement, {
-        parentElement: resPromo,
-        classes: ['res-promo-title'],
-        text: discount,
-      });
+  const buttonBuyNow: HTMLButtonElement = createElement(ConstantsDom.BUTTON, HTMLButtonElement, {
+    parentElement: summaryElem,
+    classes: ['button', 'button-buy-now', ConstantsDom.BUTTON_CARD_COLUMN, ConstantsDom.BUTTON_CARD_BORDER_COLUMN],
+    text: 'Buy Now',
+  });
+  btnBuy = buttonBuyNow;
 
-      if (!arrDiscount.includes(discount)) {
-        const addButton: HTMLButtonElement = createElement(ConstantsDom.BUTTON, HTMLButtonElement, {
-          parentElement: resPromo,
-          classes: ['res-promo-add'],
-          text: 'ADD',
+  if (rsPromo) {
+    const oldSum: number = +count.innerText;
+    const disc: number = rsNewPromo.reduce((acc, curr) => {
+      acc += curr.disc;
+      return acc;
+    }, 0);
+
+    totalPriceProducts.classList.add('old-price');
+    currentPriceNumber.innerText = `$${(oldSum - oldSum * (disc / 100)).toFixed()}`;
+    totalDiscountProductsNumberElem = currentPriceNumber;
+    rsPromo.forEach((promoObj) => {
+      const appliedPromo: HTMLDivElement = createElement(ConstantsDom.DIV, HTMLDivElement, {
+        classes: ['apply-codes__promo-title'],
+        text: `${promoObj.name} - ${promoObj.disc}%`,
+      });
+      const dropButton: HTMLButtonElement = createElement(ConstantsDom.BUTTON, HTMLButtonElement, {
+        classes: ['res-promo-drop'],
+        text: 'DROP',
+      });
+      appliedDiv.append(appliedPromo, dropButton);
+      applyCodes.append(appliedDiv);
+      totalPriceProducts.after(currentPriceProducts, applyCodes);
+
+      dropButton.onclick = () => {
+        appliedPromo.remove();
+        dropButton.remove();
+        // const elem: HTMLElement = <HTMLElement>dropButton.previousElementSibling;
+        const value: string = appliedPromo.innerText;
+        rsNewPromo.forEach((promoObj, index) => {
+          if (value === `${promoObj.name} - ${promoObj.disc}%`) {
+            rsNewPromo.splice(index, 1);
+            local.setItem('RS-promo', rsNewPromo);
+          }
         });
 
-        addButton.onclick = () => {
-          const text: string = <string>resPromoTitle.innerText;
-          arrDiscount.push(discount);
-          totalPriceProducts.classList.add('old-price');
-          addButton.remove();
+        if (rsNewPromo.length === 0) {
+          currentPriceProducts.remove();
+          applyCodes.remove();
+          totalPriceProducts.classList.remove('old-price');
+          localStorage.removeItem('RS-promo');
+        } else {
+          local.setItem('RS-promo', rsNewPromo);
+          const disc: number = rsNewPromo.reduce((acc, curr) => {
+            acc += curr.disc;
+            return acc;
+          }, 0);
 
-          const appliedPromo: HTMLDivElement = createElement(ConstantsDom.DIV, HTMLDivElement, {
-            parentElement: appliedDiv,
-            classes: ['apply-codes__promo-title'],
-            text: text,
-          });
+          const oldSum: number = +count.innerText;
+          currentPriceNumber.innerText = `$${(oldSum - oldSum * (disc / 100)).toFixed()}`;
+        }
+      };
+    });
+  }
 
-          const dropButton: HTMLButtonElement = createElement(ConstantsDom.BUTTON, HTMLButtonElement, {
-            parentElement: appliedPromo,
-            classes: ['res-promo-drop'],
-            text: 'DROP',
-          });
+  //const arrDiscount: RSPromo = [];
 
-          dropButton.onclick = () => {
-            appliedPromo.remove();
-            const elem: HTMLElement = <HTMLElement>dropButton.previousElementSibling;
-            const value: string = <string>elem.innerText;
-            arrDiscount.splice(arrDiscount.indexOf(value), 1);
-            if (arrDiscount.length === 0) {
-              currentPriceProducts.remove();
-              applyCodes.remove();
-              totalPriceProducts.classList.remove('old-price');
-              appliedDiscount = false;
-            }
+  promoInput.oninput = () => {
+    //const promoTitles = Object.keys(promo) as Array<keyof typeof promo>;
+    // rsNewPromo = rsPromo ? [...rsPromo] : [];
+    const value = promoInput.value.toLowerCase();
+    resPromo.remove();
 
-            promoInput.value = '';
-          };
+    if (rsNewPromo) {
+      rsNewPromo.forEach((promoObj) => {
+        if (promoObj.id === value) {
+          resPromo.innerText = '';
+          resPromoTitle.innerText = `${promoObj.name} - ${promoObj.disc}%`;
+          resPromo.append(resPromoTitle);
+          promoDivElem.after(resPromo);
+          return;
+        }
+      });
 
-          if (!appliedDiscount) {
-            totalPriceProducts.after(currentPriceProducts, applyCodes);
-            appliedDiscount = true;
-          } else {
-            currentPriceNumber.innerText = 'new Price';
+      if (
+        !rsNewPromo.find((promoObj) => {
+          return promoObj.id === value;
+        })
+      ) {
+        promo.forEach((promoObj) => {
+          if (promoObj.id === value) {
+            if (!rsNewPromo.includes(promoObj)) rsNewPromo.push(promoObj);
+            resPromo.innerText = '';
+            resPromoTitle.innerText = `${promoObj.name} - ${promoObj.disc}%`;
+            resPromo.append(resPromoTitle, addButton);
+            promoDivElem.after(resPromo);
           }
-        };
-
-        promoDivElem.after(resPromo);
-      } else {
-        promoDivElem.after(resPromo);
-      }
-    } else {
-      const resProm = <HTMLDivElement>promoDivElem.nextElementSibling;
-      if (resProm.classList.contains('res-promo')) {
-        resProm.remove();
+        });
       }
     }
+
+    addButton.onclick = () => {
+      //const rsNewPromo: RSPromo = rsPromo ? [...rsPromo] : [];
+      addButton.remove();
+      const disc: number = rsNewPromo.reduce((acc, curr) => {
+        acc += curr.disc;
+        return acc;
+      }, 0);
+      const oldSum: number = +count.innerText;
+      totalPriceProducts.classList.add('old-price');
+      currentPriceNumber.innerText = `$${(oldSum - oldSum * (disc / 100)).toFixed()}`;
+      totalDiscountProductsNumberElem = currentPriceNumber;
+
+      const appliedPromo: HTMLDivElement = createElement(ConstantsDom.DIV, HTMLDivElement, {
+        classes: ['apply-codes__promo-title'],
+      });
+      appliedPromo.textContent = `${resPromoTitle.textContent}`;
+
+      const dropButton: HTMLButtonElement = createElement(ConstantsDom.BUTTON, HTMLButtonElement, {
+        classes: ['res-promo-drop'],
+        text: 'DROP',
+      });
+
+      appliedDiv.append(appliedPromo, dropButton);
+      applyCodes.append(appliedDiv);
+      totalPriceProducts.after(currentPriceProducts, applyCodes);
+
+      dropButton.onclick = () => {
+        const elem: HTMLElement = <HTMLElement>dropButton.previousElementSibling;
+        const value: string = <string>elem.textContent;
+        appliedPromo.remove();
+        dropButton.remove();
+        rsNewPromo.forEach((promoObj, index) => {
+          if (value === `${promoObj.name} - ${promoObj.disc}%`) {
+            rsNewPromo.splice(index, 1);
+          }
+          local.setItem('RS-promo', rsNewPromo);
+        });
+        if (rsNewPromo.length === 0) {
+          currentPriceProducts.remove();
+          applyCodes.remove();
+          totalPriceProducts.classList.remove('old-price');
+          localStorage.removeItem('RS-promo');
+        } else {
+          local.setItem('RS-promo', rsNewPromo);
+          const disc: number = rsNewPromo.reduce((acc, curr) => {
+            acc += curr.disc;
+            return acc;
+          }, 0);
+          const oldSum: number = +count.innerText;
+          currentPriceNumber.innerText = `$${(oldSum - oldSum * (disc / 100)).toFixed()}`;
+        }
+      };
+
+      local.setItem('RS-promo', rsNewPromo);
+    };
   };
 
   buttonBuyNow.onclick = () => {

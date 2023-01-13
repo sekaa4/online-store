@@ -22,14 +22,18 @@ export function itemsBasket(buttonActive: HTMLElement, cardActive: HTMLElement, 
       localStorage.setItem('basketItem', JSON.stringify(arrayA));
 
       let countNumber = 0;
+
       arrayA.forEach(function (value) {
-        countNumber = +value.price + +countNumber;
+        countNumber = +value.price * value.count + +countNumber;
         count.innerText = countNumber.toString();
       });
 
-      arrayA.forEach(function () {
-        numberBasket.innerText = arrayA.length.toString();
-      });
+      numberBasket.innerText = arrayA
+        .reduce((acc: number, item: ItemBasket) => {
+          acc += item.count;
+          return acc;
+        }, 0)
+        .toString();
     } else {
       numberBasket.innerText = '1';
       localStorage.setItem('basketItem', JSON.stringify(basketArray));
@@ -45,17 +49,20 @@ export function itemsBasket(buttonActive: HTMLElement, cardActive: HTMLElement, 
     const basketObject = { id: data.id, price: data.price, count: 1 };
     arrayA.forEach(function (value) {
       if (basketObject.id == value.id) {
-        count.innerText = (+count.innerText - value.price).toString();
+        count.innerText = (+count.innerText - value.price * value.count).toString();
       }
-    });
-
-    arrayA.forEach(function () {
-      numberBasket.innerText = (arrayA.length - 1).toString();
     });
 
     arrayA.forEach((elem: ItemBasket, index: number) => {
       elem.id.toString() === cardActive.id ? arrayA.splice(index, 1) : false;
     });
+
+    numberBasket.innerText = arrayA
+      .reduce((acc: number, item: ItemBasket) => {
+        acc += item.count;
+        return acc;
+      }, 0)
+      .toString();
 
     localStorage.setItem('basketItem', JSON.stringify(arrayA));
   }

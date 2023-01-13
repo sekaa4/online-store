@@ -18,14 +18,7 @@ export default function searchHandler(url: URLSearchParams): void {
   const newData: DataProducts[] = data.filter((dataItem) => {
     const valuesData: [string, string | number | string[]][] = Object.entries(dataItem);
     for (const [key, value] of valuesData) {
-      if (
-        key === 'id' ||
-        key === 'images' ||
-        key === 'thumbnail' ||
-        key === 'discountPercentage' ||
-        key === 'description'
-      )
-        continue;
+      if (key === 'id' || key === 'images' || key === 'thumbnail' || key === 'discountPercentage') continue;
       const reg = new RegExp(`${searchValue}`, 'gi');
       if (reg.test(value.toString())) {
         return true;
