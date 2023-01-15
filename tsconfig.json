@@ -1,17 +1,11 @@
 {
   "compilerOptions": {
     "target": "es2016",
-    "lib": [
-      "esnext",
-      "dom"
-    ],
+    "lib": ["esnext", "dom"],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "module": "es6",
-    "typeRoots": [
-      "node_modules/@types",
-      "src/typings.d.ts"
-    ],
+    "typeRoots": ["node_modules/@types", "src/typings.d.ts"],
     "declaration": true,
     "sourceMap": true,
     "outDir": "./dist",
@@ -22,11 +16,6 @@
     "noImplicitAny": true,
     "skipLibCheck": true
   },
-  "exclude": [
-    "node_modules"
-  ],
-  "include": [
-    "src/**/*",
-    "module.d.ts"
-  ]
+  "exclude": ["node_modules"],
+  "include": ["src/**/*", "module.d.ts", "setupTests.js"]
 }
