@@ -1,0 +1,14 @@
+.select {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  background: #FFFFFF;
+  border: 1px solid #E6E6E6;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+}
+
+.select:focus {
+  border: 1px solid black;
+}

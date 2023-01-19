@@ -1,0 +1,13 @@
+.layout-3-column {
+  @include columns($width: 30%);
+}
+
+.layout-5-column {
+  @include columns($width: 10%);
+  justify-content: left;
+}
+
+.layout-column {
+  display: flex;
+  flex-direction: column;
+}

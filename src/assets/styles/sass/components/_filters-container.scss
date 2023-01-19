@@ -1,0 +1,22 @@
+.filter__container {
+  flex-shrink: 0;
+  width: 26.3rem;
+}
+
+.filter__categories {
+  height: 18rem;
+}
+
+.filter__brands {
+  height: 18rem;
+}
+
+.category__list,
+.brand__list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 100%;
+  padding-left: 1.5rem;
+  overflow: auto;
+}

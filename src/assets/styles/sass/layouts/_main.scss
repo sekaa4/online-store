@@ -1,0 +1,30 @@
+.main__wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  flex: auto;
+  padding-top: 3.2rem;
+  column-gap: 1.5rem;
+  @include media-tablet {
+    flex-direction: column;
+}
+}
+
+.filter__container {
+  @include media-tablet {
+    margin: 0 auto;
+}
+}
+
+.main__sort-search {
+  @include media-tablet {
+    margin: 0 auto;
+}
+}
+
+.cards__wrapper {
+  @include media-tablet {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+}
